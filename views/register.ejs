@@ -3,7 +3,7 @@
 
 <%- include('head.ejs') %>
 
-    <body class="bg-primary">
+    <body class="bg-gradient-primary-to-secondary">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -19,6 +19,13 @@
                                         <!-- Registration form-->
                                         <form action="/register" method="post">
                                             <!-- Form Row-->
+                                            <!-- Form Group (email address)            -->
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="inputEmailAddress">Email</label>
+                                                <input class="form-control" id="inputEmailAddress" type="email"
+                                                    name="email" aria-describedby="emailHelp"
+                                                    placeholder="Enter email address" />
+                                            </div>
                                             <!-- Form Group (user name)-->
                                             <div class="mb-3">
                                                 <label class="small mb-1" for="inputUserName">UserName</label>
@@ -44,13 +51,6 @@
                                                             name="lastname" placeholder="Enter last name" />
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- Form Group (email address)            -->
-                                            <div class="mb-3">
-                                                <label class="small mb-1" for="inputEmailAddress">Email</label>
-                                                <input class="form-control" id="inputEmailAddress" type="email"
-                                                    name="email" aria-describedby="emailHelp"
-                                                    placeholder="Enter email address" />
                                             </div>
                                             <!-- Form Row    -->
                                             <!-- Form Group (password)-->
