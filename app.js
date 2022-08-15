@@ -1,14 +1,11 @@
-const express = require('express'),
-    path = require('path'),
-    app = express(),
-    mongoose = require("mongoose"),
-    passport = require("passport"),
-    bodyParser = require("body-parser"),
-    LocalStrategy = require("passport-local"),
-    User = require("./models/user");
+const   express = require('express'),
+        path = require('path'),
+        app = express(),
+        passport = require("passport"),
+        bodyParser = require("body-parser"),
+        LocalStrategy = require("passport-local"),
+        User = require("./models/user");
 
-//Connecting database
-mongoose.connect("mongodb://localhost/DB");
 app.use(require("express-session")({
     secret: "Project C02",//decode or encode session
     resave: false,
@@ -67,9 +64,18 @@ app.get('/security', isLoggedIn, (req, res) => {
     res.render('security', { title: 'security', currentUser: req.user });
 })
 
-app.get('/tables', isLoggedIn, isLoggedIn, (req, res) => {
+app.get('/tables', isLoggedIn, (req, res) => {
     res.render('tables', { title: 'tables', currentUser: req.user });
 })
+
+app.get('/add-Micro', isLoggedIn, (req, res) => {
+    res.render('addMicrocontroller', { title: 'tables' })
+})
+
+app.get("/logout", (req, res) => {
+    req.logout();
+    res.redirect("/");
+});
 
 //Auth Routes
 app.post("/", passport.authenticate("local", {
@@ -78,7 +84,6 @@ app.post("/", passport.authenticate("local", {
 }));
 
 app.post("/register", (req, res) => {
-
     User.register(new User({
         username: req.body.username,
         firstname: req.body.firstname,
@@ -94,10 +99,17 @@ app.post("/register", (req, res) => {
     })
 })
 
-app.get("/logout", (req, res) => {
-    req.logout();
-    res.redirect("/");
-});
+app.post('/insert', (req, res) => {
+    let data = new User({
+        namemicro:req.body.namemicro,
+        namesensor1:req.body.namesensor1,
+        namesensor2:req.body.namesensor2,
+    })
+    User.saveUser(data, (err) => {
+        if(err) console.log(err)
+        res.redirect('tables') //บันทึกเสร็จให้กลับไปหน้าแรก
+    })
+})
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {

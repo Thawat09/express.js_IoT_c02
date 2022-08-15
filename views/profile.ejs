@@ -53,18 +53,18 @@
                                         <div class="card mb-4">
                                             <div class="card-header">Account Details</div>
                                             <div class="card-body">
-                                                <form>
+                                                <form class="form-horizontal" method="post" action="/update">
                                                     <!-- Form Group (email address)-->
                                                     <div class="mb-3">
                                                         <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                                                        <input class="form-control" id="inputEmailAddress" type="email" disabled="disabled
-                                                            placeholder="Enter your email address" value=<%= currentUser.email %>  />
+                                                        <input class="form-control" id="inputEmailAddress" type="email" disabled="disabled"
+                                                            placeholder="Enter your email address" value="<%= currentUser.email %>" name="update_id" />
                                                     </div>
                                                     <!-- Form Group (username)-->
                                                     <div class="mb-3">
                                                         <label class="small mb-1" for="inputUsername">Username</label>
                                                         <input class="form-control" id="inputUsername" type="text"
-                                                            placeholder="Enter your username" value=<%= currentUser.username %> />
+                                                            placeholder="Enter your username" value="<%= currentUser.username %>" />
                                                     </div>
                                                     <!-- Form Row-->
                                                     <div class="row gx-3 mb-3">
@@ -72,13 +72,13 @@
                                                         <div class="col-md-6">
                                                             <label class="small mb-1" for="inputFirstName">First name</label>
                                                             <input class="form-control" id="inputFirstName" type="text"
-                                                                placeholder="Enter your first name" value=<%= currentUser.firstname %> />
+                                                                placeholder="Enter your first name" value="<%= currentUser.firstname %>" />
                                                         </div>
                                                         <!-- Form Group (last name)-->
                                                         <div class="col-md-6">
                                                             <label class="small mb-1" for="inputLastName">Last name</label>
                                                             <input class="form-control" id="inputLastName" type="text"
-                                                                placeholder="Enter your last name" value=<%= currentUser.lastname %> />
+                                                                placeholder="Enter your last name" value="<%= currentUser.lastname %>" />
                                                         </div>
                                                     </div>
                                                     <!-- Save changes button-->
