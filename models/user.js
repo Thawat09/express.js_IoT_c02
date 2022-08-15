@@ -12,8 +12,21 @@ let userSchema = new mongoose.Schema({
     password:String,
     firstname:String,
     lastname:String,
-    email:String
-}) ;
+    email:String,
+    // devices:
+    // [
+    //     {
+    //         namemicrocontroller:String,
+    //         sensor:
+    //         [
+    //             {
+    //                 namesensorone:String,
+    //                 namesensortwo:String
+    //             }
+    //         ]
+    //     }
+    // ]
+})
 
 userSchema.plugin(passportLocalMongoose);
 

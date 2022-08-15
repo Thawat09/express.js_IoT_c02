@@ -29,12 +29,6 @@ client.on('message', function (topic, message) {
     console.log(message.toString());
 });
 
-app.get("/index",isLoggedIn ,(req,res) =>{
-    res.render("mesage",{
-        mesage
-    });
-})
-
 // setInterval(() => {
 //     client.publish("test", "hello from MQTT");
 // }, 5000);

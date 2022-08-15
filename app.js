@@ -53,7 +53,10 @@ app.get("/index", isLoggedIn, (req, res) => {
 })
 
 app.get('/profile', isLoggedIn, (req, res) => {
-    res.render('profile', { title: 'profile', currentUser: req.user });
+    const edit_id = req.user._id
+    User.findOne({_id:edit_id}).exec((err, doc) => { 
+        res.render('profile', { title: 'profile', currentUser: req.user });
+    })
 })
 
 app.get('/register', (req, res) => {
@@ -101,13 +104,33 @@ app.post("/register", (req, res) => {
 
 app.post('/insert', (req, res) => {
     let data = new User({
-        namemicro:req.body.namemicro,
-        namesensor1:req.body.namesensor1,
-        namesensor2:req.body.namesensor2,
+        namemicrocontroller: req.body.namemicrocontroller,
+        namesensorone: req.body.namesensorone,
+        namesensortwo: req.body.namesensortwo
     })
     User.saveUser(data, (err) => {
         if(err) console.log(err)
-        res.redirect('tables') //บันทึกเสร็จให้กลับไปหน้าแรก
+        res.redirect('tables')
+    })
+})
+
+app.post('/update', (req, res) => {
+    const update_id = req.user._id
+    let data = {
+        username: req.body.username,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname
+    }
+    User.findByIdAndUpdate(update_id, data, {useFindAndModify: false}).exec(err => {
+        if(err) console.log(err)
+        res.redirect('/index')
+    })
+})
+
+app.get('/delete', (req, res) => {
+    User.findByIdAndDelete(req.user._id, {useFindAndModify: false}).exec(err => {
+        if(err) console.log(err)
+        res.redirect('/')
     })
 })
 
