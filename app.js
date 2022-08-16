@@ -69,7 +69,10 @@ app.get('/security', isLoggedIn, (req, res) => {
 })
 
 app.get('/tables', isLoggedIn, (req, res) => {
-    res.render('tables', { title: 'tables', currentUser: req.user });
+    const users_id = req.user._id
+    User.find({ user_id: users_id }).exec((err, doc) => {
+        res.render('tables', { title: 'tables', currentUser: req.user, users: doc });
+    })
 })
 
 app.get('/add-Micro', isLoggedIn, (req, res) => {
@@ -104,7 +107,9 @@ app.post("/register", (req, res) => {
 })
 
 app.post('/insert', (req, res) => {
+    const user_id = req.user._id
     let data = new User({
+        user_id: user_id,
         namemicrocontroller: req.body.namemicrocontroller,
         namesensorone: req.body.namesensorone,
         namesensortwo: req.body.namesensortwo
