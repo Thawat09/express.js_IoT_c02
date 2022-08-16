@@ -7,7 +7,7 @@ const   express = require('express'),
         User = require("./models/user");
 
 app.use(require("express-session")({
-    secret: "Project C02",//decode or encode session
+    secret: "Project C02",                          //decode or encode session
     resave: false,
     saveUninitialized: false
 }));
@@ -15,6 +15,7 @@ app.use(require("express-session")({
 passport.serializeUser(User.serializeUser());       //session encoding
 passport.deserializeUser(User.deserializeUser());   //session decoding
 passport.use(new LocalStrategy(User.authenticate()));
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded(
@@ -72,7 +73,7 @@ app.get('/tables', isLoggedIn, (req, res) => {
 })
 
 app.get('/add-Micro', isLoggedIn, (req, res) => {
-    res.render('addMicrocontroller', { title: 'tables' })
+    res.render('addMicrocontroller', { title: 'tables', currentUser: req.user })
 })
 
 app.get("/logout", (req, res) => {
@@ -92,8 +93,8 @@ app.post("/register", (req, res) => {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         email: req.body.email
-    }), req.body.password, function (err, user) {
-        if (err) {
+    }), req.body.password, function (password) {
+        if (password.length < 8) {
             res.redirect("/register");
         }
         passport.authenticate("local")(req, res, function () {
@@ -119,7 +120,7 @@ app.post('/update', (req, res) => {
     let data = {
         username: req.body.username,
         firstname: req.body.firstname,
-        lastname: req.body.lastname
+        lastname: req.body.lastname,
     }
     User.findByIdAndUpdate(update_id, data, {useFindAndModify: false}).exec(err => {
         if(err) console.log(err)
