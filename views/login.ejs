@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('head.ejs') %>
+
     <body class="bg-gradient-primary-to-secondary">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
@@ -20,13 +21,15 @@
                                             <div class="mb-3">
                                                 <label class="small mb-1" for="inputUserName">Username</label>
                                                 <input class="form-control" id="inputUserName" type="text"
-                                                    name="username" placeholder="Enter username" />
+                                                    name="username" placeholder="Enter username" minlength="6"
+                                                    required />
                                             </div>
                                             <!-- Form Group (password)-->
                                             <div class="mb-3">
                                                 <label class="small mb-1" for="inputPassword">Password</label>
                                                 <input class="form-control" id="inputPassword" type="password"
-                                                    name="password" placeholder="Enter password" />
+                                                    name="password" placeholder="Enter password"
+                                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
                                             </div>
                                             <!-- Form Group (remember password checkbox)-->
                                             <div class="mb-3">
@@ -62,4 +65,5 @@
             crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
     </body>
+
 </html>

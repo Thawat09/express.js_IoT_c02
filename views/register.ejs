@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('head.ejs') %>
+
     <body class="bg-gradient-primary-to-secondary">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
@@ -22,22 +23,24 @@
                                                 <label class="small mb-1" for="inputEmailAddress">Email</label>
                                                 <input class="form-control" id="inputEmailAddress" type="email"
                                                     name="email" aria-describedby="emailHelp"
-                                                    placeholder="Enter email address" required/>
+                                                    placeholder="Enter email address" required />
                                             </div>
                                             <!-- Form Group (user name)-->
                                             <div class="mb-3">
                                                 <label class="small mb-1" for="inputUserName">UserName</label>
                                                 <input class="form-control" id="inputUserName" type="text"
-                                                    name="username" placeholder="Enter username" minlength="6" required/>
+                                                    name="username" placeholder="Enter username" minlength="6"
+                                                    required />
                                             </div>
                                             <!-- Form Row-->
                                             <div class="row gx-3">
                                                 <div class="col-md-6">
                                                     <!-- Form Group (first name)-->
                                                     <div class="mb-3">
-                                                        <label class="small mb-1" for="inputFirstName">First Name</label>
+                                                        <label class="small mb-1" for="inputFirstName">First
+                                                            Name</label>
                                                         <input class="form-control" id="inputFirstName" type="text"
-                                                            name="firstname" placeholder="Enter first name" required/>
+                                                            name="firstname" placeholder="Enter first name" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -45,7 +48,7 @@
                                                     <div class="mb-3">
                                                         <label class="small mb-1" for="inputLastName">Last Name</label>
                                                         <input class="form-control" id="inputLastName" type="text"
-                                                            name="lastname" placeholder="Enter last name" required/>
+                                                            name="lastname" placeholder="Enter last name" required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -54,10 +57,12 @@
                                             <div class="mb-3">
                                                 <label class="small mb-1" for="inputPassword">Password</label>
                                                 <input class="form-control" id="inputPassword" type="password"
-                                                    name="password" placeholder="Enter password" minlength="8" required/>
+                                                    name="password" placeholder="Enter password"
+                                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
                                             </div>
                                             <!-- Form Group (create account submit)-->
-                                            <button class="btn btn-primary btn-block" type="submit">Create Account</button>
+                                            <button class="btn btn-primary btn-block" type="submit">Create
+                                                Account</button>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">
@@ -79,4 +84,5 @@
             crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
     </body>
+
 </html>

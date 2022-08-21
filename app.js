@@ -1,10 +1,10 @@
-const   express = require('express'),
-        path = require('path'),
-        app = express(),
-        passport = require("passport"),
-        bodyParser = require("body-parser"),
-        LocalStrategy = require("passport-local"),
-        User = require("./models/user");
+const express = require('express'),
+    path = require('path'),
+    app = express(),
+    passport = require("passport"),
+    bodyParser = require("body-parser"),
+    LocalStrategy = require("passport-local"),
+    User = require("./models/user");
 
 app.use(require("express-session")({
     secret: "Project C02",                          //decode or encode session
@@ -28,6 +28,11 @@ app.use(passport.session());
 //=======================
 //      R O U T E S
 //=======================
+
+app.get("/logout", (req, res) => {
+    req.logout();
+    res.redirect("/");
+});
 
 app.get("/", (req, res) => {
     res.render("login", { title: 'login' });
@@ -55,7 +60,7 @@ app.get("/index", isLoggedIn, (req, res) => {
 
 app.get('/profile', isLoggedIn, (req, res) => {
     const edit_id = req.user._id
-    User.findOne({_id:edit_id}).exec((err, doc) => { 
+    User.findOne({ _id: edit_id }).exec((err, doc) => {
         res.render('profile', { title: 'profile', currentUser: req.user });
     })
 })
@@ -79,26 +84,20 @@ app.get('/add-Micro', isLoggedIn, (req, res) => {
     res.render('addMicrocontroller', { title: 'tables', currentUser: req.user })
 })
 
-app.get('/:id', (req, res) => { //ดูรายละเอียดสินค้า
+app.get('/:id', (req, res) => {
     const User_id = req.params.id
-    User.findOne({_id:User_id}).exec((err, doc) => {
-        res.render('charts', {title: User_id, currentUser: req.user, users: doc }) //ให้ไปที่หน้า product
+    User.findOne({ _id: User_id }).exec((err, doc) => {
+        res.render('charts', { title: User_id, currentUser: req.user, users: doc })
     })
 })
 
-app.get('/delete/:id', (req, res) => { //ลบข้อมูลสินค้า
-    User.findByIdAndDelete(req.params.id, {useFindAndModify: false}).exec(err => {
-        if(err) console.log(err)
+app.get('/delete/:id', (req, res) => {
+    User.findByIdAndDelete(req.params.id, { useFindAndModify: false }).exec(err => {
+        if (err) console.log(err)
         res.redirect('/tables')
     })
 })
 
-app.get("/logout", (req, res) => {
-    req.logout();
-    res.redirect("/");
-});
-
-//Auth Routes
 app.post("/", passport.authenticate("local", {
     successRedirect: "/index",
     failureRedirect: "/"
@@ -129,7 +128,7 @@ app.post('/insert', (req, res) => {
         namesensortwo: req.body.namesensortwo
     })
     User.saveUser(data, (err) => {
-        if(err) console.log(err)
+        if (err) console.log(err)
         res.redirect('tables')
     })
 })
@@ -141,15 +140,15 @@ app.post('/update', (req, res) => {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
     }
-    User.findByIdAndUpdate(update_id, data, {useFindAndModify: false}).exec(err => {
-        if(err) console.log(err)
+    User.findByIdAndUpdate(update_id, data, { useFindAndModify: false }).exec(err => {
+        if (err) console.log(err)
         res.redirect('/index')
     })
 })
 
 app.get('/delete', (req, res) => {
-    User.findByIdAndDelete(req.user._id, {useFindAndModify: false}).exec(err => {
-        if(err) console.log(err)
+    User.findByIdAndDelete(req.user._id, { useFindAndModify: false }).exec(err => {
+        if (err) console.log(err)
         res.redirect('/')
     })
 })
