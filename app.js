@@ -79,6 +79,20 @@ app.get('/add-Micro', isLoggedIn, (req, res) => {
     res.render('addMicrocontroller', { title: 'tables', currentUser: req.user })
 })
 
+app.get('/:id', (req, res) => { //ดูรายละเอียดสินค้า
+    const User_id = req.params.id
+    User.findOne({_id:User_id}).exec((err, doc) => {
+        res.render('charts', {title: User_id, currentUser: req.user, users: doc }) //ให้ไปที่หน้า product
+    })
+})
+
+app.get('/delete/:id', (req, res) => { //ลบข้อมูลสินค้า
+    User.findByIdAndDelete(req.params.id, {useFindAndModify: false}).exec(err => {
+        if(err) console.log(err)
+        res.redirect('/tables')
+    })
+})
+
 app.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/");

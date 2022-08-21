@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    /* .dark-mode {
+        background-color: black;
+        color: white;
+    } */
+    #myFunction {
+        background-color: green;
+        color: red;
+    }
+</style>
 <%- include('head.ejs') %>
+
     <body class="nav-fixed">
         <%- include('navbar.ejs') %>
             <div id="layoutSidenav">
@@ -49,23 +60,25 @@
                                                 <% Object.values(users).forEach((doc)=> { %>
                                                     <tr>
                                                         <td>
-                                                            <%= doc.namemicrocontroller %>
+                                                            <a href="/<%= doc._id %>">
+                                                                <%= doc.namemicrocontroller %>
+                                                            </a>
                                                         </td>
                                                         <td>
                                                             <label class="switch">
-                                                                <input type="checkbox" checked>
+                                                                <input type="checkbox" checked onclick="myFunction()">
                                                                 <span class="slider round"></span>
                                                             </label>
                                                         </td>
                                                         <td>
-                                                            <div class="badge bg-success text-white rounded-pill">
-                                                                ON</div>
+                                                            <div class="badge text-white rounded-pill" id="myFunction">ON
+                                                            </div>
                                                         </td>
                                                         <td>
-                                                            <button
-                                                                class="btn btn-datatable btn-icon btn-transparent-dark">
-                                                                <i data-feather="trash-2"></i>
-                                                            </button>
+                                                            <a href="/delete/<%= doc._id %>"
+                                                                onclick="return confirm('Are you sure')">
+                                                                <i href data-feather="trash-2"></i>
+                                                            </a>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -103,5 +116,12 @@
             <script src="js/scripts.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
             <script src="js/datatables/datatables-simple-demo.js"></script>
+            <script>
+                function myFunction() {
+                    var element = document.getElementById("myFunction");
+                    element.classList.toggle("dark-mode");
+                }
+            </script>
     </body>
+
 </html>
