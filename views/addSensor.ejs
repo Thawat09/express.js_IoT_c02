@@ -12,21 +12,23 @@
                                 <!-- Basic registration form-->
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header justify-content-center">
-                                        <h3 class="fw-light my-4">Add Microcontroller</h3>
+                                        <h3 class="fw-light my-4">Add Sensor</h3>
                                     </div>
                                     <div class="card-body">
                                         <!-- Registration form-->
-                                        <form action="/insertMicro" method="post">
+                                        <form action="/insertSensor" method="post">
+                                            <!-- <input type="hidden" value="<%= users %>" name="id_serialnumber" /> -->
                                             <!-- Form Row-->
-                                            <!-- Form Group (Name Microcontroller)            -->
-                                            <div class="mb-3">
-                                                <label class="small mb-1" for="inputSerialnumber">SerialNumber</label>
-                                                <input class="form-control" id="inputSerialnumber" type="text"
-                                                    name="serialnumber" placeholder="Enter serialnumber" />
-                                                <label class="small mb-1"
-                                                    for="inputMicrocontroller">NameMicrocontroller</label>
-                                                <input class="form-control" id="inputMicrocontroller" type="text"
-                                                    name="namemicrocontroller" placeholder="Enter microcontroller" />
+                                            <div class="tablessensor"></div>
+                                            <div class="row gx-3">
+                                                <div class="col-md-6">
+                                                    <!-- Form Group (name sensorone)-->
+                                                    <div class="mb-3">
+                                                        <label class="small mb-1" for="inputSensor">Name Sensor</label>
+                                                        <input class="form-control" id="inputSensor" type="text"
+                                                            name="namesensor" placeholder="Enter namesensor" required />
+                                                    </div>
+                                                </div>
                                             </div>
                                             <!-- Form Group (create Microcontroller)-->
                                             <button class="btn btn-primary btn-block" type="submit">Create
@@ -34,7 +36,7 @@
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">
-                                        <div class="small"><a href="/tables">Back Tables</a>
+                                        <div class="small"><a href="/tablessensor">Back Table Sensor</a>
                                         </div>
                                     </div>
                                 </div>

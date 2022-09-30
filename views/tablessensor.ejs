@@ -49,7 +49,7 @@
                                                 <% Object.values(users).forEach((doc)=> { %>
                                                     <tr>
                                                         <td>
-                                                            <a href="/<%= doc._id %>/add-Sensor">
+                                                            <a href="/<%= doc._id %>">
                                                                 <%= doc.namemicrocontroller %>
                                                             </a>
                                                         </td>
@@ -69,8 +69,8 @@
                                                     <% }) %>
                                             </tbody>
                                         </table>
-                                        <a href="/add-Micro" class="btn btn-primary btn-lg active" role="button">Add
-                                            Microcontroller</a>
+                                        <a href="/add-Sensor" class="btn btn-primary btn-lg active" role="button">Add
+                                            Sensor</a>
                                     </div>
                                 </div>
                             </div>

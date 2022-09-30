@@ -57,20 +57,21 @@
                                                 <form class="form-horizontal" method="post" action="/update">
                                                     <input type="hidden" value="<%= currentUser._id %>"
                                                         name="update_id">
-                                                    <!-- Form Group (email address)-->
-                                                    <div class="mb-3">
-                                                        <label class="small mb-1" for="inputEmailAddress">Email
-                                                            address</label>
-                                                        <input class="form-control" id="inputEmailAddress" type="email"
-                                                            disabled="disabled" placeholder="Enter your email address"
-                                                            value="<%= currentUser.email %>" name="update_id" />
-                                                    </div>
                                                     <!-- Form Group (username)-->
                                                     <div class="mb-3">
                                                         <label class="small mb-1" for="inputUsername">Username</label>
                                                         <input class="form-control" id="inputUserName" type="text"
                                                             name="username" placeholder="Enter your username"
                                                             value="<%= currentUser.username %>" minlength="6"
+                                                            disabled="disabled" />
+                                                    </div>
+                                                    <!-- Form Group (email address)-->
+                                                    <div class="mb-3">
+                                                        <label class="small mb-1" for="inputEmailAddress">Email
+                                                            address</label>
+                                                        <input class="form-control" id="inputEmailAddress" type="email"
+                                                            name='email' placeholder="Enter your email address"
+                                                            value="<%= currentUser.email %>" name="update_id"
                                                             required />
                                                     </div>
                                                     <!-- Form Row-->
