@@ -16,7 +16,8 @@ let userSchema = new mongoose.Schema({
     user_id:String,
     serialnumber:String,
     namemicrocontroller:String,
-    namesensor:String
+    namesensor:String,
+    sensor:String,
 })
 
 userSchema.plugin(passportLocalMongoose);

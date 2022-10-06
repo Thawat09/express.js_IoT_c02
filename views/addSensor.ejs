@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <%- include('head.ejs') %>
 
     <body class="bg-gradient-primary-to-secondary">
@@ -17,7 +18,8 @@
                                     <div class="card-body">
                                         <!-- Registration form-->
                                         <form action="/insertSensor" method="post">
-                                            <!-- <input type="hidden" value="<%= users %>" name="id_serialnumber" /> -->
+                                            <input type="hidden" value="<%= currentUser %>"
+                                                        name="_id">
                                             <!-- Form Row-->
                                             <div class="tablessensor"></div>
                                             <div class="row gx-3">

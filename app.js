@@ -88,7 +88,6 @@ app.get("/tables", isLoggedIn, (req, res) => {
 
 app.get("/tablessensor", isLoggedIn, (req, res) => {
     const User_id = req.params
-    console.log(`User ${User_id}`);
     User.find({ _id: User_id }).exec((err, doc) => {
         res.render("tablessensor", {
             title: "tablessensor",
@@ -102,6 +101,7 @@ app.get("/add-Micro", isLoggedIn, (req, res) => {
     res.render("addMicrocontroller", {
         title: "addMicrocontroller",
         currentUser: req.user,
+        users: doc,
     });
 });
 
@@ -119,11 +119,10 @@ app.get("/add-Micro", isLoggedIn, (req, res) => {
 
 app.get("/:id/add-Sensor", isLoggedIn, (req, res) => { // ทดสอบ
     const doc = req.params.id;
-    User.find( doc ).exec((err, doc) => {
+    User.find( doc ).exec((err) => {
         res.render("addSensor", {
             title: "addSensor",
-            currentUser: req.user,
-            users: doc,
+            currentUser: doc,
         });
     });
 });
@@ -185,9 +184,10 @@ app.post("/insertMicro", (req, res) => {
 });
 
 app.post("/insertSensor", (req, res) => {
+    const sn = req.body._id
     let data = new User({
-        serialnumber: req.body.serialnumber,
-        namesensor: req.body.sensor,
+        sensor: sn,
+        namesensor: req.body.namesensor,
     });
     User.saveUser(data, (err) => {
         if (err) console.log(err);
