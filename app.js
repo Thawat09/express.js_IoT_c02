@@ -1,5 +1,3 @@
-const console = require("console");
-
 const express = require("express"),
     path = require("path"),
     app = express(),
@@ -30,6 +28,8 @@ app.use(passport.session());
 //=======================
 //      R O U T E S
 //=======================
+
+let sensorId = "";
 
 app.get("/logout", (req, res) => {
     req.logout();
@@ -77,20 +77,9 @@ app.get("/security", isLoggedIn, (req, res) => {
 
 app.get("/tables", isLoggedIn, (req, res) => {
     const users_id = req.user._id;
-    User.find({ user_id: users_id }).exec((err, doc) => {
+    User.find({ 'user_id': users_id }).exec((err, doc) => {
         res.render("tables", {
             title: "tables",
-            currentUser: req.user,
-            users: doc,
-        });
-    });
-});
-
-app.get("/tablessensor", isLoggedIn, (req, res) => {
-    const User_id = req.params
-    User.find({ _id: User_id }).exec((err, doc) => {
-        res.render("tablessensor", {
-            title: "tablessensor",
             currentUser: req.user,
             users: doc,
         });
@@ -101,36 +90,27 @@ app.get("/add-Micro", isLoggedIn, (req, res) => {
     res.render("addMicrocontroller", {
         title: "addMicrocontroller",
         currentUser: req.user,
-        users: doc,
     });
 });
 
-// app.get("/add-Sensor", isLoggedIn, (req, res) => {
-//     User.find( {pro: { _id: 0, serialnumber: 1 }} ).exec((err, doc) => {
-//         console.log(doc + ' doc /add-Sensor')
-//         console.log(doc)
-//         res.render("addSensor", {
-//             title: "addSensor",
-//             currentUser: req.user,
-//             users: doc,
-//         });
-//     });
-// });
-
-app.get("/:id/add-Sensor", isLoggedIn, (req, res) => { // ทดสอบ
-    const doc = req.params.id;
-    User.find( doc ).exec((err) => {
-        res.render("addSensor", {
-            title: "addSensor",
-            currentUser: doc,
-        });
+app.get("/add-Sensor", isLoggedIn, (req, res) => {
+    res.render("addSensor", {
+        title: "addSensor",
+        currentUser: req.user,
     });
 });
 
 app.get("/:id", (req, res) => {
     const User_id = req.params.id;
-    console.log(User_id + ' User_id');
-    res.render("addSensor");
+    sensorId = req.params.id;
+    User.find({ 'user_id': User_id }).exec((err, doc) => {
+        res.render("tablessensor", {
+            title: "tablessensor",
+            currentUser: req.user,
+            users: doc,
+        });
+    console.log(doc + '/:id page')
+    });
 });
 
 app.get("/delete/:id", (req, res) => {
@@ -174,7 +154,6 @@ app.post("/insertMicro", (req, res) => {
     const user_id = req.user._id;
     let data = new User({
         user_id: user_id,
-        serialnumber: req.body.serialnumber,
         namemicrocontroller: req.body.namemicrocontroller,
     });
     User.saveUser(data, (err) => {
@@ -184,9 +163,11 @@ app.post("/insertMicro", (req, res) => {
 });
 
 app.post("/insertSensor", (req, res) => {
-    const sn = req.body._id
+    const user_id = req.user._id;
     let data = new User({
-        sensor: sn,
+        user_id: user_id,
+        idSensor: sensorId,
+        serialnumber: req.body.serialnumber,
         namesensor: req.body.namesensor,
     });
     User.saveUser(data, (err) => {
