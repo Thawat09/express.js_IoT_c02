@@ -49,7 +49,7 @@
                                                 <% Object.values(users).forEach((doc)=> { %>
                                                     <tr>
                                                         <td>
-                                                            <a href="/<%= doc._id %>r">
+                                                            <a href="/<%= doc._id %>">
                                                                 <%= doc.namemicrocontroller %>
                                                             </a>
                                                         </td>
@@ -60,7 +60,7 @@
                                                             </label>
                                                         </td>
                                                         <td>
-                                                            <a href="/delete/<%= doc._id %>"
+                                                            <a href="/deleteMicro/<%= doc._id %>"
                                                                 onclick="return confirm('Are you sure')">
                                                                 <i href data-feather="trash-2"></i>
                                                             </a>

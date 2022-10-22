@@ -53,12 +53,29 @@
                                                 </div>
                                             </div>
                                             <!-- Form Row    -->
-                                            <!-- Form Group (password)-->
-                                            <div class="mb-3">
-                                                <label class="small mb-1" for="inputPassword">Password</label>
-                                                <input class="form-control" id="inputPassword" type="password"
-                                                    name="password" placeholder="Enter password"
-                                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+                                            <div class="row gx-3">
+                                                <div class="col-md-6">
+                                                    <!-- Form Group (password)-->
+                                                    <div class="mb-3">
+                                                        <label class="small mb-1" for="inputPassword">Password</label>
+                                                        <input class="form-control" id="inputPassword" type="password"
+                                                            name="password" placeholder="Enter password"
+                                                            onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 8 characters' : ''); if(this.checkValidity()) form.confirm_password.pattern = this.value;"
+                                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <!-- Form Group (confirm password)-->
+                                                    <div class="mb-3">
+                                                        <label class="small mb-1" for="inputConfirmPassword">Confirm
+                                                            Password</label>
+                                                        <input class="form-control" id="inputConfirmPassword"
+                                                            type="password" name="confirm_password"
+                                                            placeholder="Confirm password"
+                                                            onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');"
+                                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+                                                    </div>
+                                                </div>
                                             </div>
                                             <!-- Form Group (create account submit)-->
                                             <button class="btn btn-primary btn-block" type="submit">Create

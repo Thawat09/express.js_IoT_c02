@@ -8,20 +8,19 @@ const express = require("express"),
 
 app.use(
     require("express-session")({
-        secret: "Project C02", //decode or encode session
+        secret: "Project C02",
         resave: false,
         saveUninitialized: false,
     })
 );
 
-passport.serializeUser(User.serializeUser()); //session encoding
-passport.deserializeUser(User.deserializeUser()); //session decoding
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 passport.use(new LocalStrategy(User.authenticate()));
 
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -29,6 +28,7 @@ app.use(passport.session());
 //      R O U T E S
 //=======================
 
+let microId = "";
 let sensorId = "";
 
 app.get("/logout", (req, res) => {
@@ -44,16 +44,31 @@ app.get("/charts", isLoggedIn, (req, res) => {
     res.render("charts", { title: "charts", currentUser: req.user });
 });
 
+app.get("/:id/dashboard1", isLoggedIn, (req, res) => {
+    sensorId = req.params.id;
+    User.find({ 'idSerial': sensorId }).exec((err, doc) => {
+        res.render("dashboard1", {
+            title: "dashboard1", currentUser: req.user, users: doc,
+        });
+    });
+});
+
 app.get("/dashboard1", isLoggedIn, (req, res) => {
-    res.render("dashboard1", { title: "dashboard1", currentUser: req.user });
+    User.find({ 'idSerial': sensorId }).exec((err, doc) => {
+        res.render("dashboard1", { title: "dashboard1", currentUser: req.user, users: doc, });
+    });
 });
 
 app.get("/dashboard2", isLoggedIn, (req, res) => {
-    res.render("dashboard2", { title: "dashboard2", currentUser: req.user });
+    User.find({ 'idSerial': sensorId }).exec((err, doc) => {
+        res.render("dashboard2", { title: "dashboard2", currentUser: req.user, users: doc, });
+    });
 });
 
 app.get("/dashboard3", isLoggedIn, (req, res) => {
-    res.render("dashboard3", { title: "dashboard3", currentUser: req.user });
+    User.find({ 'idSerial': sensorId }).exec((err, doc) => {
+        res.render("dashboard3", { title: "dashboard3", currentUser: req.user, users: doc, });
+    });
 });
 
 app.get("/index", isLoggedIn, (req, res) => {
@@ -86,6 +101,16 @@ app.get("/tables", isLoggedIn, (req, res) => {
     });
 });
 
+app.get("/tablessensor", isLoggedIn, (req, res) => {
+    User.find({ 'idMicro': microId }).exec((err, doc) => {
+        res.render("tablessensor", {
+            title: "tablessensor",
+            currentUser: req.user,
+            users: doc,
+        });
+    });
+});
+
 app.get("/add-Micro", isLoggedIn, (req, res) => {
     res.render("addMicrocontroller", {
         title: "addMicrocontroller",
@@ -101,23 +126,30 @@ app.get("/add-Sensor", isLoggedIn, (req, res) => {
 });
 
 app.get("/:id", (req, res) => {
-    const User_id = req.params.id;
-    sensorId = req.params.id;
-    User.find({ 'user_id': User_id }).exec((err, doc) => {
+    microId = req.params.id;
+    User.find({ 'idMicro': microId }).exec((err, doc) => {
         res.render("tablessensor", {
             title: "tablessensor",
             currentUser: req.user,
             users: doc,
         });
-    console.log(doc + '/:id page')
     });
 });
 
-app.get("/delete/:id", (req, res) => {
+app.get("/deleteMicro/:id", (req, res) => {
     User.findByIdAndDelete(req.params.id, { useFindAndModify: false }).exec(
         (err) => {
             if (err) console.log(err);
             res.redirect("/tables");
+        }
+    );
+});
+
+app.get("/deleteSensor/:id", (req, res) => {
+    User.findByIdAndDelete(req.params.id, { useFindAndModify: false }).exec(
+        (err) => {
+            if (err) console.log(err);
+            res.redirect("/tablessensor");
         }
     );
 });
@@ -163,10 +195,8 @@ app.post("/insertMicro", (req, res) => {
 });
 
 app.post("/insertSensor", (req, res) => {
-    const user_id = req.user._id;
     let data = new User({
-        user_id: user_id,
-        idSensor: sensorId,
+        idMicro: microId,
         serialnumber: req.body.serialnumber,
         namesensor: req.body.namesensor,
     });
@@ -207,7 +237,6 @@ function isLoggedIn(req, res, next) {
     res.redirect("/");
 }
 
-//Listen On Server
 app.listen(process.env.PORT || 1111, function (err) {
     if (err) {
         console.log(err);
