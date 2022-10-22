@@ -221,11 +221,29 @@ app.post("/update", (req, res) => {
     );
 });
 
+app.post("/updatePassword", async (req, res) => {
+    const user_id = req.user._id
+    User.findById(user_id, (err, user) => {
+        if (err) {
+            res.send(err);
+        } else {
+            user.changePassword(req.body.currentPassword,
+                req.body.newPassword, function (err) {
+                    if (err) {
+                        res.status(500).send('Something went wrong. Try again');
+                    } else {
+                        res.redirect("/logout");
+                    }
+                });
+        }
+    });
+});
+
 app.get("/delete", (req, res) => {
     User.findByIdAndDelete(req.user._id, { useFindAndModify: false }).exec(
         (err) => {
             if (err) console.log(err);
-            res.redirect("/");
+            res.redirect("/logout");
         }
     );
 });

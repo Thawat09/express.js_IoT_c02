@@ -21,7 +21,7 @@ let userSchema = new mongoose.Schema({
     idMicro: String,
     idSerial: String, //-----ตั้งแต่ตรงนี้ลงไปอาจมีการเปลี่ยนแปลง
     time: String,
-    value: String
+    value: String,
 })
 
 userSchema.plugin(passportLocalMongoose);

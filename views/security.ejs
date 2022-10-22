@@ -37,20 +37,23 @@
                                         <div class="card mb-4">
                                             <div class="card-header">Change Password</div>
                                             <div class="card-body">
-                                                <form>
+                                                <form class="form-horizontal" method="post" action="/updatePassword">
+                                                    <input type="hidden" value="<%= currentUser._id %>"
+                                                        name="update_id">
                                                     <!-- Form Group (current password)-->
                                                     <div class="mb-3">
                                                         <label class="small mb-1" for="currentPassword">Current
                                                             Password</label>
                                                         <input class="form-control" id="currentPassword" type="password"
-                                                            placeholder="Enter current password"
+                                                            name="currentPassword" placeholder="Enter current password"
                                                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
                                                     </div>
                                                     <!-- Form Group (new password)-->
                                                     <div class="mb-3">
                                                         <label class="small mb-1" for="newPassword">New Password</label>
                                                         <input class="form-control" id="newPassword" type="password"
-                                                            placeholder="Enter new password"
+                                                            name="newPassword" placeholder="Enter new password"
+                                                            onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 8 characters' : ''); if(this.checkValidity()) form.confirmPassword.pattern = this.value;"
                                                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
                                                     </div>
                                                     <!-- Form Group (confirm password)-->
@@ -58,10 +61,12 @@
                                                         <label class="small mb-1" for="confirmPassword">Confirm
                                                             Password</label>
                                                         <input class="form-control" id="confirmPassword" type="password"
-                                                            placeholder="Confirm new password"
+                                                            name="confirmPassword" placeholder="Confirm new password"
+                                                            onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');"
                                                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
                                                     </div>
-                                                    <button class="btn btn-primary" type="button">Save</button>
+                                                    <!-- Save button-->
+                                                    <button class="btn btn-primary" type="submit">Save</button>
                                                 </form>
                                             </div>
                                         </div>
