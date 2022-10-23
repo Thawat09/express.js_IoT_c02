@@ -41,7 +41,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/charts", isLoggedIn, (req, res) => {
-    res.render("charts", { title: "charts", currentUser: req.user });
+    User.find({ 'idSerial': sensorId }).exec((err, doc) => {
+        res.render("charts", { title: "charts", currentUser: req.user, users: doc, });
+    });
 });
 
 app.get("/:id/dashboard1", isLoggedIn, (req, res) => {

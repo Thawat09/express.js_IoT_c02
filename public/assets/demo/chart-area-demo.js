@@ -29,8 +29,8 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 }
 
 // Area Chart Example
-var xValues = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16];
-var yValues = [0,10000,5000,15000,10000,20000,15000,25000,20000,30000,25000,40000,50000,40000,40000];
+var xValues = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+var yValues = [0,10000,5000,15000,10000,20000,15000,25000,20000,30000,25000,40000,50000,40000,40000,35000,30000,35000,35000,45000,50000,40000,50000,40000];
 var ctx = document.getElementById("myAreaChart");
 var ctx1 = document.getElementById("myAreaChart1");
 var myLineChart = new Chart(ctx, {
@@ -127,18 +127,13 @@ var myLineChart1 = new Chart(ctx1, {
     type: "line",
     data: {
         labels: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec"
+            "MON",
+            "TUE",
+            "WED",
+            "THU",
+            "FRI",
+            "SAT",
+            "SUN"
         ],
         datasets: [{
             label: "Earnings",
@@ -154,18 +149,13 @@ var myLineChart1 = new Chart(ctx1, {
             pointHitRadius: 10,
             pointBorderWidth: 2,
             data: [
-                0,
                 10000,
                 5000,
                 15000,
                 10000,
                 20000,
                 15000,
-                25000,
-                20000,
-                30000,
-                25000,
-                40000
+                25000
             ]
         }]
     },
