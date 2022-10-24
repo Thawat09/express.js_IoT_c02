@@ -11,12 +11,14 @@
   "dependencies": {
     "bcrypt": "^5.1.0",
     "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
     "ejs": "^3.1.6",
-    "express": "^4.17.2",
+    "express": "^4.18.2",
     "express-flash": "^0.0.2",
     "express-session": "^1.17.2",
     "flash": "^1.1.0",
-    "mongoose": "^6.1.7"
+    "mongoose": "^6.1.7",
+    "socket.io": "^4.5.3"
   },
   "keywords": [],
   "description": ""
