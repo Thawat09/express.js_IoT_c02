@@ -9,8 +9,8 @@ const express = require("express"),
 app.use(
     require("express-session")({
         secret: "Project C02",
-        resave: false,
-        saveUninitialized: false,
+        resave: true,
+        saveUninitialized: true,
     })
 );
 
