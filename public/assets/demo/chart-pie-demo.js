@@ -1,7 +1,18 @@
 // Set new default font family and font color to mimic Bootstrap's default styling
 (Chart.defaults.global.defaultFontFamily = "Metropolis"),
-'-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = "#858796";
+
+fetch('http://localhost:1111/chart')
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+
+var x = 27.5
+var y = 80
+var z = y - x
+
+document.getElementById("resultX").innerHTML = x + '%';
+document.getElementById("resultY").innerHTML = y + '%';
 
 // Pie Chart Example
 var ctx = document.getElementById("myPieChart");
@@ -10,7 +21,7 @@ var myPieChart = new Chart(ctx, {
     data: {
         labels: ["Direct", "Referral"],
         datasets: [{
-            data: [55, 45],
+            data: [x, z],
             backgroundColor: [
                 "rgba(0, 97, 242, 1)",
                 "rgba(0, 172, 105, 1)"

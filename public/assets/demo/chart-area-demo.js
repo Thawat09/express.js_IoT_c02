@@ -1,7 +1,32 @@
 // Set new default font family and font color to mimic Bootstrap's default styling
 (Chart.defaults.global.defaultFontFamily = "Metropolis"),
-'-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = "#858796";
+
+var data = [];
+var x = [];
+
+async function getRandomUser() {
+    const response = await fetch('http://localhost:1111/chart');
+    const data = await response.json();
+    addData(data);
+}
+
+function addData(object) {
+    data.push(object);
+    addData1(data);
+}
+
+function addData1(object) {
+    data.push(object[0][0].temperature);
+    x = data['1']
+    console.log(data['1'])
+    console.log(parseFloat(data['1']));
+}
+
+getRandomUser()
+console.log(x)
+console.log(data)
 
 function number_format(number, decimals, dec_point, thousands_sep) {
     // *     example: number_format(1234.56, 2, ',', ' ');
@@ -12,7 +37,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
         sep = typeof thousands_sep === "undefined" ? "," : thousands_sep,
         dec = typeof dec_point === "undefined" ? "." : dec_point,
         s = "",
-        toFixedFix = function(n, prec) {
+        toFixedFix = function (n, prec) {
             var k = Math.pow(10, prec);
             return "" + Math.round(n * k) / k;
         };
@@ -29,8 +54,8 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 }
 
 // Area Chart Example
-var xValues = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
-var yValues = [0,10000,5000,15000,10000,20000,15000,25000,20000,30000,25000,40000,50000,40000,40000,35000,30000,35000,35000,45000,50000,40000,50000,40000];
+var xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+var yValues = [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000, 50000, 40000, 40000, 35000, 30000, 35000, 35000, 45000, 50000, 40000, 50000, 40000];
 var ctx = document.getElementById("myAreaChart");
 var ctx1 = document.getElementById("myAreaChart1");
 var myLineChart = new Chart(ctx, {
@@ -81,7 +106,7 @@ var myLineChart = new Chart(ctx, {
                     maxTicksLimit: 5,
                     padding: 10,
                     // Include a dollar sign in the ticks
-                    callback: function(value, index, values) {
+                    callback: function (value, index, values) {
                         return "$" + number_format(value);
                     }
                 },
@@ -112,7 +137,7 @@ var myLineChart = new Chart(ctx, {
             mode: "index",
             caretPadding: 10,
             callbacks: {
-                label: function(tooltipItem, chart) {
+                label: function (tooltipItem, chart) {
                     var datasetLabel =
                         chart.datasets[tooltipItem.datasetIndex].label || "";
                     return datasetLabel + ": $" + number_format(tooltipItem.yLabel);
@@ -187,7 +212,7 @@ var myLineChart1 = new Chart(ctx1, {
                     maxTicksLimit: 5,
                     padding: 10,
                     // Include a dollar sign in the ticks
-                    callback: function(value, index, values) {
+                    callback: function (value, index, values) {
                         return "$" + number_format(value);
                     }
                 },
@@ -218,7 +243,7 @@ var myLineChart1 = new Chart(ctx1, {
             mode: "index",
             caretPadding: 10,
             callbacks: {
-                label: function(tooltipItem, chart) {
+                label: function (tooltipItem, chart) {
                     var datasetLabel =
                         chart.datasets[tooltipItem.datasetIndex].label || "";
                     return datasetLabel + ": $" + number_format(tooltipItem.yLabel);
