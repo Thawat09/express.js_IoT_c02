@@ -58,7 +58,6 @@ app.get("/:id/dashboard1", isLoggedIn, (req, res) => {
     var mysort = { '_id': -1 };
     User.find({ 'idSerial': sensorId }).sort(mysort).exec((err, doc) => {
         data = doc
-        console.log(data)
         res.render("dashboard1", {
             title: "dashboard1", currentUser: req.user, users: doc,
         });
