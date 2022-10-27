@@ -75,13 +75,9 @@
                                         </h1>
                                         <div class="page-header-subtitle">Example dashboard overview and content
                                             summary</div>
-                                    </div>
-                                    <div class="col-12 col-xl-auto mt-4">
-                                        <div class="input-group input-group-joined border-0" style="width: 16.5rem">
-                                            <span class="input-group-text"><i class="text-primary"
-                                                    data-feather="calendar"></i></span>
-                                            <input class="form-control ps-0 pointer" id="litepickerRangePlugin"
-                                                placeholder="Select date range..." />
+                                        <div class="small">
+                                            <i class="far fa-clock fa-spin fa-lg text-white-50"></i>
+                                            <span class="fw-500 text-white-50" id="time"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -92,130 +88,56 @@
                     <div class="container-xl px-4 mt-n10">
                         <div class="row">
                             <div class="col-xxl-4 col-xl-12 mb-4">
+                                <!-- Pie chart with legend example-->
                                 <div class="card h-100">
-                                    <div class="card-body h-100 p-5">
-                                        <div class="row align-items-center">
-                                            <div class="col-xl-8 col-xxl-12">
-                                                <div
-                                                    class="text-center text-xl-start text-xxl-center mb-4 mb-xl-0 mb-xxl-4">
-                                                    <h1 class="text-primary">Welcome to SB Admin Pro!</h1>
-                                                    <p class="text-gray-700 mb-0">Browse our fully designed UI!</p>
+                                    <div class="card-header">Traffic Sources</div>
+                                    <div class="card-body">
+                                        <div class="chart-pie mb-4"><canvas id="myPieChart" width="100%"
+                                                height="50"></canvas></div>
+                                        <div class="list-group list-group-flush">
+                                            <div
+                                                class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                                                <div class="me-3">
+                                                    <i class="fas fa-circle fa-sm me-1 text-warning"></i>
+                                                    Temperature
                                                 </div>
+                                                <div class="fw-500 text-dark" id="resultX"></div>
                                             </div>
-                                            <div class="col-xl-4 col-xxl-12 text-center"><img class="img-fluid"
-                                                    src="/assets/img/illustrations/at-work.svg"
-                                                    style="max-width: 26rem" /></div>
+                                            <div
+                                                class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                                                <div class="me-3">
+                                                    <i class="fas fa-circle fa-sm me-1 text-green"></i>
+                                                    Null
+                                                </div>
+                                                <div class="fw-500 text-dark" id="resultY"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xxl-4 col-xl-6 mb-4">
-                                <div class="card card-header-actions h-100">
-                                    <div class="card-header">
-                                        Recent Activity
-                                        <div class="dropdown no-caret">
-                                            <button class="btn btn-transparent-dark btn-icon dropdown-toggle"
-                                                id="dropdownMenuButton" type="button" data-bs-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false"><i class="text-gray-500"
-                                                    data-feather="more-vertical"></i></button>
-                                            <div class="dropdown-menu dropdown-menu-end animated--fade-in-up"
-                                                aria-labelledby="dropdownMenuButton">
-                                                <h6 class="dropdown-header">Filter Activity:</h6>
-                                                <a class="dropdown-item" href="#!"><span
-                                                        class="badge bg-green-soft text-green my-1">Commerce</span></a>
-                                                <a class="dropdown-item" href="#!"><span
-                                                        class="badge bg-blue-soft text-blue my-1">Reporting</span></a>
-                                                <a class="dropdown-item" href="#!"><span
-                                                        class="badge bg-yellow-soft text-yellow my-1">Server</span></a>
-                                                <a class="dropdown-item" href="#!"><span
-                                                        class="badge bg-purple-soft text-purple my-1">Users</span></a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <!-- Pie chart with legend example-->
+                                <div class="card h-100">
+                                    <div class="card-header">Traffic Sources</div>
                                     <div class="card-body">
-                                        <div class="timeline timeline-xs">
-                                            <!-- Timeline Item 1-->
-                                            <div class="timeline-item">
-                                                <div class="timeline-item-marker">
-                                                    <div class="timeline-item-marker-text">27 min</div>
-                                                    <div class="timeline-item-marker-indicator bg-green"></div>
+                                        <div class="chart-pie mb-4"><canvas id="myPieChart1" width="100%"
+                                                height="50"></canvas></div>
+                                        <div class="list-group list-group-flush">
+                                            <div
+                                                class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                                                <div class="me-3">
+                                                    <i class="fas fa-circle fa-sm me-1 text-primary"></i>
+                                                    Humidity
                                                 </div>
-                                                <div class="timeline-item-content">
-                                                    New order placed!
-                                                    <a class="fw-bold text-dark" href="#!">Order #2912</a>
-                                                    has been successfully placed.
-                                                </div>
+                                                <div class="fw-500 text-dark" id="resultXX"></div>
                                             </div>
-                                            <!-- Timeline Item 2-->
-                                            <div class="timeline-item">
-                                                <div class="timeline-item-marker">
-                                                    <div class="timeline-item-marker-text">58 min</div>
-                                                    <div class="timeline-item-marker-indicator bg-blue"></div>
+                                            <div
+                                                class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                                                <div class="me-3">
+                                                    <i class="fas fa-circle fa-sm me-1 text-green"></i>
+                                                    Null
                                                 </div>
-                                                <div class="timeline-item-content">
-                                                    Your
-                                                    <a class="fw-bold text-dark" href="#!">weekly report</a>
-                                                    has been generated and is ready to view.
-                                                </div>
-                                            </div>
-                                            <!-- Timeline Item 3-->
-                                            <div class="timeline-item">
-                                                <div class="timeline-item-marker">
-                                                    <div class="timeline-item-marker-text">2 hrs</div>
-                                                    <div class="timeline-item-marker-indicator bg-purple"></div>
-                                                </div>
-                                                <div class="timeline-item-content">
-                                                    New user
-                                                    <a class="fw-bold text-dark" href="#!">Valerie Luna</a>
-                                                    has registered
-                                                </div>
-                                            </div>
-                                            <!-- Timeline Item 4-->
-                                            <div class="timeline-item">
-                                                <div class="timeline-item-marker">
-                                                    <div class="timeline-item-marker-text">1 day</div>
-                                                    <div class="timeline-item-marker-indicator bg-yellow"></div>
-                                                </div>
-                                                <div class="timeline-item-content">Server activity monitor alert
-                                                </div>
-                                            </div>
-                                            <!-- Timeline Item 5-->
-                                            <div class="timeline-item">
-                                                <div class="timeline-item-marker">
-                                                    <div class="timeline-item-marker-text">1 day</div>
-                                                    <div class="timeline-item-marker-indicator bg-green"></div>
-                                                </div>
-                                                <div class="timeline-item-content">
-                                                    New order placed!
-                                                    <a class="fw-bold text-dark" href="#!">Order #2911</a>
-                                                    has been successfully placed.
-                                                </div>
-                                            </div>
-                                            <!-- Timeline Item 6-->
-                                            <div class="timeline-item">
-                                                <div class="timeline-item-marker">
-                                                    <div class="timeline-item-marker-text">1 day</div>
-                                                    <div class="timeline-item-marker-indicator bg-purple"></div>
-                                                </div>
-                                                <div class="timeline-item-content">
-                                                    Details for
-                                                    <a class="fw-bold text-dark" href="#!">Marketing and
-                                                        Planning
-                                                        Meeting</a>
-                                                    have been updated.
-                                                </div>
-                                            </div>
-                                            <!-- Timeline Item 7-->
-                                            <div class="timeline-item">
-                                                <div class="timeline-item-marker">
-                                                    <div class="timeline-item-marker-text">2 days</div>
-                                                    <div class="timeline-item-marker-indicator bg-green"></div>
-                                                </div>
-                                                <div class="timeline-item-content">
-                                                    New order placed!
-                                                    <a class="fw-bold text-dark" href="#!">Order #2910</a>
-                                                    has been successfully placed.
-                                                </div>
+                                                <div class="fw-500 text-dark" id="resultYY"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -223,79 +145,43 @@
                             </div>
                             <div class="col-xxl-4 col-xl-6 mb-4">
                                 <div class="card card-header-actions h-100">
-                                    <div class="card-header">
-                                        Progress Tracker
-                                        <div class="dropdown no-caret">
-                                            <button class="btn btn-transparent-dark btn-icon dropdown-toggle"
-                                                id="dropdownMenuButton" type="button" data-bs-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false"><i class="text-gray-500"
-                                                    data-feather="more-vertical"></i></button>
-                                            <div class="dropdown-menu dropdown-menu-end animated--fade-in-up"
-                                                aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="#!">
-                                                    <div class="dropdown-item-icon"><i class="text-gray-500"
-                                                            data-feather="list"></i></div>
-                                                    Manage Tasks
-                                                </a>
-                                                <a class="dropdown-item" href="#!">
-                                                    <div class="dropdown-item-icon"><i class="text-gray-500"
-                                                            data-feather="plus-circle"></i></div>
-                                                    Add New Task
-                                                </a>
-                                                <a class="dropdown-item" href="#!">
-                                                    <div class="dropdown-item-icon"><i class="text-gray-500"
-                                                            data-feather="minus-circle"></i></div>
-                                                    Delete Tasks
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div class="card-header">Progress Tracker</div>
                                     <div class="card-body">
                                         <h4 class="small">
-                                            Server Migration
-                                            <span class="float-end fw-bold">20%</span>
+                                            Temperature
+                                            <span class="float-end fw-bold">
+                                                <%= temp.temperature %> °C
+                                            </span>
                                         </h4>
                                         <div class="progress mb-4">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                                aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-warning" role="progressbar"
+                                                style="width: <%= temp.temperature %>%"
+                                                aria-valuenow="<%= temp.temperature %>" aria-valuemin="0"
+                                                aria-valuemax="80"></div>
                                         </div>
                                         <h4 class="small">
-                                            Sales Tracking
-                                            <span class="float-end fw-bold">40%</span>
+                                            Humidity
+                                            <span class="float-end fw-bold">
+                                                <%= temp.humidity %> %
+                                            </span>
                                         </h4>
                                         <div class="progress mb-4">
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                                aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-primary" role="progressbar"
+                                                style="width: <%= temp.humidity %>%"
+                                                aria-valuenow="<%= temp.humidity %>" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
                                         </div>
                                         <h4 class="small">
-                                            Customer Database
-                                            <span class="float-end fw-bold">60%</span>
+                                            AQI
+                                            <span class="float-end fw-bold">
+                                                <%= temp.aqi %> µg./m3
+                                            </span>
                                         </h4>
                                         <div class="progress mb-4">
-                                            <div class="progress-bar" role="progressbar" style="width: 60%"
-                                                aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <h4 class="small">
-                                            Payout Details
-                                            <span class="float-end fw-bold">80%</span>
-                                        </h4>
-                                        <div class="progress mb-4">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                                aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <h4 class="small">
-                                            Account Setup
-                                            <span class="float-end fw-bold">Complete!</span>
-                                        </h4>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                                aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer position-relative">
-                                        <div class="d-flex align-items-center justify-content-between small text-body">
-                                            <a class="stretched-link text-body" href="#!">Visit Task Center</a>
-                                            <i class="fas fa-angle-right"></i>
+                                            <div class="progress-bar bg-success" role="progressbar"
+                                                style="width: <%= temp.aqi %>%" aria-valuenow="<%= temp.aqi %>"
+                                                aria-valuemin="0" aria-valuemax="100">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -363,105 +249,39 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
+                                            <th>date</th>
                                             <th>Time</th>
                                             <th>Temperature</th>
                                             <th>Humidity</th>
                                             <th>AQI</th>
-                                            <th>Salary</th>
-                                            <th>Status</th>
-                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
+                                            <th>date</th>
                                             <th>Time</th>
                                             <th>Temperature</th>
                                             <th>Humidity</th>
                                             <th>AQI</th>
-                                            <th>Salary</th>
-                                            <th>Status</th>
-                                            <th>Actions</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <% Object.values(users).forEach((doc)=> { %>
                                             <tr>
                                                 <td>
-                                                    <%= doc.time %>
+                                                    <%= doc.date %> d
                                                 </td>
                                                 <td>
-                                                    <%= doc.temperature %>
+                                                    <%= doc.time %> h/min
                                                 </td>
                                                 <td>
-                                                    <%= doc.humidity %>
+                                                    <%= doc.temperature %> °C
                                                 </td>
                                                 <td>
-                                                    <%= doc.aqi %>
-                                                </td>
-                                                <td>$320,800</td>
-                                                <td>
-                                                    <div class="badge bg-primary text-white rounded-pill">Full-time
-                                                    </div>
+                                                    <%= doc.humidity %> %
                                                 </td>
                                                 <td>
-                                                    <button
-                                                        class="btn btn-datatable btn-icon btn-transparent-dark me-2"><i
-                                                            data-feather="more-vertical"></i></button>
-                                                    <button class="btn btn-datatable btn-icon btn-transparent-dark"><i
-                                                            data-feather="trash-2"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Garrett Winters</td>
-                                                <td>Accountant</td>
-                                                <td>Tokyo</td>
-                                                <td></td>
-                                                <td>$170,750</td>
-                                                <td>
-                                                    <div class="badge bg-warning rounded-pill">Pending</div>
-                                                </td>
-                                                <td>
-                                                    <button
-                                                        class="btn btn-datatable btn-icon btn-transparent-dark me-2"><i
-                                                            data-feather="more-vertical"></i></button>
-                                                    <button class="btn btn-datatable btn-icon btn-transparent-dark"><i
-                                                            data-feather="trash-2"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ashton Cox</td>
-                                                <td>Junior Technical Author</td>
-                                                <td>San Francisco</td>
-                                                <td></td>
-                                                <td>$86,000</td>
-                                                <td>
-                                                    <div class="badge bg-secondary text-white rounded-pill">
-                                                        Part-time
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <button
-                                                        class="btn btn-datatable btn-icon btn-transparent-dark me-2"><i
-                                                            data-feather="more-vertical"></i></button>
-                                                    <button class="btn btn-datatable btn-icon btn-transparent-dark"><i
-                                                            data-feather="trash-2"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cedric Kelly</td>
-                                                <td>Senior Javascript Developer</td>
-                                                <td>Edinburgh</td>
-                                                <td></td>
-                                                <td>$433,060</td>
-                                                <td>
-                                                    <div class="badge bg-info rounded-pill">Contract</div>
-                                                </td>
-                                                <td>
-                                                    <button
-                                                        class="btn btn-datatable btn-icon btn-transparent-dark me-2"><i
-                                                            data-feather="more-vertical"></i></button>
-                                                    <button class="btn btn-datatable btn-icon btn-transparent-dark"><i
-                                                            data-feather="trash-2"></i></button>
+                                                    <%= doc.aqi %> µg./m3
                                                 </td>
                                             </tr>
                                             <% }) %>
@@ -483,7 +303,28 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script src="/js/datatables/datatables-simple-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
-    <script src="/js/litepicker.js"></script>
+    <script src="/assets/demo/chart-pie-demo.js"></script>
+    <script>
+        function refreshTime() {
+            var x = new Date()
+            var ampm = x.getHours() >= 12 ? ' PM' : ' AM';
+            hours = x.getHours() % 12;
+            hours = hours ? hours : 12;
+            hours = hours.toString().length == 1 ? 0 + hours.toString() : hours;
+            var minutes = x.getMinutes().toString()
+            minutes = minutes.length == 1 ? 0 + minutes : minutes;
+            var seconds = x.getSeconds().toString()
+            seconds = seconds.length == 1 ? 0 + seconds : seconds;
+            var month = (x.getMonth() + 1).toString();
+            month = month.length == 1 ? 0 + month : month;
+            var dt = x.getDate().toString();
+            dt = dt.length == 1 ? 0 + dt : dt;
+            var x1 = month + "/" + dt + "/" + x.getFullYear();
+            x1 = x1 + " - " + hours + ":" + minutes + ":" + seconds + " " + ampm;
+            document.getElementById('time').innerHTML = x1;
+        }
+        setInterval(refreshTime, 1000);
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", function (event) {
             var scrollpos = localStorage.getItem('scrollpos');
@@ -492,6 +333,9 @@
         window.onbeforeunload = function (e) {
             localStorage.setItem('scrollpos', window.scrollY);
         };
+    </script>
+    <script>
+        var temperature = ''
     </script>
 </body>
 

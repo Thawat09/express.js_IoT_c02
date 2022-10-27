@@ -16,98 +16,71 @@
                                     <div class="me-4 mb-3 mb-sm-0">
                                         <h1 class="mb-0">Dashboard</h1>
                                         <div class="small">
-                                            <span class="fw-500 text-primary">Friday</span>
-                                            &middot; September 20, 2021 &middot; 12:16 PM
+                                            <i class="far fa-clock fa-spin fa-lg text-gray-500"></i>
+                                            <span class="fw-500 text-muted" id="time"></span>
                                         </div>
-                                    </div>
-                                    <!-- Date range picker example-->
-                                    <div class="input-group input-group-joined border-0 shadow" style="width: 16.5rem">
-                                        <span class="input-group-text"><i data-feather="calendar"></i></span>
-                                        <input class="form-control ps-0 pointer" id="litepickerRangePlugin"
-                                            placeholder="Select date range..." />
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="col-xl-4 col-md-6 mb-4">
                                         <!-- Dashboard info widget 1-->
+                                        <div class="card border-start-lg border-start-warning h-100">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-grow-1">
+                                                        <div class="fw-bold text-warning mb-1">Temperature
+                                                        </div>
+                                                        <div class="h1">
+                                                            <%= temp.temperature %> °C
+                                                        </div>
+                                                        <div
+                                                            class="text-xs fw-bold text-success d-inline-flex align-items-center">
+                                                        </div>
+                                                    </div>
+                                                    <div class="ms-2"><i
+                                                            class="fas fa-temperature-high fa-5x text-gray-200"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-md-6 mb-4">
+                                        <!-- Dashboard info widget 2-->
                                         <div class="card border-start-lg border-start-primary h-100">
                                             <div class="card-body">
                                                 <div class="d-flex align-items-center">
                                                     <div class="flex-grow-1">
-                                                        <div class="small fw-bold text-primary mb-1">Earnings (monthly)
+                                                        <div class="fw-bold text-primary mb-1">Humidity
                                                         </div>
-                                                        <div class="h5">$4,390</div>
+                                                        <div class="h1">
+                                                            <%= temp.humidity %> %
+                                                        </div>
                                                         <div
-                                                            class="text-xs fw-bold text-success d-inline-flex align-items-center">
-                                                            <i class="me-1" data-feather="trending-up"></i>
-                                                            12%
+                                                            class="text-xs fw-bold text-danger d-inline-flex align-items-center">
                                                         </div>
                                                     </div>
                                                     <div class="ms-2"><i
-                                                            class="fas fa-dollar-sign fa-2x text-gray-200"></i>
+                                                            class="fas fa-cloud-rain fa-5x text-gray-200"></i>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-3 col-md-6 mb-4">
-                                        <!-- Dashboard info widget 2-->
-                                        <div class="card border-start-lg border-start-secondary h-100">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="flex-grow-1">
-                                                        <div class="small fw-bold text-secondary mb-1">Average sale
-                                                            price
-                                                        </div>
-                                                        <div class="h5">$27.00</div>
-                                                        <div
-                                                            class="text-xs fw-bold text-danger d-inline-flex align-items-center">
-                                                            <i class="me-1" data-feather="trending-down"></i>
-                                                            3%
-                                                        </div>
-                                                    </div>
-                                                    <div class="ms-2"><i class="fas fa-tag fa-2x text-gray-200"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-md-6 mb-4">
+                                    <div class="col-xl-4 col-md-6 mb-4">
                                         <!-- Dashboard info widget 3-->
                                         <div class="card border-start-lg border-start-success h-100">
                                             <div class="card-body">
                                                 <div class="d-flex align-items-center">
                                                     <div class="flex-grow-1">
-                                                        <div class="small fw-bold text-success mb-1">Clicks</div>
-                                                        <div class="h5">11,291</div>
+                                                        <div class="fw-bold text-success mb-1">PM 2.5</div>
+                                                        <div class="h1">
+                                                            <%= temp.aqi %> µg./m3
+                                                        </div>
                                                         <div
                                                             class="text-xs fw-bold text-success d-inline-flex align-items-center">
-                                                            <i class="me-1" data-feather="trending-up"></i>
-                                                            12%
                                                         </div>
                                                     </div>
-                                                    <div class="ms-2"><i
-                                                            class="fas fa-mouse-pointer fa-2x text-gray-200"></i></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-md-6 mb-4">
-                                        <!-- Dashboard info widget 4-->
-                                        <div class="card border-start-lg border-start-info h-100">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="flex-grow-1">
-                                                        <div class="small fw-bold text-info mb-1">Conversion rate</div>
-                                                        <div class="h5">1.23%</div>
-                                                        <div
-                                                            class="text-xs fw-bold text-danger d-inline-flex align-items-center">
-                                                            <i class="me-1" data-feather="trending-down"></i>
-                                                            1%
-                                                        </div>
-                                                    </div>
-                                                    <div class="ms-2"><i
-                                                            class="fas fa-percentage fa-2x text-gray-200"></i>
+                                                    <div class="ms-2"><i class="fas fa-virus fa-5x text-gray-200"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,15 +95,6 @@
                                             <div class="card-body d-flex flex-column justify-content-center">
                                                 <div class="chart-bar"><canvas id="myBarChart" width="100%"
                                                         height="30"></canvas></div>
-                                            </div>
-                                            <div class="card-footer position-relative">
-                                                <a class="stretched-link" href="#!">
-                                                    <div
-                                                        class="text-xs d-flex align-items-center justify-content-between">
-                                                        View More Reports
-                                                        <i class="fas fa-long-arrow-alt-right"></i>
-                                                    </div>
-                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -159,7 +123,27 @@
             <script src="assets/demo/chart-bar-demo.js"></script>
             <script src="assets/demo/chart-pie-demo.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
-            <script src="js/litepicker.js"></script>
+            <script>
+                function refreshTime() {
+                    var x = new Date()
+                    var ampm = x.getHours() >= 12 ? ' PM' : ' AM';
+                    hours = x.getHours() % 12;
+                    hours = hours ? hours : 12;
+                    hours = hours.toString().length == 1 ? 0 + hours.toString() : hours;
+                    var minutes = x.getMinutes().toString()
+                    minutes = minutes.length == 1 ? 0 + minutes : minutes;
+                    var seconds = x.getSeconds().toString()
+                    seconds = seconds.length == 1 ? 0 + seconds : seconds;
+                    var month = (x.getMonth() + 1).toString();
+                    month = month.length == 1 ? 0 + month : month;
+                    var dt = x.getDate().toString();
+                    dt = dt.length == 1 ? 0 + dt : dt;
+                    var x1 = month + "/" + dt + "/" + x.getFullYear();
+                    x1 = x1 + " - " + hours + ":" + minutes + ":" + seconds + " " + ampm;
+                    document.getElementById('time').innerHTML = x1;
+                }
+                setInterval(refreshTime, 1000);
+            </script>
             <script>
                 document.addEventListener("DOMContentLoaded", function (event) {
                     var scrollpos = localStorage.getItem('scrollpos');

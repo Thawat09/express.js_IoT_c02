@@ -49,7 +49,7 @@ app.get("/charts", isLoggedIn, (req, res) => {
     var mysort = { '_id': -1 };
     User.find({ 'idSerial': sensorId }).sort(mysort).exec((err, doc) => {
         data = doc
-        res.render("charts", { title: "charts", currentUser: req.user, users: doc, });
+        res.render("charts", { title: "charts", currentUser: req.user, users: doc, temp: data[0] });
     });
 });
 
@@ -59,7 +59,7 @@ app.get("/:id/dashboard1", isLoggedIn, (req, res) => {
     User.find({ 'idSerial': sensorId }).sort(mysort).exec((err, doc) => {
         data = doc
         res.render("dashboard1", {
-            title: "dashboard1", currentUser: req.user, users: doc,
+            title: "dashboard1", currentUser: req.user, users: doc, temp: doc[0]
         });
     });
 });
@@ -68,7 +68,7 @@ app.get("/dashboard1", isLoggedIn, (req, res) => {
     var mysort = { '_id': -1 };
     User.find({ 'idSerial': sensorId }).sort(mysort).exec((err, doc) => {
         data = doc
-        res.render("dashboard1", { title: "dashboard1", currentUser: req.user, users: doc, });
+        res.render("dashboard1", { title: "dashboard1", currentUser: req.user, users: doc, temp: doc[0] });
     });
 });
 
@@ -76,7 +76,7 @@ app.get("/dashboard2", isLoggedIn, (req, res) => {
     var mysort = { '_id': -1 };
     User.find({ 'idSerial': sensorId }).sort(mysort).exec((err, doc) => {
         data = doc
-        res.render("dashboard2", { title: "dashboard2", currentUser: req.user, users: doc, });
+        res.render("dashboard2", { title: "dashboard2", currentUser: req.user, users: doc, temp: doc[0] });
     });
 });
 
@@ -84,7 +84,7 @@ app.get("/dashboard3", isLoggedIn, (req, res) => {
     var mysort = { '_id': -1 };
     User.find({ 'idSerial': sensorId }).sort(mysort).exec((err, doc) => {
         data = doc
-        res.render("dashboard3", { title: "dashboard3", currentUser: req.user, users: doc, });
+        res.render("dashboard3", { title: "dashboard3", currentUser: req.user, users: doc, temp: doc[0] });
     });
 });
 

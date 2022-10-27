@@ -55,7 +55,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 // Area Chart Example
 var xValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
-var yValues = [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000, 50000, 40000, 40000, 35000, 30000, 35000, 35000, 45000, 50000, 40000, 50000, 40000];
+var yValues = [23.1, 23.5, 23.5, 24.7, 25.0, 25.4, 25.8, 27.1, 27.8, 28.5, 29.3, 29.9, 30.8, 32.0, 32.5, 33.2, 31.0, 30.2, 29.5, 29.0, 28.2, 27.5, 27.2, 26.8];
 var ctx = document.getElementById("myAreaChart");
 var ctx1 = document.getElementById("myAreaChart1");
 var myLineChart = new Chart(ctx, {
@@ -63,7 +63,7 @@ var myLineChart = new Chart(ctx, {
     data: {
         labels: xValues,
         datasets: [{
-            label: "Earnings",
+            label: "Temperature",
             lineTension: 0.3,
             backgroundColor: "rgba(0, 97, 242, 0.05)",
             borderColor: "rgba(0, 97, 242, 1)",
@@ -107,7 +107,7 @@ var myLineChart = new Chart(ctx, {
                     padding: 10,
                     // Include a dollar sign in the ticks
                     callback: function (value, index, values) {
-                        return "$" + number_format(value);
+                        return number_format(value) + "°C";
                     }
                 },
                 gridLines: {
@@ -140,7 +140,7 @@ var myLineChart = new Chart(ctx, {
                 label: function (tooltipItem, chart) {
                     var datasetLabel =
                         chart.datasets[tooltipItem.datasetIndex].label || "";
-                    return datasetLabel + ": $" + number_format(tooltipItem.yLabel);
+                    return datasetLabel + number_format(tooltipItem.yLabel) + "°C";
                 }
             }
         }
@@ -161,7 +161,7 @@ var myLineChart1 = new Chart(ctx1, {
             "SUN"
         ],
         datasets: [{
-            label: "Earnings",
+            label: "Temperature",
             lineTension: 0.3,
             backgroundColor: "rgba(0, 97, 242, 0.05)",
             borderColor: "rgba(0, 97, 242, 1)",
@@ -174,13 +174,13 @@ var myLineChart1 = new Chart(ctx1, {
             pointHitRadius: 10,
             pointBorderWidth: 2,
             data: [
-                10000,
-                5000,
-                15000,
-                10000,
-                20000,
-                15000,
-                25000
+                25.7,
+                26.5,
+                26.7,
+                28.2,
+                29.4,
+                30.9,
+                33.4
             ]
         }]
     },
@@ -213,7 +213,7 @@ var myLineChart1 = new Chart(ctx1, {
                     padding: 10,
                     // Include a dollar sign in the ticks
                     callback: function (value, index, values) {
-                        return "$" + number_format(value);
+                        return number_format(value) + "°C";
                     }
                 },
                 gridLines: {
@@ -246,7 +246,7 @@ var myLineChart1 = new Chart(ctx1, {
                 label: function (tooltipItem, chart) {
                     var datasetLabel =
                         chart.datasets[tooltipItem.datasetIndex].label || "";
-                    return datasetLabel + ": $" + number_format(tooltipItem.yLabel);
+                    return datasetLabel + number_format(tooltipItem.yLabel) + "°C";
                 }
             }
         }

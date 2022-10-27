@@ -1,6 +1,6 @@
 // Set new default font family and font color to mimic Bootstrap's default styling
 (Chart.defaults.global.defaultFontFamily = "Metropolis"),
-'-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = "#858796";
 
 fetch('http://localhost:1111/chart')
@@ -16,7 +16,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
         sep = typeof thousands_sep === "undefined" ? "," : thousands_sep,
         dec = typeof dec_point === "undefined" ? "." : dec_point,
         s = "",
-        toFixedFix = function(n, prec) {
+        toFixedFix = function (n, prec) {
             var k = Math.pow(10, prec);
             return "" + Math.round(n * k) / k;
         };
@@ -39,11 +39,11 @@ var myBarChart = new Chart(ctx, {
     data: {
         labels: ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"],
         datasets: [{
-            label: "Revenue",
+            label: "Temperature",
             backgroundColor: "rgba(0, 97, 242, 1)",
             hoverBackgroundColor: "rgba(0, 97, 242, 0.9)",
             borderColor: "#4e73df",
-            data: [4215, 5312, 6251, 7841, 9821, 14984, 9821],
+            data: [25.7, 26.5, 26.7, 28.2, 29.4, 30.9, 33.4],
             maxBarThickness: 25
         }]
     },
@@ -73,12 +73,12 @@ var myBarChart = new Chart(ctx, {
             yAxes: [{
                 ticks: {
                     min: 0,
-                    max: 15000,
+                    max: 80,
                     maxTicksLimit: 5,
                     padding: 10,
                     // Include a dollar sign in the ticks
-                    callback: function(value, index, values) {
-                        return "$" + number_format(value);
+                    callback: function (value, index, values) {
+                        return number_format(value) + "°C";
                     }
                 },
                 gridLines: {
@@ -106,10 +106,10 @@ var myBarChart = new Chart(ctx, {
             displayColors: false,
             caretPadding: 10,
             callbacks: {
-                label: function(tooltipItem, chart) {
+                label: function (tooltipItem, chart) {
                     var datasetLabel =
                         chart.datasets[tooltipItem.datasetIndex].label || "";
-                    return datasetLabel + ": $" + number_format(tooltipItem.yLabel);
+                    return datasetLabel + number_format(tooltipItem.yLabel) + "°C";
                 }
             }
         }

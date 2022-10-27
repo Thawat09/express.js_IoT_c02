@@ -20,10 +20,11 @@ let userSchema = new mongoose.Schema({
     sensor: String,
     idMicro: String,
     idSerial: String,
+    date: String,
     time: String,
     temperature: String,
     humidity: String,
-    aqi:String,
+    aqi: String,
 })
 
 userSchema.plugin(passportLocalMongoose);

@@ -2,7 +2,7 @@ var mqtt = require('mqtt');
 
 const MQTT_SERVER = "localhost";
 const MQTT_PORT = "1883";
-const MQTT_USER = ""; 
+const MQTT_USER = "";
 const MQTT_PASSWORD = "";
 
 // Connect MQTT
