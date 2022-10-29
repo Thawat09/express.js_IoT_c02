@@ -30,10 +30,21 @@ app.use(passport.session());
 
 let microId = "";
 let sensorId = "";
-let data = "";
+let mysort = { '_id': -1 };
+let mysort1 = { 'idSerial': -1 };
+
+app.get("/chartpie", (req, res) => {
+    User.findOne({ 'idSerial': sensorId }, { '_id': 0, 'temperature': 1, 'humidity': 1, 'aqi': 1 }).sort(mysort).exec((err, doc) => {
+        res.json(doc);
+    });
+});
 
 app.get("/chart", (req, res) => {
-    res.json(data);
+    User.aggregate([{ $match: { 'idSerial': sensorId } }, { $limit: 7 }, { $sort : { date : -1 } },
+    { $group: { _id: null, temp: { $addToSet: '$temperature' }, date: { $addToSet: '$date' }, hum: { $addToSet: '$humidity' }, aqi: { $addToSet: '$aqi' } } },
+    { $project: { _id: 0, temp: 1, date: 1, hum: 1, aqi: 1 } }]).sort(mysort1).exec((err, doc) => {
+        res.json(doc);
+    });
 });
 
 app.get("/logout", (req, res) => {
@@ -46,45 +57,35 @@ app.get("/", (req, res) => {
 });
 
 app.get("/charts", isLoggedIn, (req, res) => {
-    var mysort = { '_id': -1 };
     User.find({ 'idSerial': sensorId }).sort(mysort).exec((err, doc) => {
-        data = doc
-        res.render("charts", { title: "charts", currentUser: req.user, users: doc, temp: data[0] });
+        res.render("charts", { title: "charts", currentUser: req.user, users: doc, temp: doc[0] });
     });
 });
 
 app.get("/:id/dashboard1", isLoggedIn, (req, res) => {
     sensorId = req.params.id;
-    var mysort = { '_id': -1 };
     User.find({ 'idSerial': sensorId }).sort(mysort).exec((err, doc) => {
-        data = doc
         res.render("dashboard1", {
-            title: "dashboard1", currentUser: req.user, users: doc, temp: data[0]
+            title: "dashboard1", currentUser: req.user, users: doc, temp: doc[0]
         });
     });
 });
 
 app.get("/dashboard1", isLoggedIn, (req, res) => {
-    var mysort = { '_id': -1 };
     User.find({ 'idSerial': sensorId }).sort(mysort).exec((err, doc) => {
-        data = doc
-        res.render("dashboard1", { title: "dashboard1", currentUser: req.user, users: doc, temp: data[0] });
+        res.render("dashboard1", { title: "dashboard1", currentUser: req.user, users: doc, temp: doc[0] });
     });
 });
 
 app.get("/dashboard2", isLoggedIn, (req, res) => {
-    var mysort = { '_id': -1 };
     User.find({ 'idSerial': sensorId }).sort(mysort).exec((err, doc) => {
-        data = doc
-        res.render("dashboard2", { title: "dashboard2", currentUser: req.user, users: doc, temp: data[0] });
+        res.render("dashboard2", { title: "dashboard2", currentUser: req.user, users: doc, temp: doc[0] });
     });
 });
 
 app.get("/dashboard3", isLoggedIn, (req, res) => {
-    var mysort = { '_id': -1 };
     User.find({ 'idSerial': sensorId }).sort(mysort).exec((err, doc) => {
-        data = doc
-        res.render("dashboard3", { title: "dashboard3", currentUser: req.user, users: doc, temp: data[0] });
+        res.render("dashboard3", { title: "dashboard3", currentUser: req.user, users: doc, temp: doc[0] });
     });
 });
 

@@ -65,9 +65,11 @@
         <div class="sidenav-footer">
             <div class="sidenav-footer-content">
                 <div class="sidenav-footer-subtitle">Logged in as:</div>
-                <div class="sidenav-footer-title">
-                    <%= currentUser.username %>
-                </div>
+                <% if (currentUser) { %>
+                    <div class="sidenav-footer-title">
+                        <%= currentUser.username %>
+                    </div>
+                    <% } %>
             </div>
         </div>
     </nav>

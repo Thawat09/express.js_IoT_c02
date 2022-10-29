@@ -90,7 +90,7 @@
                             <div class="col-xxl-4 col-xl-12 mb-4">
                                 <!-- Pie chart with legend example-->
                                 <div class="card h-100">
-                                    <div class="card-header">Traffic Sources</div>
+                                    <div class="card-header">Temperature</div>
                                     <div class="card-body">
                                         <div class="chart-pie mb-4"><canvas id="myPieChart" width="100%"
                                                 height="50"></canvas></div>
@@ -118,7 +118,7 @@
                             <div class="col-xxl-4 col-xl-6 mb-4">
                                 <!-- Pie chart with legend example-->
                                 <div class="card h-100">
-                                    <div class="card-header">Traffic Sources</div>
+                                    <div class="card-header">Humidity</div>
                                     <div class="card-body">
                                         <div class="chart-pie mb-4"><canvas id="myPieChart1" width="100%"
                                                 height="50"></canvas></div>
@@ -146,44 +146,46 @@
                             <div class="col-xxl-4 col-xl-6 mb-4">
                                 <div class="card card-header-actions h-100">
                                     <div class="card-header">Progress Tracker</div>
-                                    <div class="card-body">
-                                        <h4 class="small">
-                                            Temperature
-                                            <span class="float-end fw-bold">
-                                                <%= temp.temperature %> °C
-                                            </span>
-                                        </h4>
-                                        <div class="progress mb-4">
-                                            <div class="progress-bar bg-warning" role="progressbar"
-                                                style="width: <%= temp.temperature %>%"
-                                                aria-valuenow="<%= temp.temperature %>" aria-valuemin="0"
-                                                aria-valuemax="80"></div>
-                                        </div>
-                                        <h4 class="small">
-                                            Humidity
-                                            <span class="float-end fw-bold">
-                                                <%= temp.humidity %> %
-                                            </span>
-                                        </h4>
-                                        <div class="progress mb-4">
-                                            <div class="progress-bar bg-primary" role="progressbar"
-                                                style="width: <%= temp.humidity %>%"
-                                                aria-valuenow="<%= temp.humidity %>" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
-                                        <h4 class="small">
-                                            AQI
-                                            <span class="float-end fw-bold">
-                                                <%= temp.aqi %> µg./m3
-                                            </span>
-                                        </h4>
-                                        <div class="progress mb-4">
-                                            <div class="progress-bar bg-success" role="progressbar"
-                                                style="width: <%= temp.aqi %>%" aria-valuenow="<%= temp.aqi %>"
-                                                aria-valuemin="0" aria-valuemax="100">
+                                    <% if (temp) { %>
+                                        <div class="card-body">
+                                            <h4 class="small">
+                                                Temperature
+                                                <span class="float-end fw-bold">
+                                                    <%= temp.temperature %> °C
+                                                </span>
+                                            </h4>
+                                            <div class="progress mb-4">
+                                                <div class="progress-bar bg-warning" role="progressbar"
+                                                    style="width: <%= temp.temperature %>%"
+                                                    aria-valuenow="<%= temp.temperature %>" aria-valuemin="0"
+                                                    aria-valuemax="80"></div>
+                                            </div>
+                                            <h4 class="small">
+                                                Humidity
+                                                <span class="float-end fw-bold">
+                                                    <%= temp.humidity %> %
+                                                </span>
+                                            </h4>
+                                            <div class="progress mb-4">
+                                                <div class="progress-bar bg-primary" role="progressbar"
+                                                    style="width: <%= temp.humidity %>%"
+                                                    aria-valuenow="<%= temp.humidity %>" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                            <h4 class="small">
+                                                AQI
+                                                <span class="float-end fw-bold">
+                                                    <%= temp.aqi %> µg./m3
+                                                </span>
+                                            </h4>
+                                            <div class="progress mb-4">
+                                                <div class="progress-bar bg-success" role="progressbar"
+                                                    style="width: <%= temp.aqi %>%" aria-valuenow="<%= temp.aqi %>"
+                                                    aria-valuemin="0" aria-valuemax="100">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        <% } %>
                                 </div>
                             </div>
                         </div>
@@ -191,53 +193,89 @@
                         <div class="row">
                             <div class="col-xl-6 mb-4">
                                 <div class="card card-header-actions h-100">
-                                    <div class="card-header">
-                                        Earnings Breakdown
-                                        <div class="dropdown no-caret">
-                                            <button class="btn btn-transparent-dark btn-icon dropdown-toggle"
-                                                id="areaChartDropdownExample" type="button" data-bs-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false"><i class="text-gray-500"
-                                                    data-feather="more-vertical"></i></button>
-                                            <div class="dropdown-menu dropdown-menu-end animated--fade-in-up"
-                                                aria-labelledby="areaChartDropdownExample">
-                                                <a class="dropdown-item" href="#!">Last 12 Months</a>
-                                                <a class="dropdown-item" href="#!">Last 30 Days</a>
-                                                <a class="dropdown-item" href="#!">Last 7 Days</a>
-                                                <a class="dropdown-item" href="#!">This Month</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#!">Custom Range</a>
-                                            </div>
-                                        </div>
+                                    <div class="card-header border-bottom">
+                                        <!-- Dashboard card navigation-->
+                                        <ul class="nav nav-tabs card-header-tabs" id="dashboardNav" role="tablist">
+                                            <li class="nav-item me-1"><a class="nav-link active" id="temperature-pill"
+                                                    href="#temperature" data-bs-toggle="tab" role="tab"
+                                                    aria-controls="temperature" aria-selected="true">Temperature</a>
+                                            </li>
+                                            <li class="nav-item"><a class="nav-link" id="humidity-pill" href="#humidity"
+                                                    data-bs-toggle="tab" role="tab" aria-controls="humidity"
+                                                    aria-selected="false">Humidity</a></li>
+                                            <li class="nav-item"><a class="nav-link" id="aqi-pill" href="#aqi"
+                                                    data-bs-toggle="tab" role="tab" aria-controls="aqi"
+                                                    aria-selected="false">AQI</a></li>
+                                        </ul>
                                     </div>
                                     <div class="card-body">
-                                        <div class="chart-area"><canvas id="myAreaChart" width="100%"
-                                                height="30"></canvas></div>
+                                        <div class="tab-content" id="dashboardNavContent">
+                                            <!-- Dashboard Tab Pane 1-->
+                                            <div class="tab-pane fade show active" id="temperature" role="tabpanel"
+                                                aria-labelledby="temperature-pill">
+                                                <div class="chart-area mb-4 mb-lg-0" style="height: 20rem">
+                                                    <canvas id="myAreaChart" width="100%" height="30"></canvas>
+                                                </div>
+                                            </div>
+                                            <!-- Dashboard Tab Pane 2-->
+                                            <div class="tab-pane fade" id="humidity" role="tabpanel"
+                                                aria-labelledby="humidity-pill">
+                                                <div class="chart-area mb-4 mb-lg-0" style="height: 20rem">
+                                                    <canvas id="myAreaChart1" width="100%" height="30"></canvas>
+                                                </div>
+                                            </div>
+                                            <!-- Dashboard Tab Pane 3-->
+                                            <div class="tab-pane fade" id="aqi" role="tabpanel"
+                                                aria-labelledby="aqi-pill">
+                                                <div class="chart-area mb-4 mb-lg-0" style="height: 20rem">
+                                                    <canvas id="myAreaChart2" width="100%" height="30"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-6 mb-4">
                                 <div class="card card-header-actions h-100">
-                                    <div class="card-header">
-                                        Monthly Revenue
-                                        <div class="dropdown no-caret">
-                                            <button class="btn btn-transparent-dark btn-icon dropdown-toggle"
-                                                id="areaChartDropdownExample" type="button" data-bs-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false"><i class="text-gray-500"
-                                                    data-feather="more-vertical"></i></button>
-                                            <div class="dropdown-menu dropdown-menu-end animated--fade-in-up"
-                                                aria-labelledby="areaChartDropdownExample">
-                                                <a class="dropdown-item" href="#!">Last 12 Months</a>
-                                                <a class="dropdown-item" href="#!">Last 30 Days</a>
-                                                <a class="dropdown-item" href="#!">Last 7 Days</a>
-                                                <a class="dropdown-item" href="#!">This Month</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#!">Custom Range</a>
-                                            </div>
-                                        </div>
+                                    <div class="card-header border-bottom">
+                                        <!-- Dashboard card navigation 1-->
+                                        <ul class="nav nav-tabs card-header-tabs" id="dashboardNav" role="tablist">
+                                            <li class="nav-item me-1"><a class="nav-link active" id="temperature1-pill"
+                                                    href="#temperature1" data-bs-toggle="tab" role="tab"
+                                                    aria-controls="temperature1" aria-selected="true">Temperature</a>
+                                            </li>
+                                            <li class="nav-item"><a class="nav-link" id="humidity1-pill"
+                                                    href="#humidity1" data-bs-toggle="tab" role="tab"
+                                                    aria-controls="humidity1" aria-selected="false">Humidity</a></li>
+                                            <li class="nav-item"><a class="nav-link" id="aqi1-pill" href="#aqi1"
+                                                    data-bs-toggle="tab" role="tab" aria-controls="aqi1"
+                                                    aria-selected="false">AQI</a></li>
+                                        </ul>
                                     </div>
                                     <div class="card-body">
-                                        <div class="chart-bar"><canvas id="myBarChart" width="100%"
-                                                height="30"></canvas></div>
+                                        <div class="tab-content" id="dashboardNavContent">
+                                            <!-- Dashboard Tab Pane 1-->
+                                            <div class="tab-pane fade show active" id="temperature1" role="tabpanel"
+                                                aria-labelledby="temperature1-pill">
+                                                <div class="chart-bar" style="height: 20rem">
+                                                    <canvas id="myBarChart" width="100%" height="30"></canvas>
+                                                </div>
+                                            </div>
+                                            <!-- Dashboard Tab Pane 2-->
+                                            <div class="tab-pane fade" id="humidity1" role="tabpanel"
+                                                aria-labelledby="humidity1-pill">
+                                                <div class="chart-bar" style="height: 20rem">
+                                                    <canvas id="myBarChart1" width="100%" height="30"></canvas>
+                                                </div>
+                                            </div>
+                                            <!-- Dashboard Tab Pane 3-->
+                                            <div class="tab-pane fade" id="aqi1" role="tabpanel"
+                                                aria-labelledby="aqi1-pill">
+                                                <div class="chart-bar" style="height: 20rem">
+                                                    <canvas id="myBarChart2" width="100%" height="30"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -249,8 +287,7 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>date</th>
-                                            <th>Time</th>
+                                            <th>Date</th>
                                             <th>Temperature</th>
                                             <th>Humidity</th>
                                             <th>AQI</th>
@@ -258,8 +295,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>date</th>
-                                            <th>Time</th>
+                                            <th>Date</th>
                                             <th>Temperature</th>
                                             <th>Humidity</th>
                                             <th>AQI</th>
@@ -269,10 +305,7 @@
                                         <% Object.values(users).forEach((doc)=> { %>
                                             <tr>
                                                 <td>
-                                                    <%= doc.date %> d
-                                                </td>
-                                                <td>
-                                                    <%= doc.time %> h/min
+                                                    <%= doc.date %>
                                                 </td>
                                                 <td>
                                                     <%= doc.temperature %> °C

@@ -32,70 +32,209 @@
                             <div class="container-xl px-4 mt-n10">
                                 <!-- Area chart example-->
                                 <div class="card mb-4">
-                                    <div class="card-header">Area Chart Example</div>
+                                    <div class="card-header border-bottom">
+                                        <!-- Dashboard card navigation-->
+                                        <ul class="nav nav-tabs card-header-tabs" id="dashboardNav" role="tablist">
+                                            <li class="nav-item me-1"><a class="nav-link active" id="temperature-pill"
+                                                    href="#temperature" data-bs-toggle="tab" role="tab"
+                                                    aria-controls="temperature" aria-selected="true">Temperature</a>
+                                            </li>
+                                            <li class="nav-item"><a class="nav-link" id="humidity-pill" href="#humidity"
+                                                    data-bs-toggle="tab" role="tab" aria-controls="humidity"
+                                                    aria-selected="false">Humidity</a></li>
+                                            <li class="nav-item"><a class="nav-link" id="aqi-pill" href="#aqi"
+                                                    data-bs-toggle="tab" role="tab" aria-controls="aqi"
+                                                    aria-selected="false">AQI</a></li>
+                                        </ul>
+                                    </div>
                                     <div class="card-body">
-                                        <div class="chart-area"><canvas id="myAreaChart" width="100%"
-                                                height="50"></canvas>
+                                        <div class="tab-content" id="dashboardNavContent">
+                                            <!-- Dashboard Tab Pane 1-->
+                                            <div class="tab-pane fade show active" id="temperature" role="tabpanel"
+                                                aria-labelledby="temperature-pill">
+                                                <div class="chart-area mb-4 mb-lg-0" style="height: 20rem">
+                                                    <canvas id="myAreaChart" width="100%" height="30"></canvas>
+                                                </div>
+                                            </div>
+                                            <!-- Dashboard Tab Pane 2-->
+                                            <div class="tab-pane fade" id="humidity" role="tabpanel"
+                                                aria-labelledby="humidity-pill">
+                                                <div class="chart-area mb-4 mb-lg-0" style="height: 20rem">
+                                                    <canvas id="myAreaChart1" width="100%" height="30"></canvas>
+                                                </div>
+                                            </div>
+                                            <!-- Dashboard Tab Pane 3-->
+                                            <div class="tab-pane fade" id="aqi" role="tabpanel"
+                                                aria-labelledby="aqi-pill">
+                                                <div class="chart-area mb-4 mb-lg-0" style="height: 20rem">
+                                                    <canvas id="myAreaChart2" width="100%" height="30"></canvas>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="card-footer small text-muted">Updated <%= temp.date %> at <%= temp.time
-                                                %>
-                                    </div>
-                                </div>
-                                <div class="card mb-4">
-                                    <div class="card-header">Area Chart Example1</div>
-                                    <div class="card-body">
-                                        <div class="chart-area">
-                                            <canvas id="myAreaChart1" width="100%" height="30"></canvas>
+                                    <% if (temp) { %>
+                                        <div class="card-footer small text-muted">Updated <%= temp.date %>
                                         </div>
-                                    </div>
-                                    <div class="card-footer small text-muted">Updated <%= temp.date %> at <%= temp.time
-                                                %>
-                                    </div>
+                                        <% } %>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <!-- Bar chart example-->
                                         <div class="card mb-4">
-                                            <div class="card-header">Bar Chart Example</div>
+                                            <div class="card-header border-bottom">
+                                                <!-- Dashboard card navigation 1-->
+                                                <ul class="nav nav-tabs card-header-tabs" id="dashboardNav"
+                                                    role="tablist">
+                                                    <li class="nav-item me-1"><a class="nav-link active"
+                                                            id="temperature1-pill" href="#temperature1"
+                                                            data-bs-toggle="tab" role="tab" aria-controls="temperature1"
+                                                            aria-selected="true">Temperature</a>
+                                                    </li>
+                                                    <li class="nav-item"><a class="nav-link" id="humidity1-pill"
+                                                            href="#humidity1" data-bs-toggle="tab" role="tab"
+                                                            aria-controls="humidity1" aria-selected="false">Humidity</a>
+                                                    </li>
+                                                    <li class="nav-item"><a class="nav-link" id="aqi1-pill" href="#aqi1"
+                                                            data-bs-toggle="tab" role="tab" aria-controls="aqi1"
+                                                            aria-selected="false">AQI</a></li>
+                                                </ul>
+                                            </div>
                                             <div class="card-body">
-                                                <div class="chart-bar"><canvas id="myBarChart" width="100%"
-                                                        height="50"></canvas></div>
+                                                <div class="tab-content" id="dashboardNavContent">
+                                                    <!-- Dashboard Tab Pane 1-->
+                                                    <div class="tab-pane fade show active" id="temperature1"
+                                                        role="tabpanel" aria-labelledby="temperature1-pill">
+                                                        <div class="chart-bar" style="height: 20rem">
+                                                            <canvas id="myBarChart" width="100%" height="30"></canvas>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Dashboard Tab Pane 2-->
+                                                    <div class="tab-pane fade" id="humidity1" role="tabpanel"
+                                                        aria-labelledby="humidity1-pill">
+                                                        <div class="chart-bar" style="height: 20rem">
+                                                            <canvas id="myBarChart1" width="100%" height="30"></canvas>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Dashboard Tab Pane 3-->
+                                                    <div class="tab-pane fade" id="aqi1" role="tabpanel"
+                                                        aria-labelledby="aqi1-pill">
+                                                        <div class="chart-bar" style="height: 20rem">
+                                                            <canvas id="myBarChart2" width="100%" height="30"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="card-footer small text-muted">Updated <%= temp.date %> at <%=
-                                                        temp.time %>
-                                            </div>
+                                            <% if (temp) { %>
+                                                <div class="card-footer small text-muted">Updated <%= temp.date %>
+                                                </div>
+                                                <% } %>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <!-- Pie chart with legend example-->
                                         <div class="card h-100">
-                                            <div class="card-header">Traffic Sources</div>
+                                            <div class="card-header border-bottom">
+                                                <!-- Dashboard card navigation-->
+                                                <ul class="nav nav-tabs card-header-tabs" id="dashboardNav"
+                                                    role="tablist">
+                                                    <li class="nav-item me-1"><a class="nav-link active"
+                                                            id="temperature2-pill" href="#temperature2"
+                                                            data-bs-toggle="tab" role="tab" aria-controls="temperature2"
+                                                            aria-selected="true">Temperature</a>
+                                                    </li>
+                                                    <li class="nav-item"><a class="nav-link" id="humidity2-pill"
+                                                            href="#humidity2" data-bs-toggle="tab" role="tab"
+                                                            aria-controls="humidity2" aria-selected="false">Humidity</a>
+                                                    </li>
+                                                    <li class="nav-item"><a class="nav-link" id="aqi2-pill" href="#aqi2"
+                                                            data-bs-toggle="tab" role="tab" aria-controls="aqi2"
+                                                            aria-selected="false">AQI</a></li>
+                                                </ul>
+                                            </div>
                                             <div class="card-body">
-                                                <div class="chart-pie mb-4"><canvas id="myPieChart" width="100%"
-                                                        height="50"></canvas></div>
-                                                <div class="list-group list-group-flush">
-                                                    <div
-                                                        class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
-                                                        <div class="me-3">
-                                                            <i class="fas fa-circle fa-sm me-1 text-warning"></i>
-                                                            Temperature
+                                                <div class="tab-content" id="dashboardNavContent">
+                                                    <!-- Dashboard Tab Pane 1-->
+                                                    <div class="tab-pane fade show active" id="temperature2"
+                                                        role="tabpanel" aria-labelledby="temperature2-pill">
+                                                        <div class="chart-bar" style="height: 20rem">
+                                                            <canvas id="myPieChart" width="100%" height="30"></canvas>
                                                         </div>
-                                                        <div class="fw-500 text-dark" id="resultX"></div>
+                                                        <div class="list-group list-group-flush">
+                                                            <div
+                                                                class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                                                                <div class="me-3">
+                                                                    <i
+                                                                        class="fas fa-circle fa-sm me-1 text-warning"></i>
+                                                                    Temperature
+                                                                </div>
+                                                                <div class="fw-500 text-dark" id="resultX"></div>
+                                                            </div>
+                                                            <div
+                                                                class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                                                                <div class="me-3">
+                                                                    <i class="fas fa-circle fa-sm me-1 text-green"></i>
+                                                                    Null
+                                                                </div>
+                                                                <div class="fw-500 text-dark" id="resultY"></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div
-                                                        class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
-                                                        <div class="me-3">
-                                                            <i class="fas fa-circle fa-sm me-1 text-green"></i>
-                                                            Null
+                                                    <!-- Dashboard Tab Pane 2-->
+                                                    <div class="tab-pane fade" id="humidity2" role="tabpanel"
+                                                        aria-labelledby="humidity2-pill">
+                                                        <div class="chart-bar" style="height: 20rem">
+                                                            <canvas id="myPieChart1" width="100%" height="30"></canvas>
                                                         </div>
-                                                        <div class="fw-500 text-dark" id="resultY"></div>
+                                                        <div class="list-group list-group-flush">
+                                                            <div
+                                                                class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                                                                <div class="me-3">
+                                                                    <i class="fas fa-circle fa-sm me-1 text-blue"></i>
+                                                                    Humidity
+                                                                </div>
+                                                                <div class="fw-500 text-dark" id="resultXX"></div>
+                                                            </div>
+                                                            <div
+                                                                class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                                                                <div class="me-3">
+                                                                    <i class="fas fa-circle fa-sm me-1 text-green"></i>
+                                                                    Null
+                                                                </div>
+                                                                <div class="fw-500 text-dark" id="resultYY"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Dashboard Tab Pane 3-->
+                                                    <div class="tab-pane fade" id="aqi2" role="tabpanel"
+                                                        aria-labelledby="aqi2-pill">
+                                                        <div class="chart-bar" style="height: 20rem">
+                                                            <canvas id="myPieChart2" width="100%" height="30"></canvas>
+                                                        </div>
+                                                        <div class="list-group list-group-flush">
+                                                            <div
+                                                                class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                                                                <div class="me-3">
+                                                                    <i class="fas fa-circle fa-sm me-1 text-green"></i>
+                                                                    AQI
+                                                                </div>
+                                                                <div class="fw-500 text-dark" id="resultXXX"></div>
+                                                            </div>
+                                                            <div
+                                                                class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                                                                <div class="me-3">
+                                                                    <i class="fas fa-circle fa-sm me-1 text-red"></i>
+                                                                    Null
+                                                                </div>
+                                                                <div class="fw-500 text-dark" id="resultYYY"></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="card-footer small text-muted">Updated <%= temp.date %> at <%=
-                                                        temp.time %>
-                                            </div>
+                                            <% if (temp) { %>
+                                                <div class="card-footer small text-muted">Updated <%= temp.date %>
+                                                </div>
+                                                <% } %>
                                         </div>
                                     </div>
                                 </div>

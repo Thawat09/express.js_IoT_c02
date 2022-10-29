@@ -39,29 +39,39 @@
                                                 <ul class="nav nav-tabs card-header-tabs" id="dashboardNav"
                                                     role="tablist">
                                                     <li class="nav-item me-1"><a class="nav-link active"
-                                                            id="overview-pill" href="#overview" data-bs-toggle="tab"
-                                                            role="tab" aria-controls="overview"
-                                                            aria-selected="true">Overview</a></li>
-                                                    <li class="nav-item"><a class="nav-link" id="activities-pill"
-                                                            href="#activities" data-bs-toggle="tab" role="tab"
-                                                            aria-controls="activities"
-                                                            aria-selected="false">Activities</a></li>
+                                                            id="temperature-pill" href="#temperature"
+                                                            data-bs-toggle="tab" role="tab" aria-controls="temperature"
+                                                            aria-selected="true">Temperature</a></li>
+                                                    <li class="nav-item"><a class="nav-link" id="humidity-pill"
+                                                            href="#humidity" data-bs-toggle="tab" role="tab"
+                                                            aria-controls="humidity" aria-selected="false">Humidity</a>
+                                                    </li>
+                                                    <li class="nav-item"><a class="nav-link" id="aqi-pill" href="#aqi"
+                                                            data-bs-toggle="tab" role="tab" aria-controls="aqi"
+                                                            aria-selected="false">AQI</a></li>
                                                 </ul>
                                             </div>
                                             <div class="card-body">
                                                 <div class="tab-content" id="dashboardNavContent">
                                                     <!-- Dashboard Tab Pane 1-->
-                                                    <div class="tab-pane fade show active" id="overview" role="tabpanel"
-                                                        aria-labelledby="overview-pill">
+                                                    <div class="tab-pane fade show active" id="temperature"
+                                                        role="tabpanel" aria-labelledby="temperature-pill">
                                                         <div class="chart-area mb-4 mb-lg-0" style="height: 20rem">
                                                             <canvas id="myAreaChart" width="100%" height="30"></canvas>
                                                         </div>
                                                     </div>
                                                     <!-- Dashboard Tab Pane 2-->
-                                                    <div class="tab-pane fade" id="activities" role="tabpanel"
-                                                        aria-labelledby="activities-pill">
+                                                    <div class="tab-pane fade" id="humidity" role="tabpanel"
+                                                        aria-labelledby="humidity-pill">
                                                         <div class="chart-area mb-4 mb-lg-0" style="height: 20rem">
                                                             <canvas id="myAreaChart1" width="100%" height="30"></canvas>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Dashboard Tab Pane 3-->
+                                                    <div class="tab-pane fade" id="aqi" role="tabpanel"
+                                                        aria-labelledby="aqi-pill">
+                                                        <div class="chart-area mb-4 mb-lg-0" style="height: 20rem">
+                                                            <canvas id="myAreaChart2" width="100%" height="30"></canvas>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -72,7 +82,7 @@
                                             <div class="col-xl-6 mb-4">
                                                 <!-- Pie chart with legend example-->
                                                 <div class="card h-100">
-                                                    <div class="card-header">Traffic Sources</div>
+                                                    <div class="card-header">Temperature</div>
                                                     <div class="card-body">
                                                         <div class="chart-pie mb-4"><canvas id="myPieChart" width="100%"
                                                                 height="50"></canvas></div>
@@ -99,9 +109,9 @@
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 mb-4">
-                                                <!-- Pie chart with legend example-->
+                                                <!-- Pie chart with legend example 1-->
                                                 <div class="card h-100">
-                                                    <div class="card-header">Traffic Sources</div>
+                                                    <div class="card-header">Humidity</div>
                                                     <div class="card-body">
                                                         <div class="chart-pie mb-4"><canvas id="myPieChart1"
                                                                 width="100%" height="50"></canvas></div>
@@ -132,244 +142,75 @@
                                     <div class="col-xxl-4">
                                         <div class="row">
                                             <div class="col-xl-6 col-xxl-12">
-                                                <!-- Team members / people dashboard card example-->
-                                                <div class="card mb-4">
-                                                    <div class="card-header">People</div>
-                                                    <div class="card-body">
-                                                        <!-- Item 1-->
-                                                        <div
-                                                            class="d-flex align-items-center justify-content-between mb-4">
-                                                            <div class="d-flex align-items-center flex-shrink-0 me-3">
-                                                                <div class="avatar avatar-xl me-3 bg-gray-200"><img
-                                                                        class="avatar-img img-fluid"
-                                                                        src="assets/img/illustrations/profiles/profile-1.png"
-                                                                        alt="" /></div>
-                                                                <div class="d-flex flex-column fw-bold">
-                                                                    <a class="text-dark line-height-normal mb-1"
-                                                                        href="#!">Sid Rooney</a>
-                                                                    <div class="small text-muted line-height-normal">
-                                                                        Position</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="dropdown no-caret">
-                                                                <button
-                                                                    class="btn btn-transparent-dark btn-icon dropdown-toggle"
-                                                                    id="dropdownPeople1" type="button"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false"><i
-                                                                        data-feather="more-vertical"></i></button>
-                                                                <div class="dropdown-menu dropdown-menu-end animated--fade-in-up"
-                                                                    aria-labelledby="dropdownPeople1">
-                                                                    <a class="dropdown-item" href="#!">Action</a>
-                                                                    <a class="dropdown-item" href="#!">Another
-                                                                        action</a>
-                                                                    <a class="dropdown-item" href="#!">Something else
-                                                                        here</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Item 2-->
-                                                        <div
-                                                            class="d-flex align-items-center justify-content-between mb-4">
-                                                            <div class="d-flex align-items-center flex-shrink-0 me-3">
-                                                                <div class="avatar avatar-xl me-3 bg-gray-200"><img
-                                                                        class="avatar-img img-fluid"
-                                                                        src="assets/img/illustrations/profiles/profile-2.png"
-                                                                        alt="" /></div>
-                                                                <div class="d-flex flex-column fw-bold">
-                                                                    <a class="text-dark line-height-normal mb-1"
-                                                                        href="#!">Keelan Garza</a>
-                                                                    <div class="small text-muted line-height-normal">
-                                                                        Position</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="dropdown no-caret">
-                                                                <button
-                                                                    class="btn btn-transparent-dark btn-icon dropdown-toggle"
-                                                                    id="dropdownPeople2" type="button"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false"><i
-                                                                        data-feather="more-vertical"></i></button>
-                                                                <div class="dropdown-menu dropdown-menu-end animated--fade-in-up"
-                                                                    aria-labelledby="dropdownPeople2">
-                                                                    <a class="dropdown-item" href="#!">Action</a>
-                                                                    <a class="dropdown-item" href="#!">Another
-                                                                        action</a>
-                                                                    <a class="dropdown-item" href="#!">Something else
-                                                                        here</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Item 3-->
-                                                        <div
-                                                            class="d-flex align-items-center justify-content-between mb-4">
-                                                            <div class="d-flex align-items-center flex-shrink-0 me-3">
-                                                                <div class="avatar avatar-xl me-3 bg-gray-200"><img
-                                                                        class="avatar-img img-fluid"
-                                                                        src="assets/img/illustrations/profiles/profile-3.png"
-                                                                        alt="" /></div>
-                                                                <div class="d-flex flex-column fw-bold">
-                                                                    <a class="text-dark line-height-normal mb-1"
-                                                                        href="#!">Kaia Smyth</a>
-                                                                    <div class="small text-muted line-height-normal">
-                                                                        Position</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="dropdown no-caret">
-                                                                <button
-                                                                    class="btn btn-transparent-dark btn-icon dropdown-toggle"
-                                                                    id="dropdownPeople3" type="button"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false"><i
-                                                                        data-feather="more-vertical"></i></button>
-                                                                <div class="dropdown-menu dropdown-menu-end animated--fade-in-up"
-                                                                    aria-labelledby="dropdownPeople3">
-                                                                    <a class="dropdown-item" href="#!">Action</a>
-                                                                    <a class="dropdown-item" href="#!">Another
-                                                                        action</a>
-                                                                    <a class="dropdown-item" href="#!">Something else
-                                                                        here</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Item 4-->
-                                                        <div
-                                                            class="d-flex align-items-center justify-content-between mb-4">
-                                                            <div class="d-flex align-items-center flex-shrink-0 me-3">
-                                                                <div class="avatar avatar-xl me-3 bg-gray-200"><img
-                                                                        class="avatar-img img-fluid"
-                                                                        src="assets/img/illustrations/profiles/profile-4.png"
-                                                                        alt="" /></div>
-                                                                <div class="d-flex flex-column fw-bold">
-                                                                    <a class="text-dark line-height-normal mb-1"
-                                                                        href="#!">Kerri Kearney</a>
-                                                                    <div class="small text-muted line-height-normal">
-                                                                        Position</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="dropdown no-caret">
-                                                                <button
-                                                                    class="btn btn-transparent-dark btn-icon dropdown-toggle"
-                                                                    id="dropdownPeople4" type="button"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false"><i
-                                                                        data-feather="more-vertical"></i></button>
-                                                                <div class="dropdown-menu dropdown-menu-end animated--fade-in-up"
-                                                                    aria-labelledby="dropdownPeople4">
-                                                                    <a class="dropdown-item" href="#!">Action</a>
-                                                                    <a class="dropdown-item" href="#!">Another
-                                                                        action</a>
-                                                                    <a class="dropdown-item" href="#!">Something else
-                                                                        here</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Item 5-->
-                                                        <div
-                                                            class="d-flex align-items-center justify-content-between mb-4">
-                                                            <div class="d-flex align-items-center flex-shrink-0 me-3">
-                                                                <div class="avatar avatar-xl me-3 bg-gray-200"><img
-                                                                        class="avatar-img img-fluid"
-                                                                        src="assets/img/illustrations/profiles/profile-5.png"
-                                                                        alt="" /></div>
-                                                                <div class="d-flex flex-column fw-bold">
-                                                                    <a class="text-dark line-height-normal mb-1"
-                                                                        href="#!">Georgina Findlay</a>
-                                                                    <div class="small text-muted line-height-normal">
-                                                                        Position</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="dropdown no-caret">
-                                                                <button
-                                                                    class="btn btn-transparent-dark btn-icon dropdown-toggle"
-                                                                    id="dropdownPeople5" type="button"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false"><i
-                                                                        data-feather="more-vertical"></i></button>
-                                                                <div class="dropdown-menu dropdown-menu-end animated--fade-in-up"
-                                                                    aria-labelledby="dropdownPeople5">
-                                                                    <a class="dropdown-item" href="#!">Action</a>
-                                                                    <a class="dropdown-item" href="#!">Another
-                                                                        action</a>
-                                                                    <a class="dropdown-item" href="#!">Something else
-                                                                        here</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- Item 6-->
-                                                        <div class="d-flex align-items-center justify-content-between">
-                                                            <div class="d-flex align-items-center flex-shrink-0 me-3">
-                                                                <div class="avatar avatar-xl me-3 bg-gray-200"><img
-                                                                        class="avatar-img img-fluid"
-                                                                        src="assets/img/illustrations/profiles/profile-6.png"
-                                                                        alt="" /></div>
-                                                                <div class="d-flex flex-column fw-bold">
-                                                                    <a class="text-dark line-height-normal mb-1"
-                                                                        href="#!">Wilf Ingram</a>
-                                                                    <div class="small text-muted line-height-normal">
-                                                                        Position</div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="dropdown no-caret">
-                                                                <button
-                                                                    class="btn btn-transparent-dark btn-icon dropdown-toggle"
-                                                                    id="dropdownPeople6" type="button"
-                                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                                    aria-expanded="false"><i
-                                                                        data-feather="more-vertical"></i></button>
-                                                                <div class="dropdown-menu dropdown-menu-end animated--fade-in-up"
-                                                                    aria-labelledby="dropdownPeople6">
-                                                                    <a class="dropdown-item" href="#!">Action</a>
-                                                                    <a class="dropdown-item" href="#!">Another
-                                                                        action</a>
-                                                                    <a class="dropdown-item" href="#!">Something else
-                                                                        here</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6 col-xxl-12">
                                                 <!-- Project tracker card example-->
                                                 <div class="card card-header-actions mb-4">
                                                     <div class="card-header">Progress Tracker</div>
                                                     <div class="card-body">
-                                                        <h4 class="small">
-                                                            Temperature
-                                                            <span class="float-end fw-bold">
-                                                                <%= temp.temperature %> °C
-                                                            </span>
-                                                        </h4>
-                                                        <div class="progress mb-4">
-                                                            <div class="progress-bar bg-warning" role="progressbar"
-                                                                style="width: <%= temp.temperature %>%"
-                                                                aria-valuenow="<%= temp.temperature %>"
-                                                                aria-valuemin="0" aria-valuemax="80"></div>
-                                                        </div>
-                                                        <h4 class="small">
-                                                            Humidity
-                                                            <span class="float-end fw-bold">
-                                                                <%= temp.humidity %> %
-                                                            </span>
-                                                        </h4>
-                                                        <div class="progress mb-4">
-                                                            <div class="progress-bar bg-primary" role="progressbar"
-                                                                style="width: <%= temp.humidity %>%"
-                                                                aria-valuenow="<%= temp.humidity %>" aria-valuemin="0"
-                                                                aria-valuemax="100"></div>
-                                                        </div>
-                                                        <h4 class="small">
-                                                            AQI
-                                                            <span class="float-end fw-bold">
-                                                                <%= temp.aqi %> µg./m3
-                                                            </span>
-                                                        </h4>
-                                                        <div class="progress mb-4">
-                                                            <div class="progress-bar bg-success" role="progressbar"
-                                                                style="width: <%= temp.aqi %>%"
-                                                                aria-valuenow="<%= temp.aqi %>" aria-valuemin="0"
-                                                                aria-valuemax="100"></div>
+                                                        <% if (temp) { %>
+                                                            <h4 class="small">
+                                                                Temperature
+                                                                <span class="float-end fw-bold">
+                                                                    <%= temp.temperature %> °C
+                                                                </span>
+                                                            </h4>
+                                                            <div class="progress mb-4">
+                                                                <div class="progress-bar bg-warning" role="progressbar"
+                                                                    style="width: <%= temp.temperature %>%"
+                                                                    aria-valuenow="<%= temp.temperature %>"
+                                                                    aria-valuemin="0" aria-valuemax="80"></div>
+                                                            </div>
+                                                            <h4 class="small">
+                                                                Humidity
+                                                                <span class="float-end fw-bold">
+                                                                    <%= temp.humidity %> %
+                                                                </span>
+                                                            </h4>
+                                                            <div class="progress mb-4">
+                                                                <div class="progress-bar bg-primary" role="progressbar"
+                                                                    style="width: <%= temp.humidity %>%"
+                                                                    aria-valuenow="<%= temp.humidity %>"
+                                                                    aria-valuemin="0" aria-valuemax="100"></div>
+                                                            </div>
+                                                            <h4 class="small">
+                                                                AQI
+                                                                <span class="float-end fw-bold">
+                                                                    <%= temp.aqi %> µg./m3
+                                                                </span>
+                                                            </h4>
+                                                            <div class="progress mb-4">
+                                                                <div class="progress-bar bg-success" role="progressbar"
+                                                                    style="width: <%= temp.aqi %>%"
+                                                                    aria-valuenow="<%= temp.aqi %>" aria-valuemin="0"
+                                                                    aria-valuemax="100"></div>
+                                                            </div>
+                                                            <% } %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-xxl-12">
+                                                <!-- Pie chart with legend example 2-->
+                                                <div class="card h-100">
+                                                    <div class="card-header">AQI</div>
+                                                    <div class="card-body">
+                                                        <div class="chart-pie mb-4"><canvas id="myPieChart2"
+                                                                width="100%" height="50"></canvas></div>
+                                                        <div class="list-group list-group-flush">
+                                                            <div
+                                                                class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                                                                <div class="me-3">
+                                                                    <i class="fas fa-circle fa-sm me-1 text-green"></i>
+                                                                    AQI
+                                                                </div>
+                                                                <div class="fw-500 text-dark" id="resultXXX"></div>
+                                                            </div>
+                                                            <div
+                                                                class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                                                                <div class="me-3">
+                                                                    <i class="fas fa-circle fa-sm me-1 text-red"></i>
+                                                                    Null
+                                                                </div>
+                                                                <div class="fw-500 text-dark" id="resultYYY"></div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

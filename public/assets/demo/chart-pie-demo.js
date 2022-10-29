@@ -4,35 +4,28 @@
 Chart.defaults.global.defaultFontColor = "#858796";
 
 var data = [];
-var data1 = [];
 var temp = [];
 var humi = [];
+var aqi = [];
 
 async function getRandomUser() {
-    const response = await fetch('http://localhost:1111/chart');
+    const response = await fetch('http://localhost:1111/chartpie');
     const data = await response.json();
     addData(data);
 }
 
 function addData(object) {
-    data.push(object);
-    addData1(data);
-}
-
-function addData1(object) {
-    data.push(object[0][0].temperature);
-    data1.push(object[0][0].humidity);
-    temp = data['1']
-    humi = data1['1']
+    temp.push(object.temperature);
+    humi.push(object.humidity);
+    aqi.push(object.aqi);
 
     var z = 80
     var y = z - temp
 
-
     document.getElementById("resultX").innerHTML = temp + '°C';
     document.getElementById("resultY").innerHTML = y + '°C';
 
-    // Pie Chart Example
+    // Pie Chart Example temperature
     var ctx = document.getElementById("myPieChart");
     myPieChart = new Chart(ctx, {
         type: "doughnut",
@@ -70,7 +63,7 @@ function addData1(object) {
         }
     });
 
-    // -----
+    // Pie Chart Example humidity
     var zz = 100
     var yy = zz - humi
 
@@ -91,6 +84,50 @@ function addData1(object) {
                 hoverBackgroundColor: [
                     "blue",
                     "rgba(0, 172, 105, 0.9)"
+                ],
+                hoverBorderColor: "rgba(234, 236, 244, 1)"
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            tooltips: {
+                backgroundColor: "rgb(255,255,255)",
+                bodyFontColor: "#858796",
+                borderColor: "#dddfeb",
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                caretPadding: 10
+            },
+            legend: {
+                display: false
+            },
+            cutoutPercentage: 70
+        }
+    });
+
+    // Pie Chart Example humidity
+    var zzz = 100
+    var yyy = zzz - aqi
+
+    document.getElementById("resultXXX").innerHTML = aqi + '%';
+    document.getElementById("resultYYY").innerHTML = yyy + '%';
+
+    var ctxxx = document.getElementById("myPieChart2");
+    myPieChart1 = new Chart(ctxxx, {
+        type: "doughnut",
+        data: {
+            labels: ["AQI", "Null"],
+            datasets: [{
+                data: [aqi, yyy],
+                backgroundColor: [
+                    "green",
+                    "red",
+                ],
+                hoverBackgroundColor: [
+                    "green",
+                    "red",
                 ],
                 hoverBorderColor: "rgba(234, 236, 244, 1)"
             }]
