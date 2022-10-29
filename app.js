@@ -31,7 +31,6 @@ app.use(passport.session());
 let microId = "";
 let sensorId = "";
 let mysort = { '_id': -1 };
-let mysort1 = { 'idSerial': -1 };
 
 app.get("/chartpie", (req, res) => {
     User.findOne({ 'idSerial': sensorId }, { '_id': 0, 'temperature': 1, 'humidity': 1, 'aqi': 1 }).sort(mysort).exec((err, doc) => {
@@ -40,9 +39,9 @@ app.get("/chartpie", (req, res) => {
 });
 
 app.get("/chart", (req, res) => {
-    User.aggregate([{ $match: { 'idSerial': sensorId } }, { $limit: 7 }, { $sort : { date : -1 } },
-    { $group: { _id: null, temp: { $addToSet: '$temperature' }, date: { $addToSet: '$date' }, hum: { $addToSet: '$humidity' }, aqi: { $addToSet: '$aqi' } } },
-    { $project: { _id: 0, temp: 1, date: 1, hum: 1, aqi: 1 } }]).sort(mysort1).exec((err, doc) => {
+    User.aggregate([{ $match: { 'idSerial': sensorId } }, { $sort: { '_id': -1 } }, { $limit: 7 },
+    { $group: { _id: null, aqi: { $addToSet: '$aqi' }, hum: { $addToSet: '$humidity' }, temp: { $addToSet: '$temperature' }, date: { $addToSet: '$date' } } },
+    { $project: { _id: 0, aqi: 1, hum: 1, temp: 1, date: 1 } }]).sort(mysort).exec((err, doc) => {
         res.json(doc);
     });
 });
