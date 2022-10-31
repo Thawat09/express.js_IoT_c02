@@ -38,10 +38,20 @@ app.get("/chartpie", (req, res) => {
     });
 });
 
-app.get("/chart", (req, res) => {
-    User.aggregate([{ $match: { 'idSerial': sensorId } }, { $sort: { '_id': -1 } }, { $limit: 7 },
-    { $group: { _id: null, aqi: { $addToSet: '$aqi' }, hum: { $addToSet: '$humidity' }, temp: { $addToSet: '$temperature' }, date: { $addToSet: '$date' } } },
-    { $project: { _id: 0, aqi: 1, hum: 1, temp: 1, date: 1 } }]).sort(mysort).exec((err, doc) => {
+app.get("/chartarea", (req, res) => {
+    User.aggregate([{ $match: { 'idSerial': sensorId } }, { $sort: { 'date': -1 } }, { $limit: 7 },
+    { $project: { _id: 0, aqi: 1, humidity: 1, temperature: 1, date: { $dateToString: { format: '%H:%M', date: '$date' } } } },
+    { $group: { _id: null, aqi: { $push: '$aqi' }, hum: { $push: '$humidity' }, temp: { $push: '$temperature' }, date: { $push: '$date' } } }
+    ]).exec((err, doc) => {
+        res.json(doc);
+    });
+});
+
+app.get("/chartbar", (req, res) => {
+    User.aggregate([{ $match: { 'idSerial': sensorId } }, { $sort: { 'date': -1 } }, { $limit: 7 },
+    { $project: { _id: 0, aqi: 1, humidity: 1, temperature: 1, date: { $dateToString: { format: '%H:%M', date: '$date' } } } },
+    { $group: { _id: null, aqi: { $push: '$aqi' }, hum: { $push: '$humidity' }, temp: { $push: '$temperature' }, date: { $push: '$date' } } }
+    ]).exec((err, doc) => {
         res.json(doc);
     });
 });
@@ -64,9 +74,7 @@ app.get("/charts", isLoggedIn, (req, res) => {
 app.get("/:id/dashboard1", isLoggedIn, (req, res) => {
     sensorId = req.params.id;
     User.find({ 'idSerial': sensorId }).sort(mysort).exec((err, doc) => {
-        res.render("dashboard1", {
-            title: "dashboard1", currentUser: req.user, users: doc, temp: doc[0]
-        });
+        res.render("dashboard1", { title: "dashboard1", currentUser: req.user, users: doc, temp: doc[0] });
     });
 });
 

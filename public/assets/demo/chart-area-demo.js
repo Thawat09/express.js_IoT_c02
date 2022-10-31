@@ -10,9 +10,8 @@ var humarea = [];
 var aqiarea = [];
 
 async function getRandomUser() {
-    const response = await fetch('http://localhost:1111/chart');
+    const response = await fetch('http://localhost:1111/chartarea');
     const data = await response.json();
-    console.log(data);
     temparea = data[0].temp
     datearea = data[0].date
     humarea = data[0].hum
@@ -62,6 +61,7 @@ async function getRandomUser() {
                         drawBorder: false
                     },
                     ticks: {
+                        reverse: true,
                         maxTicksLimit: 7
                     }
                 }],
@@ -154,6 +154,7 @@ async function getRandomUser() {
                         drawBorder: false
                     },
                     ticks: {
+                        reverse: true,
                         maxTicksLimit: 7
                     }
                 }],
@@ -246,6 +247,7 @@ async function getRandomUser() {
                         drawBorder: false
                     },
                     ticks: {
+                        reverse: true,
                         maxTicksLimit: 7
                     }
                 }],

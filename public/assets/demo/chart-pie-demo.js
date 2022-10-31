@@ -19,8 +19,8 @@ function addData(object) {
     humi.push(object.humidity);
     aqi.push(object.aqi);
 
-    var z = 80
-    var y = z - temp
+    var z = 80;
+    var y = z - temp;
 
     document.getElementById("resultX").innerHTML = temp + '°C';
     document.getElementById("resultY").innerHTML = y + '°C';
@@ -115,7 +115,7 @@ function addData(object) {
     document.getElementById("resultYYY").innerHTML = yyy + '%';
 
     var ctxxx = document.getElementById("myPieChart2");
-    myPieChart1 = new Chart(ctxxx, {
+    myPieChart2 = new Chart(ctxxx, {
         type: "doughnut",
         data: {
             labels: ["AQI", "Null"],

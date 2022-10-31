@@ -288,6 +288,7 @@
                                     <thead>
                                         <tr>
                                             <th>Date</th>
+                                            <th>Time</th>
                                             <th>Temperature</th>
                                             <th>Humidity</th>
                                             <th>AQI</th>
@@ -296,6 +297,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>Date</th>
+                                            <th>Time</th>
                                             <th>Temperature</th>
                                             <th>Humidity</th>
                                             <th>AQI</th>
@@ -305,10 +307,10 @@
                                         <% Object.values(users).forEach((doc)=> { %>
                                             <tr>
                                                 <td>
-                                                    <%= doc.date.toLocaleString( 'en-ZA' , { year: 'numeric' ,
-                                                        month: '2-digit' , day: '2-digit' , weekday:"long",
-                                                        hour: '2-digit' , hour12: false, minute:'2-digit',
-                                                        second:'2-digit' }) %>
+                                                    <%= doc.date.toLocaleDateString() %>
+                                                </td>
+                                                <td>
+                                                    <%= doc.date.toISOString().split('T')[1].substring(0, 5); %>
                                                 </td>
                                                 <td>
                                                     <%= doc.temperature %> °C
@@ -342,6 +344,19 @@
     <script src="/assets/demo/chart-pie-demo.js"></script>
     <script src="/js/scrollpos.js"></script>
     <script src="/js/refreshTime.js"></script>
+    <script>
+        String.prototype.toHHMMSS = function () {
+            var sec_num = parseInt(this, 10); // don't forget the second param
+            var hours = Math.floor(sec_num / 3600);
+            var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+            var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+            if (hours < 10) { hours = "0" + hours; }
+            if (minutes < 10) { minutes = "0" + minutes; }
+            if (seconds < 10) { seconds = "0" + seconds; }
+            return hours + ':' + minutes + ':' + seconds;
+        }
+    </script>
 </body>
 
 </html>
