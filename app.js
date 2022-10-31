@@ -86,7 +86,9 @@ app.get("/dashboard1", isLoggedIn, (req, res) => {
 
 app.get("/dashboard2", isLoggedIn, (req, res) => {
     User.find({ 'idSerial': sensorId }).sort(mysort).exec((err, doc) => {
-        res.render("dashboard2", { title: "dashboard2", currentUser: req.user, users: doc, temp: doc[0] });
+        User.find({ 'idMicro': microId }).exec((err, doc1) => {
+            res.render("dashboard2", { title: "dashboard2", currentUser: req.user, users: doc, users1: doc1, temp: doc[0] });
+        });
     });
 });
 

@@ -199,6 +199,95 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Illustration dashboard card example-->
+                            <div class="container-xl px-4 mt-2">
+                                <div class="row">
+                                    <div class="col-xxl-4 col-xl-12 mb-4">
+                                        <!-- Pie chart with legend example-->
+                                        <div class="card h-100">
+                                            <div class="card-header">Temperature</div>
+                                            <div class="card-body">
+                                                <div class="chart-pie mb-4"><canvas id="myPieChart" width="100%"
+                                                        height="50"></canvas></div>
+                                                <div class="list-group list-group-flush">
+                                                    <div
+                                                        class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                                                        <div class="me-3">
+                                                            <i class="fas fa-circle fa-sm me-1 text-warning"></i>
+                                                            Temperature
+                                                        </div>
+                                                        <div class="fw-500 text-dark" id="resultX"></div>
+                                                    </div>
+                                                    <div
+                                                        class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                                                        <div class="me-3">
+                                                            <i class="fas fa-circle fa-sm me-1 text-green"></i>
+                                                            Null
+                                                        </div>
+                                                        <div class="fw-500 text-dark" id="resultY"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-4 col-xl-12 mb-4">
+                                        <!-- Pie chart with legend example 1-->
+                                        <div class="card h-100">
+                                            <div class="card-header">Humidity</div>
+                                            <div class="card-body">
+                                                <div class="chart-pie mb-4"><canvas id="myPieChart1" width="100%"
+                                                        height="50"></canvas></div>
+                                                <div class="list-group list-group-flush">
+                                                    <div
+                                                        class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                                                        <div class="me-3">
+                                                            <i class="fas fa-circle fa-sm me-1 text-primary"></i>
+                                                            Humidity
+                                                        </div>
+                                                        <div class="fw-500 text-dark" id="resultXX"></div>
+                                                    </div>
+                                                    <div
+                                                        class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                                                        <div class="me-3">
+                                                            <i class="fas fa-circle fa-sm me-1 text-green"></i>
+                                                            Null
+                                                        </div>
+                                                        <div class="fw-500 text-dark" id="resultYY"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-4 col-xl-12 mb-4">
+                                        <!-- Pie chart with legend example 2-->
+                                        <div class="card h-100">
+                                            <div class="card-header">AQI</div>
+                                            <div class="card-body">
+                                                <div class="chart-pie mb-4"><canvas id="myPieChart2" width="100%"
+                                                        height="50"></canvas></div>
+                                                <div class="list-group list-group-flush">
+                                                    <div
+                                                        class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                                                        <div class="me-3">
+                                                            <i class="fas fa-circle fa-sm me-1 text-green"></i>
+                                                            AQI
+                                                        </div>
+                                                        <div class="fw-500 text-dark" id="resultXXX"></div>
+                                                    </div>
+                                                    <div
+                                                        class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
+                                                        <div class="me-3">
+                                                            <i class="fas fa-circle fa-sm me-1 text-red"></i>
+                                                            Null
+                                                        </div>
+                                                        <div class="fw-500 text-dark" id="resultYYY"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </main>
                         <%- include('footer.ejs') %>
                     </div>

@@ -187,30 +187,31 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-6 col-xxl-12">
-                                                <!-- Pie chart with legend example 2-->
-                                                <div class="card h-100">
-                                                    <div class="card-header">AQI</div>
-                                                    <div class="card-body">
-                                                        <div class="chart-pie mb-4"><canvas id="myPieChart2"
-                                                                width="100%" height="50"></canvas></div>
-                                                        <div class="list-group list-group-flush">
-                                                            <div
-                                                                class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
-                                                                <div class="me-3">
-                                                                    <i class="fas fa-circle fa-sm me-1 text-green"></i>
-                                                                    AQI
+                                            <div class="row">
+                                                <div class="col-xl-6 col-xxl-12">
+                                                    <!-- Team members / people dashboard card example-->
+                                                    <div class="card mb-4">
+                                                        <div class="card-header">People</div>
+                                                        <div class="card-body">
+                                                            <!-- Item 1-->
+                                                            <% Object.values(users1).forEach((doc1)=> { %>
+                                                                <div
+                                                                    class="d-flex align-items-center justify-content-between mb-4">
+                                                                    <div
+                                                                        class="d-flex align-items-center flex-shrink-0 me-3">
+                                                                        <div class="avatar avatar-xl me-3 bg-gray-200">
+                                                                            <img class="avatar-img img-fluid"
+                                                                                src="assets/img/favicon.png"
+                                                                                alt="" /></div>
+                                                                        <div class="d-flex flex-column fw-bold">
+                                                                            <a class="text-dark line-height-normal mb-1"
+                                                                                href="<%= doc1.serialnumber %>/dashboard1">
+                                                                                <%= doc1.namesensor %>
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="fw-500 text-dark" id="resultXXX"></div>
-                                                            </div>
-                                                            <div
-                                                                class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
-                                                                <div class="me-3">
-                                                                    <i class="fas fa-circle fa-sm me-1 text-red"></i>
-                                                                    Null
-                                                                </div>
-                                                                <div class="fw-500 text-dark" id="resultYYY"></div>
-                                                            </div>
+                                                                <% }) %>
                                                         </div>
                                                     </div>
                                                 </div>
