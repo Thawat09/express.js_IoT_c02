@@ -12,7 +12,6 @@ var aqibars = [];
 async function getRandomUser() {
     const response = await fetch('http://localhost:1111/chartbar');
     const data = await response.json();
-    console.log(data);
     tempbars = data[0].temp
     datebars = data[0].date
     humbars = data[0].hum

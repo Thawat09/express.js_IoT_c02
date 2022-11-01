@@ -19,7 +19,7 @@ async function getRandomUser() {
 
     // Area Chart Example Temperature
     var xValues = datearea;
-    var yValues = temparea
+    var yValues = temparea;
     var ctx = document.getElementById("myAreaChart");
     myLineChart = new Chart(ctx, {
         type: "line",
@@ -112,7 +112,7 @@ async function getRandomUser() {
     });
 
     // Area Chart Example Humidity
-    var yyValues = humarea
+    var yyValues = humarea;
     var ctx1 = document.getElementById("myAreaChart1");
     myLineChart1 = new Chart(ctx1, {
         type: "line",
