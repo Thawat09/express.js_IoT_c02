@@ -9,14 +9,17 @@ var datebars = [];
 var humbars = [];
 var aqibars = [];
 
-async function getRandomUser() {
+async function getRandomUser1() {
     const response = await fetch('http://localhost:1111/chartbar');
     const data = await response.json();
     tempbars = data[0].temp
     datebars = data[0].date
     humbars = data[0].hum
     aqibars = data[0].aqi
+    getValues1(tempbars, datebars, humbars, aqibars)
+}
 
+function getValues1(tempbars, datebars, humbars, aqibars) {
     // Bar Chart Example Temperature
     var ctx = document.getElementById("myBarChart");
     myBarChart = new Chart(ctx, {
@@ -273,4 +276,9 @@ async function getRandomUser() {
     });
 }
 
-getRandomUser()
+function foo1() {
+    getRandomUser1();
+    setTimeout(foo1, 10000);
+}
+
+foo1();

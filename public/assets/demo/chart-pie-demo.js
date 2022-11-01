@@ -8,7 +8,7 @@ var temp = [];
 var humi = [];
 var aqi = [];
 
-async function getRandomUser() {
+async function getRandomUser2() {
     const response = await fetch('http://localhost:1111/chartpie');
     const data = await response.json();
     addData(data);
@@ -18,7 +18,10 @@ function addData(object) {
     temp.push(object.temperature);
     humi.push(object.humidity);
     aqi.push(object.aqi);
+    getValues2(temp, humi, aqi)
+}
 
+function getValues2(temp, humi, aqi) {
     var z = 80;
     var y = z - temp;
 
@@ -152,4 +155,5 @@ function addData(object) {
     });
 }
 
-getRandomUser()
+
+getRandomUser2();

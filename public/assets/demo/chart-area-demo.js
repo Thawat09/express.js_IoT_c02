@@ -16,7 +16,10 @@ async function getRandomUser() {
     datearea = data[0].date
     humarea = data[0].hum
     aqiarea = data[0].aqi
+    getValues(temparea, datearea, humarea, aqiarea)
+}
 
+function getValues(temparea, datearea, humarea, aqiarea) {
     // Area Chart Example Temperature
     var xValues = datearea;
     var yValues = temparea;
@@ -298,4 +301,9 @@ async function getRandomUser() {
     });
 }
 
-getRandomUser()
+function foo() {
+    getRandomUser();
+    setTimeout(foo, 10000);
+}
+
+foo();
