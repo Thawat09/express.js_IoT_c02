@@ -111,7 +111,7 @@ function getValues2(temp, humi, aqi) {
     });
 
     // Pie Chart Example humidity
-    var zzz = 100
+    var zzz = 500
     var yyy = zzz - aqi
 
     document.getElementById("resultXXX").innerHTML = aqi + '%';

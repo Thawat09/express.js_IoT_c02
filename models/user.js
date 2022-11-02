@@ -18,6 +18,7 @@ let userSchema = new mongoose.Schema({
     namemicrocontroller: String,
     namesensor: String,
     sensor: String,
+    sensorPin: String,
     idMicro: String,
     idSerial: String,
     date: Date,

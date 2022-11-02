@@ -232,7 +232,7 @@ function getValues1(tempbars, datebars, humbars, aqibars) {
                 yAxes: [{
                     ticks: {
                         min: 0,
-                        max: 100,
+                        max: 500,
                         maxTicksLimit: 5,
                         padding: 10,
                         // Include a dollar sign in the ticks

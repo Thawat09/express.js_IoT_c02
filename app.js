@@ -56,9 +56,11 @@ app.get("/chartbar", (req, res) => {
     });
 });
 
-app.get("/logout", (req, res) => {
-    req.logout();
-    res.redirect("/");
+app.get('/logout', function (req, res, next) {
+    req.logout(function (err) {
+        if (err) { return next(err); }
+        res.redirect('/');
+    });
 });
 
 app.get("/", (req, res) => {
@@ -146,13 +148,12 @@ app.get("/add-Micro", isLoggedIn, (req, res) => {
 });
 
 app.get("/add-Sensor", isLoggedIn, (req, res) => {
-    res.render("addSensor", {
-        title: "addSensor",
-        currentUser: req.user,
+    User.aggregate([{ $match: { 'idMicro': microId } }, { $project: { _id: 0, sensorPin: 1 } }, { $group: { _id: null, sensorPin: { $push: '$sensorPin' } } }]).exec((err, doc) => {
+        res.render("addSensor", { title: "addSensor", currentUser: req.user, doc: doc });
     });
 });
 
-app.get("/:id", (req, res) => {
+app.get("/:id", isLoggedIn, (req, res) => {
     microId = req.params.id;
     User.find({ 'idMicro': microId }).exec((err, doc) => {
         res.render("tablessensor", {
@@ -226,6 +227,7 @@ app.post("/insertSensor", (req, res) => {
         idMicro: microId,
         serialnumber: req.body.serialnumber,
         namesensor: req.body.namesensor,
+        sensorPin: req.body.sensorPin,
     });
     User.saveUser(data, (err) => {
         if (err) console.log(err);
