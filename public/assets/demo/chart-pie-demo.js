@@ -33,7 +33,7 @@ function getValues2(temp, humi, aqi) {
     myPieChart = new Chart(ctx, {
         type: "doughnut",
         data: {
-            labels: ["Temperature", "Null"],
+            labels: ["Temperature", "Remaining Area"],
             datasets: [{
                 data: [temp, y],
                 backgroundColor: [
@@ -77,15 +77,15 @@ function getValues2(temp, humi, aqi) {
     myPieChart1 = new Chart(ctxx, {
         type: "doughnut",
         data: {
-            labels: ["Humidity", "Null"],
+            labels: ["Humidity", "Remaining Area"],
             datasets: [{
                 data: [humi, yy],
                 backgroundColor: [
-                    "blue",
+                    "rgba(65, 60, 285, 1)",
                     "rgba(0, 172, 105, 1)"
                 ],
                 hoverBackgroundColor: [
-                    "blue",
+                    "rgba(65, 60, 285, 1)",
                     "rgba(0, 172, 105, 0.9)"
                 ],
                 hoverBorderColor: "rgba(234, 236, 244, 1)"
@@ -121,7 +121,7 @@ function getValues2(temp, humi, aqi) {
     myPieChart2 = new Chart(ctxxx, {
         type: "doughnut",
         data: {
-            labels: ["AQI", "Null"],
+            labels: ["AQI", "Remaining Area"],
             datasets: [{
                 data: [aqi, yyy],
                 backgroundColor: [
@@ -153,7 +153,18 @@ function getValues2(temp, humi, aqi) {
             cutoutPercentage: 70
         }
     });
+    function addData(chart, label, data) {
+        chart.data.labels.push(label);
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data.push(data);
+        });
+        chart.update();
+    }
 }
 
+// function foo2() {
+    getRandomUser2();
+//     setTimeout(foo2, 10000);
+// }
 
-getRandomUser2();
+// foo2();
