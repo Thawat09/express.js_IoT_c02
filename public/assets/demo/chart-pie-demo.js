@@ -15,6 +15,9 @@ async function getRandomUser2() {
 }
 
 function addData(object) {
+    temp.pop();
+    humi.pop();
+    aqi.pop();
     temp.push(object.temperature);
     humi.push(object.humidity);
     aqi.push(object.aqi);
@@ -24,6 +27,9 @@ function addData(object) {
 function getValues2(temp, humi, aqi) {
     var z = 80;
     var y = z - temp;
+
+    document.getElementById("resultX").innerHTML = temp + '°C';
+    document.getElementById("resultY").innerHTML = y + '°C';
 
     // Pie Chart Example temperature
     var ctx = document.getElementById("myPieChart");
@@ -62,10 +68,12 @@ function getValues2(temp, humi, aqi) {
             cutoutPercentage: 70
         }
     });
-    output(temp, y)
 
     var zz = 100
     var yy = zz - humi
+
+    document.getElementById("resultXX").innerHTML = humi + '%';
+    document.getElementById("resultYY").innerHTML = yy + '%';
 
     // Pie Chart Example humidity
     var ctxx = document.getElementById("myPieChart1");
@@ -104,10 +112,12 @@ function getValues2(temp, humi, aqi) {
             cutoutPercentage: 70
         }
     });
-    output1(humi, yy)
 
     var zzz = 500
     var yyy = zzz - aqi
+
+    document.getElementById("resultXXX").innerHTML = aqi + '%';
+    document.getElementById("resultYYY").innerHTML = yyy + '%';
 
     // Pie Chart Example humidity
     var ctxxx = document.getElementById("myPieChart2");
@@ -146,22 +156,6 @@ function getValues2(temp, humi, aqi) {
             cutoutPercentage: 70
         }
     });
-    output2(aqi, yyy)
-}
-
-function output(temp, y) {
-    document.getElementById("resultX").innerHTML = temp + '°C';
-    document.getElementById("resultY").innerHTML = y + '°C';
-}
-
-function output1(humi, yy) {
-    document.getElementById("resultXX").innerHTML = humi + '%';
-    document.getElementById("resultYY").innerHTML = yy + '%';
-}
-
-function output2(aqi, yyy) {
-    document.getElementById("resultXXX").innerHTML = aqi + '%';
-    document.getElementById("resultYYY").innerHTML = yyy + '%';
 }
 
 function foo2() {

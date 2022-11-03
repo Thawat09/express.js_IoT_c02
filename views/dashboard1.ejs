@@ -147,12 +147,11 @@
                             <div class="col-xxl-4 col-xl-6 mb-4">
                                 <div class="card card-header-actions h-100">
                                     <div class="card-header">Progress Tracker</div>
-                                    <% if (temp) { %>
-                                        <div class="card-body">
+                                    <div class="card-body">
+                                        <% if (temp) { %>
                                             <h4 class="small">
                                                 Temperature
-                                                <span class="float-end fw-bold">
-                                                    <%= temp.temperature %> °C
+                                                <span class="float-end fw-bold" id="tempdata">
                                                 </span>
                                             </h4>
                                             <div class="progress mb-4">
@@ -163,8 +162,7 @@
                                             </div>
                                             <h4 class="small">
                                                 Humidity
-                                                <span class="float-end fw-bold">
-                                                    <%= temp.humidity %> %
+                                                <span class="float-end fw-bold" id="humdata">
                                                 </span>
                                             </h4>
                                             <div class="progress mb-4">
@@ -175,8 +173,7 @@
                                             </div>
                                             <h4 class="small">
                                                 AQI
-                                                <span class="float-end fw-bold">
-                                                    <%= temp.aqi %> µg./m3
+                                                <span class="float-end fw-bold" id="aqidata">
                                                 </span>
                                             </h4>
                                             <div class="progress mb-4">
@@ -185,8 +182,8 @@
                                                     aria-valuemin="0" aria-valuemax="500">
                                                 </div>
                                             </div>
-                                        </div>
-                                        <% } %>
+                                            <% } %>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -345,6 +342,8 @@
     <script src="/assets/demo/chart-pie-demo.js"></script>
     <script src="/js/scrollpos.js"></script>
     <script src="/js/refreshTime.js"></script>
+    <script src="/js/data.js"></script>
+    <script src="/js/table.js"></script>
 </body>
 
 </html>

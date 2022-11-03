@@ -31,8 +31,7 @@
                                                         <div class="flex-grow-1">
                                                             <div class="fw-bold text-warning mb-1">Temperature
                                                             </div>
-                                                            <div class="h1">
-                                                                <%= temp.temperature %> °C
+                                                            <div class="h1" id="tempdata">
                                                             </div>
                                                             <div
                                                                 class="text-xs fw-bold text-success d-inline-flex align-items-center">
@@ -55,8 +54,7 @@
                                                         <div class="flex-grow-1">
                                                             <div class="fw-bold text-primary mb-1">Humidity
                                                             </div>
-                                                            <div class="h1">
-                                                                <%= temp.humidity %> %
+                                                            <div class="h1" id="humdata">
                                                             </div>
                                                             <div
                                                                 class="text-xs fw-bold text-danger d-inline-flex align-items-center">
@@ -78,8 +76,7 @@
                                                     <div class="d-flex align-items-center">
                                                         <div class="flex-grow-1">
                                                             <div class="fw-bold text-success mb-1">PM 2.5</div>
-                                                            <div class="h1">
-                                                                <%= temp.aqi %> µg./m3
+                                                            <div class="h1" id="aqidata">
                                                             </div>
                                                             <div
                                                                 class="text-xs fw-bold text-success d-inline-flex align-items-center">
@@ -303,6 +300,7 @@
             <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
             <script src="js/scrollpos.js"></script>
             <script src="js/refreshTime.js"></script>
+            <script src="js/data.js"></script>
     </body>
 
 </html>

@@ -1,12 +1,9 @@
-const { find } = require("./models/user");
-
 const express = require("express"),
     path = require("path"),
     app = express(),
     passport = require("passport"),
     bodyParser = require("body-parser"),
     LocalStrategy = require("passport-local"),
-    ObjectId = require('mongodb').ObjectId,
     User = require("./models/user");
 
 app.use(
@@ -56,6 +53,12 @@ app.get("/chartbar", (req, res) => {
     { $project: { _id: 0, aqi: 1, humidity: 1, temperature: 1, date: { $dateToString: { format: '%H:%M', date: '$date' } } } },
     { $group: { _id: null, aqi: { $push: '$aqi' }, hum: { $push: '$humidity' }, temp: { $push: '$temperature' }, date: { $push: '$date' } } }
     ]).exec((err, doc) => {
+        res.json(doc);
+    });
+});
+
+app.get("/data", (req, res) => {
+    User.find({ 'idSerial': sensorId }).sort(mysort).exec((err, doc) => {
         res.json(doc);
     });
 });

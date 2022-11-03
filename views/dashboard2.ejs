@@ -149,8 +149,7 @@
                                                         <% if (temp) { %>
                                                             <h4 class="small">
                                                                 Temperature
-                                                                <span class="float-end fw-bold">
-                                                                    <%= temp.temperature %> °C
+                                                                <span class="float-end fw-bold" id="tempdata">
                                                                 </span>
                                                             </h4>
                                                             <div class="progress mb-4">
@@ -161,8 +160,7 @@
                                                             </div>
                                                             <h4 class="small">
                                                                 Humidity
-                                                                <span class="float-end fw-bold">
-                                                                    <%= temp.humidity %> %
+                                                                <span class="float-end fw-bold" id="humdata">
                                                                 </span>
                                                             </h4>
                                                             <div class="progress mb-4">
@@ -173,8 +171,7 @@
                                                             </div>
                                                             <h4 class="small">
                                                                 AQI
-                                                                <span class="float-end fw-bold">
-                                                                    <%= temp.aqi %> µg./m3
+                                                                <span class="float-end fw-bold" id="aqidata">
                                                                 </span>
                                                             </h4>
                                                             <div class="progress mb-4">
@@ -201,8 +198,8 @@
                                                                         class="d-flex align-items-center flex-shrink-0 me-3">
                                                                         <div class="avatar avatar-xl me-3 bg-gray-200">
                                                                             <img class="avatar-img img-fluid"
-                                                                                src="assets/img/favicon.png"
-                                                                                alt="" /></div>
+                                                                                src="assets/img/favicon.png" alt="" />
+                                                                        </div>
                                                                         <div class="d-flex flex-column fw-bold">
                                                                             <a class="text-dark line-height-normal mb-1"
                                                                                 href="<%= doc1.serialnumber %>/dashboard1">
@@ -235,6 +232,7 @@
             <script src="js/datatables/datatables-simple-demo.js"></script>
             <script src="js/scrollpos.js"></script>
             <script src="js/refreshTime.js"></script>
+            <script src="js/data.js"></script>
     </body>
 
 </html>
