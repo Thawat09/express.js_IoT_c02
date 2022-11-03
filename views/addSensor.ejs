@@ -18,12 +18,11 @@
                                     <div class="card-body">
                                         <!-- Registration form-->
                                         <form action="/insertSensor" method="post">
-                                            <input type="hidden" value="<%= currentUser %>" name="_id">
                                             <!-- Form Row-->
                                             <div class="mb-3">
                                                 <label class="small mb-1" for="inputSerialnumber">SerialNumber</label>
                                                 <input class="form-control" id="inputSerialnumber" type="text"
-                                                    name="serialnumber" placeholder="Enter serialnumber" />
+                                                    name="serialnumber" placeholder="Enter serialnumber" required />
                                                 <label class="small mb-1" for="inputSensor">Name Sensor</label>
                                                 <input class="form-control" id="inputSensor" type="text"
                                                     name="namesensor" placeholder="Enter namesensor" required />
@@ -32,13 +31,15 @@
                                                 name="sensorPin">
                                                 <% if (doc) { %>
                                                     <%= doc %>
-                                                    <option selected>Determine which pin to connect</option>
-                                                    <% var options1=["0", "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8"]; %>
-                                                        <% const output=options1.filter(function (obj) { return JSON.stringify(doc).indexOf(obj)===-1; }); %>
-                                                            <% for(var i=0; i < output.length; i++) { %>
-                                                                <option value="<%= output[i] %>"><%= output[i] %></option>
-                                                            <% } %>
-                                                <% } %>
+                                                        <option selected>Determine which pin to connect</option>
+                                                        <% var options1=["0", "1" , "2" , "3" , "4" , "5" , "6" , "7", "8" ]; %>
+                                                            <% const output=options1.filter(function (obj) { return JSON.stringify(doc).indexOf(obj)===-1; }); %>
+                                                                <% for(var i=0; i < output.length; i++) { %>
+                                                                    <option value="<%= output[i] %>">
+                                                                        <%= output[i] %>
+                                                                    </option>
+                                                                    <% } %>
+                                                                        <% } %>
                                             </select>
                                             <!-- Form Group (create Microcontroller)-->
                                             <button class="btn btn-primary btn-block" type="submit">Create

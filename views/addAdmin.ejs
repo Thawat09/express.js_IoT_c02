@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('head.ejs') %>
+
+    <body class="bg-gradient-primary-to-secondary">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container-xl px-8">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6">
+                                <!-- Basic registration form-->
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header justify-content-center">
+                                        <h3 class="fw-light my-4">Add Admin Page</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <!-- Registration form-->
+                                        <form action="/insertadmin" method="post">
+                                            <!-- Form Row-->
+                                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                                <div class="card-header text-dark">List Of Caregivers</div>
+                                                <div class="card-header text-dark justify-content-center">
+                                                    <table id="datatablesSimple">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>UserId</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <th>Name</th>
+                                                                <th>Delete</th>
+                                                            </tr>
+                                                        </tfoot>
+                                                        <tbody>
+                                                            <% Object.values(doc).forEach((doc)=> { %>
+                                                                <tr>
+                                                                    <td>
+                                                                        <%= doc.useridadmin %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="/deleteAdmin/<%= doc._id %>"
+                                                                            onclick="return confirm('Are you sure')">
+                                                                            <i href data-feather="trash-2"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <% }) %>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                                <div class="card-header text-dark">Add Admin</div>
+                                                <div class="mb-3 col-sm-6 mt-3">
+                                                    <input class="form-control" id="inputuseridadmin" type="text"
+                                                        name="useridadmin" placeholder="Enter User Id Admin" required />
+                                                </div>
+                                            </div>
+                                            <!-- Form Group (create Microcontroller)-->
+                                            <button class="btn btn-primary btn-block mt-4" type="submit">Create
+                                                Microcontroller</button>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <div class="small"><a href="/tables">Back Tables</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <div id="layoutAuthentication_footer">
+                <%- include('footer.ejs') %>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="js/datatables/datatables-simple-demo.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="js/scrollpos.js"></script>
+    </body>
+
+</html>

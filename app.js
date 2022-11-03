@@ -1,9 +1,12 @@
+const { find } = require("./models/user");
+
 const express = require("express"),
     path = require("path"),
     app = express(),
     passport = require("passport"),
     bodyParser = require("body-parser"),
     LocalStrategy = require("passport-local"),
+    ObjectId = require('mongodb').ObjectId,
     User = require("./models/user");
 
 app.use(
@@ -30,6 +33,7 @@ app.use(passport.session());
 
 let microId = "";
 let sensorId = "";
+let username = "";
 let mysort = { '_id': -1 };
 
 app.get("/chartpie", (req, res) => {
@@ -121,7 +125,9 @@ app.get("/security", isLoggedIn, (req, res) => {
 
 app.get("/tables", isLoggedIn, (req, res) => {
     const users_id = req.user._id;
-    User.find({ 'user_id': users_id }).exec((err, doc) => {
+    microId = req.params.id;
+    username = req.user.username
+    User.find({ $or: [{ 'user_id': users_id }, { 'useridadmin': username }] }).exec((err, doc) => {
         res.render("tables", {
             title: "tables",
             currentUser: req.user,
@@ -153,6 +159,12 @@ app.get("/add-Sensor", isLoggedIn, (req, res) => {
     });
 });
 
+app.get("/add-admin", isLoggedIn, (req, res) => {
+    User.find({ '_id': microId }).exec((err, doc) => {
+        res.render("addAdmin", { title: "addAdmin", currentUser: req.user, doc: doc });
+    });
+});
+
 app.get("/:id", isLoggedIn, (req, res) => {
     microId = req.params.id;
     User.find({ 'idMicro': microId }).exec((err, doc) => {
@@ -178,6 +190,15 @@ app.get("/deleteSensor/:id", (req, res) => {
         (err) => {
             if (err) console.log(err);
             res.redirect("/tablessensor");
+        }
+    );
+});
+
+app.get("/deleteAdmin/:id", (req, res) => {
+    User.updateMany({}, { $unset: { 'useridadmin': '' } }).exec(
+        (err) => {
+            if (err) console.log(err);
+            res.redirect("/index");
         }
     );
 });
@@ -233,6 +254,16 @@ app.post("/insertSensor", (req, res) => {
         if (err) console.log(err);
         res.redirect("tablessensor");
     });
+});
+
+app.post("/insertadmin", (req, res) => {
+    let data = ({ $set: { 'useridadmin': req.body.useridadmin } })
+    User.findByIdAndUpdate(microId, data).exec(
+        (err) => {
+            if (err) console.log(err);
+            res.redirect("tablessensor");
+        }
+    );
 });
 
 app.post("/update", (req, res) => {

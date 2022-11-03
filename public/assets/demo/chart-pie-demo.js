@@ -25,9 +25,6 @@ function getValues2(temp, humi, aqi) {
     var z = 80;
     var y = z - temp;
 
-    document.getElementById("resultX").innerHTML = temp + '°C';
-    document.getElementById("resultY").innerHTML = y + '°C';
-
     // Pie Chart Example temperature
     var ctx = document.getElementById("myPieChart");
     myPieChart = new Chart(ctx, {
@@ -65,14 +62,12 @@ function getValues2(temp, humi, aqi) {
             cutoutPercentage: 70
         }
     });
+    output(temp, y)
 
-    // Pie Chart Example humidity
     var zz = 100
     var yy = zz - humi
 
-    document.getElementById("resultXX").innerHTML = humi + '%';
-    document.getElementById("resultYY").innerHTML = yy + '%';
-
+    // Pie Chart Example humidity
     var ctxx = document.getElementById("myPieChart1");
     myPieChart1 = new Chart(ctxx, {
         type: "doughnut",
@@ -109,14 +104,12 @@ function getValues2(temp, humi, aqi) {
             cutoutPercentage: 70
         }
     });
+    output1(humi, yy)
 
-    // Pie Chart Example humidity
     var zzz = 500
     var yyy = zzz - aqi
 
-    document.getElementById("resultXXX").innerHTML = aqi + '%';
-    document.getElementById("resultYYY").innerHTML = yyy + '%';
-
+    // Pie Chart Example humidity
     var ctxxx = document.getElementById("myPieChart2");
     myPieChart2 = new Chart(ctxxx, {
         type: "doughnut",
@@ -153,18 +146,27 @@ function getValues2(temp, humi, aqi) {
             cutoutPercentage: 70
         }
     });
-    function addData(chart, label, data) {
-        chart.data.labels.push(label);
-        chart.data.datasets.forEach((dataset) => {
-            dataset.data.push(data);
-        });
-        chart.update();
-    }
+    output2(aqi, yyy)
 }
 
-// function foo2() {
-    getRandomUser2();
-//     setTimeout(foo2, 10000);
-// }
+function output(temp, y) {
+    document.getElementById("resultX").innerHTML = temp + '°C';
+    document.getElementById("resultY").innerHTML = y + '°C';
+}
 
-// foo2();
+function output1(humi, yy) {
+    document.getElementById("resultXX").innerHTML = humi + '%';
+    document.getElementById("resultYY").innerHTML = yy + '%';
+}
+
+function output2(aqi, yyy) {
+    document.getElementById("resultXXX").innerHTML = aqi + '%';
+    document.getElementById("resultYYY").innerHTML = yyy + '%';
+}
+
+function foo2() {
+    getRandomUser2();
+    setTimeout(foo2, 10000);
+}
+
+foo2();
