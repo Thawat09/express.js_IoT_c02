@@ -9,6 +9,7 @@ mongoose.connect(dbUrl, {
 
 let userSchema = new mongoose.Schema({
     username: String,
+    idline: String,
     password: String,
     firstname: String,
     lastname: String,
@@ -27,6 +28,7 @@ let userSchema = new mongoose.Schema({
     humidity: String,
     aqi: String,
     current: String,
+    onoff: Boolean,
 })
 
 userSchema.plugin(passportLocalMongoose);

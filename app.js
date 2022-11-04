@@ -227,6 +227,7 @@ app.post("/register", (req, res) => {
     User.register(
         new User({
             username: req.body.username,
+            idline: req.body.idline,
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             email: req.body.email,
@@ -261,6 +262,7 @@ app.post("/insertSensor", (req, res) => {
         serialnumber: req.body.serialnumber,
         namesensor: req.body.namesensor,
         sensorPin: req.body.sensorPin,
+        onoff: 0,
     });
     User.saveUser(data, (err) => {
         if (err) console.log(err);
@@ -282,6 +284,7 @@ app.post("/update", (req, res) => {
     const update_id = req.user._id;
     let data = {
         email: req.body.email,
+        idline: req.body.idline,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
     };
