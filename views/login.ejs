@@ -2,7 +2,7 @@
 <html lang="en">
 <%- include('head.ejs') %>
 
-    <body class="bg-gradient-primary-to-secondary">
+    <body>
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -27,9 +27,12 @@
                                             <!-- Form Group (password)-->
                                             <div class="mb-3">
                                                 <label class="small mb-1" for="inputPassword">Password</label>
-                                                <input class="form-control" id="inputPassword" type="password"
-                                                    name="password" placeholder="Enter password"
+                                                <input class="form-control" id="myInput" type="password" name="password"
+                                                    placeholder="Enter password"
                                                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+                                            </div>
+                                            <div class="mb-3">
+                                                <input type="checkbox" onclick="myFunction()">Show Password
                                             </div>
                                             <!-- Form Group (login box)-->
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
@@ -56,6 +59,7 @@
             crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="js/scrollpos.js"></script>
+        <script src="js/showPassword.js"></script>
     </body>
 
 </html>

@@ -41,11 +41,11 @@ function getValues2(temp, humi, aqi) {
                 data: [temp, y],
                 backgroundColor: [
                     "orange",
-                    "rgba(0, 172, 105, 1)"
+                    "grey"
                 ],
                 hoverBackgroundColor: [
                     "orange",
-                    "rgba(0, 172, 105, 0.9)"
+                    "grey"
                 ],
                 hoverBorderColor: "rgba(234, 236, 244, 1)"
             }]
@@ -84,12 +84,12 @@ function getValues2(temp, humi, aqi) {
             datasets: [{
                 data: [humi, yy],
                 backgroundColor: [
-                    "rgba(65, 60, 285, 1)",
-                    "rgba(0, 172, 105, 1)"
+                    "RGB(15, 65, 225)",
+                    "grey"
                 ],
                 hoverBackgroundColor: [
-                    "rgba(65, 60, 285, 1)",
-                    "rgba(0, 172, 105, 0.9)"
+                    "RGB(15, 65, 225)",
+                    "grey"
                 ],
                 hoverBorderColor: "rgba(234, 236, 244, 1)"
             }]
@@ -129,11 +129,11 @@ function getValues2(temp, humi, aqi) {
                 data: [aqi, yyy],
                 backgroundColor: [
                     "green",
-                    "red",
+                    "grey",
                 ],
                 hoverBackgroundColor: [
                     "green",
-                    "red",
+                    "grey",
                 ],
                 hoverBorderColor: "rgba(234, 236, 244, 1)"
             }]

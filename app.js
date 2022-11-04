@@ -41,8 +41,8 @@ app.get("/chartpie", (req, res) => {
 
 app.get("/chartarea", (req, res) => {
     User.aggregate([{ $match: { 'idSerial': sensorId } }, { $sort: { 'date': -1 } }, { $limit: 7 },
-    { $project: { _id: 0, aqi: 1, humidity: 1, temperature: 1, date: { $dateToString: { format: '%H:%M', date: '$date' } } } },
-    { $group: { _id: null, aqi: { $push: '$aqi' }, hum: { $push: '$humidity' }, temp: { $push: '$temperature' }, date: { $push: '$date' } } }
+    { $project: { _id: 0, aqi: 1, humidity: 1, temperature: 1, date: { $dateToString: { format: '%H:%M', date: '$date' } }, current: 1 } },
+    { $group: { _id: null, aqi: { $push: '$aqi' }, hum: { $push: '$humidity' }, temp: { $push: '$temperature' }, date: { $push: '$date' }, cur: { $push: '$current' } } }
     ]).exec((err, doc) => {
         res.json(doc);
     });
@@ -50,8 +50,8 @@ app.get("/chartarea", (req, res) => {
 
 app.get("/chartbar", (req, res) => {
     User.aggregate([{ $match: { 'idSerial': sensorId } }, { $sort: { 'date': -1 } }, { $limit: 7 },
-    { $project: { _id: 0, aqi: 1, humidity: 1, temperature: 1, date: { $dateToString: { format: '%H:%M', date: '$date' } } } },
-    { $group: { _id: null, aqi: { $push: '$aqi' }, hum: { $push: '$humidity' }, temp: { $push: '$temperature' }, date: { $push: '$date' } } }
+    { $project: { _id: 0, aqi: 1, humidity: 1, temperature: 1, date: { $dateToString: { format: '%H:%M', date: '$date' } }, current: 1 } },
+    { $group: { _id: null, aqi: { $push: '$aqi' }, hum: { $push: '$humidity' }, temp: { $push: '$temperature' }, date: { $push: '$date' }, cur: { $push: '$current' } } }
     ]).exec((err, doc) => {
         res.json(doc);
     });
@@ -59,6 +59,15 @@ app.get("/chartbar", (req, res) => {
 
 app.get("/data", (req, res) => {
     User.find({ 'idSerial': sensorId }).sort(mysort).exec((err, doc) => {
+        res.json(doc);
+    });
+});
+
+app.get("/datatable", (req, res) => {
+    User.aggregate([{ $match: { 'idSerial': sensorId } }, { $sort: { 'date': -1 } },
+    { $project: { _id: 0, date: { $dateToString: { format: '%Y/%m/%d', date: '$date' } }, time: { $dateToString: { format: '%H:%M', date: '$date' } }, aqi: 1, humidity: 1, temperature: 1, current: 1 } },
+    { $group: { _id: null, date: { $push: '$date' }, time: { $push: '$time' }, aqi: { $push: '$aqi' }, humidity: { $push: '$humidity' }, temperature: { $push: '$temperature' }, current: { $push: '$current' } } }
+    ]).exec((err, doc) => {
         res.json(doc);
     });
 });

@@ -2,7 +2,7 @@
 <html lang="en">
 <%- include('head.ejs') %>
 
-    <body class="bg-gradient-primary-to-secondary">
+    <body>
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -62,6 +62,8 @@
                                                             name="password" placeholder="Enter password"
                                                             onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 8 characters' : ''); if(this.checkValidity()) form.confirm_password.pattern = this.value;"
                                                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+                                                        <span id="togglePassword"
+                                                            class="bi bi-eye-slash field-icon toggle-password"></span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -74,6 +76,8 @@
                                                             placeholder="Confirm password"
                                                             onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');"
                                                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+                                                        <span id="toggleConfirmPassword"
+                                                            class="bi bi-eye-slash field-icon toggle-password"></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -101,6 +105,7 @@
             crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="js/scrollpos.js"></script>
+        <script src="js/showPassword.js"></script>
     </body>
 
 </html>

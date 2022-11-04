@@ -8,7 +8,7 @@
                 <%- include('sidebar.ejs') %>
                     <div id="layoutSidenav_content">
                         <main>
-                            <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+                            <header class="page-header page-header-dark pb-10">
                                 <div class="container-xl px-4">
                                     <div class="page-header-content pt-4">
                                         <div class="row align-items-center justify-content-between">
@@ -99,7 +99,7 @@
                                                             <div
                                                                 class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
                                                                 <div class="me-3">
-                                                                    <i class="fas fa-circle fa-sm me-1 text-green"></i>
+                                                                    <i class="fas fa-circle fa-sm me-1 text-muted"></i>
                                                                     Remaining Area
                                                                 </div>
                                                                 <div class="fw-500 text-dark" id="resultY"></div>
@@ -128,7 +128,7 @@
                                                             <div
                                                                 class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
                                                                 <div class="me-3">
-                                                                    <i class="fas fa-circle fa-sm me-1 text-green"></i>
+                                                                    <i class="fas fa-circle fa-sm me-1 text-muted"></i>
                                                                     Remaining Area
                                                                 </div>
                                                                 <div class="fw-500 text-dark" id="resultYY"></div>
@@ -179,6 +179,18 @@
                                                                     style="width: <%= temp.aqi %>%"
                                                                     aria-valuenow="<%= temp.aqi %>" aria-valuemin="0"
                                                                     aria-valuemax="500"></div>
+                                                            </div>
+                                                            <h4 class="small">
+                                                                Power
+                                                                <span class="float-end fw-bold" id="currentdata">
+                                                                </span>
+                                                            </h4>
+                                                            <div class="progress mb-4">
+                                                                <div class="progress-bar bg-red" role="progressbar"
+                                                                    style="width: <%= temp.current %>%"
+                                                                    aria-valuenow="<%= temp.current %>"
+                                                                    aria-valuemin="0" aria-valuemax="100">
+                                                                </div>
                                                             </div>
                                                             <% } %>
                                                     </div>

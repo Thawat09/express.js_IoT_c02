@@ -3,11 +3,11 @@
     '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = "#858796";
 
-var data = [];
 var tempbars = [];
 var datebars = [];
 var humbars = [];
 var aqibars = [];
+var curbars = [];
 
 async function getRandomUser1() {
     const response = await fetch('http://localhost:1111/chartbar');
@@ -16,10 +16,11 @@ async function getRandomUser1() {
     datebars = data[0].date
     humbars = data[0].hum
     aqibars = data[0].aqi
-    getValues1(tempbars, datebars, humbars, aqibars)
+    curbars = data[0].cur.map(multiplyByTwo2)
+    getValues1(tempbars, datebars, humbars, aqibars, curbars)
 }
 
-function getValues1(tempbars, datebars, humbars, aqibars) {
+function getValues1(tempbars, datebars, humbars, aqibars, curbars) {
     // Bar Chart Example Temperature
     var ctx = document.getElementById("myBarChart");
     myBarChart = new Chart(ctx, {
@@ -274,6 +275,95 @@ function getValues1(tempbars, datebars, humbars, aqibars) {
             }
         }
     });
+
+    // Bar Chart Example power
+    var ctx3 = document.getElementById("myBarChart3");
+    myBarChart = new Chart(ctx3, {
+        type: "bar",
+        data: {
+            labels: datebars,
+            datasets: [{
+                label: "Power",
+                backgroundColor: "rgba(0, 97, 242, 1)",
+                hoverBackgroundColor: "rgba(0, 97, 242, 0.9)",
+                borderColor: "#4e73df",
+                data: curbars,
+                maxBarThickness: 25
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 25,
+                    top: 25,
+                    bottom: 0
+                }
+            },
+            scales: {
+                xAxes: [{
+                    time: {
+                        unit: "Day"
+                    },
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        reverse: true,
+                        maxTicksLimit: 7
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: 100,
+                        maxTicksLimit: 5,
+                        padding: 10,
+                        // Include a dollar sign in the ticks
+                        callback: function (value, index, values) {
+                            return value + "Watt";
+                        }
+                    },
+                    gridLines: {
+                        color: "rgb(234, 236, 244)",
+                        zeroLineColor: "rgb(234, 236, 244)",
+                        drawBorder: false,
+                        borderDash: [2],
+                        zeroLineBorderDash: [2]
+                    }
+                }]
+            },
+            legend: {
+                display: false
+            },
+            tooltips: {
+                titleMarginBottom: 10,
+                titleFontColor: "#6e707e",
+                titleFontSize: 14,
+                backgroundColor: "rgb(255,255,255)",
+                bodyFontColor: "#858796",
+                borderColor: "#dddfeb",
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                caretPadding: 10,
+                callbacks: {
+                    label: function (tooltipItem, chart) {
+                        var datasetLabel =
+                            chart.datasets[tooltipItem.datasetIndex].label || "";
+                        return datasetLabel + tooltipItem.yLabel + "Watt";
+                    }
+                }
+            }
+        }
+    });
+}
+
+const multiplyByTwo2 = function(number) {
+    return number * 220
 }
 
 function foo1() {

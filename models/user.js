@@ -26,6 +26,7 @@ let userSchema = new mongoose.Schema({
     temperature: String,
     humidity: String,
     aqi: String,
+    current: String,
 })
 
 userSchema.plugin(passportLocalMongoose);

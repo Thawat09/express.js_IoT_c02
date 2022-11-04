@@ -16,13 +16,13 @@
                                     <div class="me-4 mb-3 mb-sm-0">
                                         <h1 class="mb-0">Dashboard</h1>
                                         <div class="small">
-                                            <i class="far fa-clock fa-spin fa-lg text-gray-500"></i>
-                                            <span class="fw-500 text-muted" id="time"></span>
+                                            <i class="far fa-clock fa-spin fa-lg text-white-50"></i>
+                                            <span class="fw-500 text-white-50" id="time"></span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xl-4 col-md-6 mb-4">
+                                    <div class="col-xl-3 col-md-6 mb-4">
                                         <!-- Dashboard info widget 1-->
                                         <div class="card border-start-lg border-start-warning h-100">
                                             <div class="card-body">
@@ -45,7 +45,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-4 col-md-6 mb-4">
+                                    <div class="col-xl-3 col-md-6 mb-4">
                                         <!-- Dashboard info widget 2-->
                                         <div class="card border-start-lg border-start-primary h-100">
                                             <div class="card-body">
@@ -68,7 +68,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-4 col-md-6 mb-4">
+                                    <div class="col-xl-3 col-md-6 mb-4">
                                         <!-- Dashboard info widget 3-->
                                         <div class="card border-start-lg border-start-success h-100">
                                             <div class="card-body">
@@ -84,6 +84,29 @@
                                                         </div>
                                                         <div class="ms-2"><i
                                                                 class="fas fa-virus fa-5x text-gray-200"></i>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-md-6 mb-4">
+                                        <!-- Dashboard info widget 2-->
+                                        <div class="card border-start-lg border-start-red h-100">
+                                            <div class="card-body">
+                                                <% if (temp) { %>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="flex-grow-1">
+                                                            <div class="fw-bold text-red mb-1">Power
+                                                            </div>
+                                                            <div class="h1" id="currentdata">
+                                                            </div>
+                                                            <div
+                                                                class="text-xs fw-bold text-danger d-inline-flex align-items-center">
+                                                            </div>
+                                                        </div>
+                                                        <div class="ms-2"><i
+                                                                class="fas fa-plug fa-5x text-gray-200"></i>
                                                         </div>
                                                     </div>
                                                     <% } %>
@@ -218,7 +241,7 @@
                                                     <div
                                                         class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
                                                         <div class="me-3">
-                                                            <i class="fas fa-circle fa-sm me-1 text-green"></i>
+                                                            <i class="fas fa-circle fa-sm me-1 text-muted"></i>
                                                             Remaining Area
                                                         </div>
                                                         <div class="fw-500 text-dark" id="resultY"></div>
@@ -246,7 +269,7 @@
                                                     <div
                                                         class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
                                                         <div class="me-3">
-                                                            <i class="fas fa-circle fa-sm me-1 text-green"></i>
+                                                            <i class="fas fa-circle fa-sm me-1 text-muted"></i>
                                                             Remaining Area
                                                         </div>
                                                         <div class="fw-500 text-dark" id="resultYY"></div>
@@ -274,7 +297,7 @@
                                                     <div
                                                         class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
                                                         <div class="me-3">
-                                                            <i class="fas fa-circle fa-sm me-1 text-red"></i>
+                                                            <i class="fas fa-circle fa-sm me-1 text-muted"></i>
                                                             Remaining Area
                                                         </div>
                                                         <div class="fw-500 text-dark" id="resultYYY"></div>
