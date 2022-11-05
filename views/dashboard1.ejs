@@ -147,7 +147,7 @@
                             </div>
                             <div class="col-xxl-4 col-xl-6 mb-4">
                                 <div class="card card-header-actions h-100">
-                                    <div class="card-header">Progress Tracker</div>
+                                    <div class="card-header">All Values</div>
                                     <div class="card-body">
                                         <% if (temp) { %>
                                             <h4 class="small">
@@ -311,57 +311,11 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Example DataTable for Dashboard Demo-->
                         <div class="card mb-4">
-                            <div class="card-header">Personnel Management</div>
+                            <div class="card-header">Record</div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                            <th>Temperature</th>
-                                            <th>Humidity</th>
-                                            <th>AQI</th>
-                                            <th>Power</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Date</th>
-                                            <th>Time</th>
-                                            <th>Temperature</th>
-                                            <th>Humidity</th>
-                                            <th>AQI</th>
-                                            <th>Power</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <% Object.values(users).forEach((doc)=> { %>
-                                            <tr>
-                                                <td>
-                                                    <%= doc.date.toLocaleDateString() %>
-                                                </td>
-                                                <td>
-                                                    <%= doc.date.toISOString().split('T')[1].substring(0, 5); %>
-                                                </td>
-                                                <td>
-                                                    <%= doc.temperature %> °C
-                                                </td>
-                                                <td>
-                                                    <%= doc.humidity %> %
-                                                </td>
-                                                <td>
-                                                    <%= doc.aqi %> µg./m3
-                                                </td>
-                                                <td>
-                                                    <% doc.current *=220; %>
-                                                        <%= doc.current %> Watt
-                                                </td>
-                                            </tr>
-                                            <% }) %>
-                                    </tbody>
-                                </table>
+                                <div id="table">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -375,8 +329,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" crossorigin="anonymous"></script>
     <script src="/assets/demo/chart-area-demo.js"></script>
     <script src="/assets/demo/chart-bar-demo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="/js/datatables/datatables-simple-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
     <script src="/assets/demo/chart-pie-demo.js"></script>
     <script src="/js/scrollpos.js"></script>

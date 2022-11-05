@@ -23268,3 +23268,21 @@ pre[class*=language-] {
   position: relative;
   z-index: 2;
 }
+
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  text-align: auto;
+}
+
+thead {
+  background-color: lightgreen;
+}
+
+th,
+td {
+  padding: 0.75em 4.15em;
+  border: 1px solid #dfdfdf;
+}

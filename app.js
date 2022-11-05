@@ -39,6 +39,12 @@ app.get("/chartpie", (req, res) => {
     });
 });
 
+app.get("/chartpie1", (req, res) => {
+    User.findOne({ 'idSerial': sensorId }, { '_id': 0, 'temperature': 1, 'humidity': 1, 'aqi': 1 }).sort(mysort).exec((err, doc) => {
+        res.json(doc);
+    });
+});
+
 app.get("/chartarea", (req, res) => {
     User.aggregate([{ $match: { 'idSerial': sensorId } }, { $sort: { 'date': -1 } }, { $limit: 7 },
     { $project: { _id: 0, aqi: 1, humidity: 1, temperature: 1, date: { $dateToString: { format: '%H:%M', date: '$date' } }, current: 1 } },
@@ -65,9 +71,12 @@ app.get("/data", (req, res) => {
 
 app.get("/datatable", (req, res) => {
     User.aggregate([{ $match: { 'idSerial': sensorId } }, { $sort: { 'date': -1 } },
-    { $project: { _id: 0, date: { $dateToString: { format: '%Y/%m/%d', date: '$date' } }, time: { $dateToString: { format: '%H:%M', date: '$date' } }, aqi: 1, humidity: 1, temperature: 1, current: 1 } },
-    { $group: { _id: null, date: { $push: '$date' }, time: { $push: '$time' }, aqi: { $push: '$aqi' }, humidity: { $push: '$humidity' }, temperature: { $push: '$temperature' }, current: { $push: '$current' } } }
-    ]).exec((err, doc) => {
+    {
+        $project: {
+            _id: 0, date: { $dateToString: { format: '%Y/%m/%d', date: '$date' } }, time: { $dateToString: { format: '%H:%M', date: '$date' } },
+            aqi: 1, humidity: 1, temperature: 1, current: 1
+        }
+    }]).exec((err, doc) => {
         res.json(doc);
     });
 });
@@ -137,7 +146,6 @@ app.get("/security", isLoggedIn, (req, res) => {
 
 app.get("/tables", isLoggedIn, (req, res) => {
     const users_id = req.user._id;
-    microId = req.params.id;
     username = req.user.username
     User.find({ $or: [{ 'user_id': users_id }, { 'useridadmin': username }] }).exec((err, doc) => {
         res.render("tables", {

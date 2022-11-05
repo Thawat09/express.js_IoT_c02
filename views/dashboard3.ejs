@@ -115,7 +115,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-4 mb-4">
+                                    <div class="col-lg-6 mb-4">
                                         <!-- Bar chart example-->
                                         <div class="card h-100">
                                             <div class="card-header border-bottom">
@@ -134,6 +134,10 @@
                                                     <li class="nav-item"><a class="nav-link" id="aqi1-pill" href="#aqi1"
                                                             data-bs-toggle="tab" role="tab" aria-controls="aqi1"
                                                             aria-selected="false">AQI</a></li>
+                                                    <li class="nav-item"><a class="nav-link" id="current1-pill"
+                                                            href="#current1" data-bs-toggle="tab" role="tab"
+                                                            aria-controls="current1" aria-selected="false">Power</a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="card-body">
@@ -159,11 +163,18 @@
                                                             <canvas id="myBarChart2" width="100%" height="30"></canvas>
                                                         </div>
                                                     </div>
+                                                    <!-- Dashboard Tab Pane 4-->
+                                                    <div class="tab-pane fade" id="current1" role="tabpanel"
+                                                        aria-labelledby="current1-pill">
+                                                        <div class="chart-bar" style="height: 20rem">
+                                                            <canvas id="myBarChart3" width="100%" height="30"></canvas>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-8 mb-4">
+                                    <div class="col-lg-6 mb-4">
                                         <!-- Area chart example-->
                                         <div class="card mb-4">
                                             <div class="card card-header-actions h-100">
@@ -184,6 +195,10 @@
                                                         <li class="nav-item"><a class="nav-link" id="aqi-pill"
                                                                 href="#aqi" data-bs-toggle="tab" role="tab"
                                                                 aria-controls="aqi" aria-selected="false">AQI</a></li>
+                                                        <li class="nav-item"><a class="nav-link" id="current-pill"
+                                                                href="#current" data-bs-toggle="tab" role="tab"
+                                                                aria-controls="current" aria-selected="false">Power</a>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                                 <div class="card-body">
@@ -209,6 +224,14 @@
                                                             aria-labelledby="aqi-pill">
                                                             <div class="chart-area mb-4 mb-lg-0" style="height: 20rem">
                                                                 <canvas id="myAreaChart2" width="100%"
+                                                                    height="30"></canvas>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Dashboard Tab Pane 4-->
+                                                        <div class="tab-pane fade" id="current" role="tabpanel"
+                                                            aria-labelledby="current-pill">
+                                                            <div class="chart-area mb-4 mb-lg-0" style="height: 20rem">
+                                                                <canvas id="myAreaChart3" width="100%"
                                                                     height="30"></canvas>
                                                             </div>
                                                         </div>
@@ -308,6 +331,59 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Example DataTable for Dashboard Demo-->
+                            <div class="card mb-4">
+                                <div class="card-header">Record</div>
+                                <div class="card-body">
+                                    <table id="datatablesSimple">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th>Temperature</th>
+                                                <th>Humidity</th>
+                                                <th>AQI</th>
+                                                <th>Power</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Time</th>
+                                                <th>Temperature</th>
+                                                <th>Humidity</th>
+                                                <th>AQI</th>
+                                                <th>Power</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            <% Object.values(users).forEach((doc)=> { %>
+                                                <tr>
+                                                    <td>
+                                                        <%= doc.date.toLocaleDateString() %>
+                                                    </td>
+                                                    <td>
+                                                        <%= doc.date.toISOString().split('T')[1].substring(0, 5); %>
+                                                    </td>
+                                                    <td>
+                                                        <%= doc.temperature %> °C
+                                                    </td>
+                                                    <td>
+                                                        <%= doc.humidity %> %
+                                                    </td>
+                                                    <td>
+                                                        <%= doc.aqi %> µg./m3
+                                                    </td>
+                                                    <td>
+                                                        <% doc.current *=220; %>
+                                                            <%= doc.current %> Watt
+                                                    </td>
+                                                </tr>
+                                                <% }) %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </main>
                         <%- include('footer.ejs') %>
                     </div>
@@ -317,9 +393,12 @@
             <script src="js/scripts.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
                 crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+            <script src="/js/datatables/datatables-simple-demo.js"></script>
             <script src="assets/demo/chart-area-demo.js"></script>
             <script src="assets/demo/chart-bar-demo.js"></script>
             <script src="assets/demo/chart-pie-demo.js"></script>
+            <script src="assets/demo/chart-pie-aqi.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
             <script src="js/scrollpos.js"></script>
             <script src="js/refreshTime.js"></script>

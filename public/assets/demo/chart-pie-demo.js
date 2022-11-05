@@ -3,11 +3,6 @@
     '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = "#858796";
 
-var data = [];
-var temp = [];
-var humi = [];
-var aqi = [];
-
 async function getRandomUser2() {
     const response = await fetch('http://localhost:1111/chartpie');
     const data = await response.json();
@@ -15,16 +10,16 @@ async function getRandomUser2() {
 }
 
 function addData(object) {
+    var temp = [];
+    var humi = [];
     temp.pop();
     humi.pop();
-    aqi.pop();
     temp.push(object.temperature);
     humi.push(object.humidity);
-    aqi.push(object.aqi);
-    getValues2(temp, humi, aqi)
+    getValues2(temp, humi)
 }
 
-function getValues2(temp, humi, aqi) {
+function getValues2(temp, humi) {
     var z = 80;
     var y = z - temp;
 
@@ -112,55 +107,11 @@ function getValues2(temp, humi, aqi) {
             cutoutPercentage: 70
         }
     });
-
-    var zzz = 500
-    var yyy = zzz - aqi
-
-    document.getElementById("resultXXX").innerHTML = aqi + '%';
-    document.getElementById("resultYYY").innerHTML = yyy + '%';
-
-    // Pie Chart Example humidity
-    var ctxxx = document.getElementById("myPieChart2");
-    myPieChart2 = new Chart(ctxxx, {
-        type: "doughnut",
-        data: {
-            labels: ["AQI", "Remaining Area"],
-            datasets: [{
-                data: [aqi, yyy],
-                backgroundColor: [
-                    "green",
-                    "grey",
-                ],
-                hoverBackgroundColor: [
-                    "green",
-                    "grey",
-                ],
-                hoverBorderColor: "rgba(234, 236, 244, 1)"
-            }]
-        },
-        options: {
-            maintainAspectRatio: false,
-            tooltips: {
-                backgroundColor: "rgb(255,255,255)",
-                bodyFontColor: "#858796",
-                borderColor: "#dddfeb",
-                borderWidth: 1,
-                xPadding: 15,
-                yPadding: 15,
-                displayColors: false,
-                caretPadding: 10
-            },
-            legend: {
-                display: false
-            },
-            cutoutPercentage: 70
-        }
-    });
 }
 
 function foo2() {
     getRandomUser2();
-    setTimeout(foo2, 10000);
+    setTimeout(foo2, 30000);
 }
 
 foo2();

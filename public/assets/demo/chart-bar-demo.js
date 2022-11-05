@@ -3,13 +3,12 @@
     '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = "#858796";
 
-var tempbars = [];
-var datebars = [];
-var humbars = [];
-var aqibars = [];
-var curbars = [];
-
 async function getRandomUser1() {
+    var tempbars = [];
+    var datebars = [];
+    var humbars = [];
+    var aqibars = [];
+    var curbars = [];
     const response = await fetch('http://localhost:1111/chartbar');
     const data = await response.json();
     tempbars = data[0].temp
@@ -362,13 +361,13 @@ function getValues1(tempbars, datebars, humbars, aqibars, curbars) {
     });
 }
 
-const multiplyByTwo2 = function(number) {
+const multiplyByTwo2 = function (number) {
     return number * 220
 }
 
 function foo1() {
     getRandomUser1();
-    setTimeout(foo1, 10000);
+    setTimeout(foo1, 30000);
 }
 
 foo1();

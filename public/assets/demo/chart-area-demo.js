@@ -3,13 +3,12 @@
     '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = "#858796";
 
-var temparea = [];
-var datearea = [];
-var humarea = [];
-var aqiarea = [];
-var currentarea = [];
-
 async function getRandomUser() {
+    var temparea = [];
+    var datearea = [];
+    var humarea = [];
+    var aqiarea = [];
+    var currentarea = [];
     const response = await fetch('http://localhost:1111/chartarea');
     const data = await response.json();
     temparea = data[0].temp
@@ -395,13 +394,13 @@ function getValues(temparea, datearea, humarea, aqiarea, currentarea) {
     });
 }
 
-const multiplyByTwo = function(number) {
+const multiplyByTwo = function (number) {
     return number * 220
 }
 
 function foo() {
     getRandomUser();
-    setTimeout(foo, 10000);
+    setTimeout(foo, 30000);
 }
 
 foo();

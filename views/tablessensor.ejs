@@ -40,12 +40,14 @@
                                                     <th>Name</th>
                                                     <th>On / Off</th>
                                                     <th>Actions</th>
+                                                    <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tfoot>
                                                 <tr>
                                                     <th>Name</th>
                                                     <th>On / Off</th>
+                                                    <th>Actions</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </tfoot>
@@ -63,6 +65,10 @@
                                                                     name="status" value="1" onclick="getValue()">
                                                                 <span class="slider round"></span>
                                                             </label>
+                                                        </td>
+                                                        <td>
+                                                            <button name="coinName"
+                                                                value="<%= doc.serialnumber %>">Detail</button>
                                                         </td>
                                                         <td>
                                                             <a href="/deleteSensor/<%= doc._id %>"

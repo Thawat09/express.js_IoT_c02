@@ -37,12 +37,14 @@
                                         <table id="datatablesSimple">
                                             <thead>
                                                 <tr>
+                                                    <th>Status</th>
                                                     <th>Name</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tfoot>
                                                 <tr>
+                                                    <th>Status</th>
                                                     <th>Name</th>
                                                     <th>Actions</th>
                                                 </tr>
@@ -50,6 +52,8 @@
                                             <tbody>
                                                 <% Object.values(users).forEach((doc)=> { %>
                                                     <tr>
+                                                        <td>
+                                                        </td>
                                                         <td>
                                                             <a href="/<%= doc._id %>">
                                                                 <%= doc.namemicrocontroller %>
