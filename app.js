@@ -158,10 +158,13 @@ app.get("/tables", isLoggedIn, (req, res) => {
 
 app.get("/tablessensor", isLoggedIn, (req, res) => {
     User.find({ 'idMicro': microId }).exec((err, doc) => {
-        res.render("tablessensor", {
-            title: "tablessensor",
-            currentUser: req.user,
-            users: doc,
+        User.aggregate([{ $match: { 'idMicro': microId } }, { $project: { _id: 1, frequency: 1 } }]).exec((err, doc1) => {
+            res.render("tablessensor", {
+                title: "tablessensor",
+                currentUser: req.user,
+                users: doc,
+                frequency: doc1
+            });
         });
     });
 });
@@ -188,12 +191,25 @@ app.get("/add-admin", isLoggedIn, (req, res) => {
 app.get("/:id", isLoggedIn, (req, res) => {
     microId = req.params.id;
     User.find({ 'idMicro': microId }).exec((err, doc) => {
-        res.render("tablessensor", {
-            title: "tablessensor",
-            currentUser: req.user,
-            users: doc,
+        User.aggregate([{ $match: { 'idMicro': microId } }, { $project: { _id: 0, frequency: 1 } }, { $group: { _id: null, frequency: { $push: '$frequency' } } }]).exec((err, doc1) => {
+            res.render("tablessensor", {
+                title: "tablessensor",
+                currentUser: req.user,
+                users: doc,
+                frequency: doc1
+            });
         });
     });
+});
+
+app.get("/delete/:id", (req, res) => {
+    const user_id = req.user._id;
+    User.findByIdAndDelete(user_id).exec(
+        (err) => {
+            if (err) console.log(err);
+            res.redirect("/logout");
+        }
+    );
 });
 
 app.get("/deleteMicro/:id", (req, res) => {
@@ -270,6 +286,7 @@ app.post("/insertSensor", (req, res) => {
         serialnumber: req.body.serialnumber,
         namesensor: req.body.namesensor,
         sensorPin: req.body.sensorPin,
+        frequency: 1,
         onoff: 0,
     });
     User.saveUser(data, (err) => {
@@ -320,15 +337,6 @@ app.post("/updatePassword", async (req, res) => {
                 });
         }
     });
-});
-
-app.get("/delete", (req, res) => {
-    User.findByIdAndDelete(req.user._id, { useFindAndModify: false }).exec(
-        (err) => {
-            if (err) console.log(err);
-            res.redirect("/logout");
-        }
-    );
 });
 
 function isLoggedIn(req, res, next) {

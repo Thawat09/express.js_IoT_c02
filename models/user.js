@@ -28,6 +28,7 @@ let userSchema = new mongoose.Schema({
     humidity: String,
     aqi: String,
     current: String,
+    frequency: String,
     onoff: Boolean,
 })
 
