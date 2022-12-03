@@ -182,11 +182,11 @@ app.get("/add-Sensor", isLoggedIn, (req, res) => {
     });
 });
 
-app.get("/add-admin", isLoggedIn, (req, res) => {
-    User.find({ '_id': microId }).exec((err, doc) => {
-        res.render("addAdmin", { title: "addAdmin", currentUser: req.user, doc: doc });
-    });
-});
+// app.get("/add-admin", isLoggedIn, (req, res) => {
+//     User.find({ 'idMicro': microId }).exec((err, doc) => {
+//         res.render("addAdmin", { title: "addAdmin", currentUser: req.user, doc: doc });
+//     });
+// });
 
 app.get("/:id", isLoggedIn, (req, res) => {
     microId = req.params.id;
@@ -239,10 +239,10 @@ app.get("/deleteAdmin/:id", (req, res) => {
     );
 });
 
-app.post("/switch", (req, res) => {
-    console.log(req.body)
-    // res.redirect("/tablessensor");
-});
+// app.post("/switch", (req, res) => {
+//     let data = ({ $set: { 'onoff': req.body.onoff, 'sensorPin': req.body.sensorPin, 'idMicro': req.body.idMicro } })
+//     // res.redirect("/tablessensor");
+// });
 
 app.post(
     "/",
@@ -300,15 +300,15 @@ app.post("/insertSensor", (req, res) => {
     });
 });
 
-app.post("/insertadmin", (req, res) => {
-    let data = ({ $set: { 'useridadmin': req.body.useridadmin } })
-    User.findByIdAndUpdate(microId, data).exec(
-        (err) => {
-            if (err) console.log(err);
-            res.redirect("tablessensor");
-        }
-    );
-});
+// app.post("/insertadmin", (req, res) => {
+//     let data = ({ $set: { 'useridadmin': req.body.useridadmin } })
+//     User.findByIdAndUpdate(microId, data).exec(
+//         (err) => {
+//             if (err) console.log(err);
+//             res.redirect("tablessensor");
+//         }
+//     );
+// });
 
 app.post("/update", (req, res) => {
     const update_id = req.user._id;

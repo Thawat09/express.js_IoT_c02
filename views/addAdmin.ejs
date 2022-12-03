@@ -36,19 +36,21 @@
                                                             </tr>
                                                         </tfoot>
                                                         <tbody>
-                                                            <% Object.values(doc).forEach((doc)=> { %>
-                                                                <tr>
-                                                                    <td>
-                                                                        <%= doc.useridadmin %>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="/deleteAdmin/<%= doc._id %>"
-                                                                            onclick="return confirm('Are you sure')">
-                                                                            <i href data-feather="trash-2"></i>
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
+                                                            <% if (doc) { %>
+                                                                <% Object.values(doc).forEach((doc)=> { %>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <%= doc.useridadmin %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="/deleteAdmin/<%= doc._id %>"
+                                                                                onclick="return confirm('Are you sure')">
+                                                                                <i href data-feather="trash-2"></i>
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
                                                                 <% }) %>
+                                                            <% } %>
                                                         </tbody>
                                                     </table>
                                                 </div>

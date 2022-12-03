@@ -62,9 +62,13 @@
                                                         <td>
                                                             <form action="/switch" method="post">
                                                                 <label class="switch">
-                                                                    <input type="checkbox" name="<%= doc.sensorPin %>"
-                                                                        value="" onclick="clickFn(event)"> <span
+                                                                    <input type="checkbox" name="onoff" value="false"
+                                                                        onclick="clickFn(event)"> <span
                                                                         class="slider round"></span>
+                                                                    <input type="hidden" value="<%= doc.sensorPin %>"
+                                                                        name="sensorPin">
+                                                                    <input type="hidden" value="<%= doc.idMicro %>"
+                                                                        name="idMicro">
                                                                 </label>
                                                             </form>
                                                         </td>
@@ -119,12 +123,7 @@
             <script>
                 function clickFn(event) {
                     const checkbox = event.currentTarget;
-                    checkbox.value = checkbox.checked;
-                    if ($(this).is(':checked')) {
-                        $(this).attr('value', 'true');
-                    } else {
-                        $(this).attr('value', 'false');
-                    }
+                    checkbox.value = checkbox.checked ? 'true' : 'false';
                     event.currentTarget.closest('form').submit()
                 }
             </script>
