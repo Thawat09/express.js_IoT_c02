@@ -39,7 +39,7 @@
                                                 <tr>
                                                     <th>Name</th>
                                                     <th>On / Off</th>
-                                                    <th>Frequency</th>
+                                                    <!-- <th>Frequency</th> -->
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -47,7 +47,7 @@
                                                 <tr>
                                                     <th>Name</th>
                                                     <th>On / Off</th>
-                                                    <th>Frequency</th>
+                                                    <!-- <th>Frequency</th> -->
                                                     <th>Actions</th>
                                                 </tr>
                                             </tfoot>
@@ -55,38 +55,35 @@
                                                 <% Object.values(users, frequency).forEach((doc, doc1)=> { %>
                                                     <tr>
                                                         <td>
-                                                            <a href="<%= doc.serialnumber %>/dashboard1">
+                                                            <a href="<%= doc.sensorPin %>/dashboard1">
                                                                 <%= doc.namesensor %>
                                                             </a>
                                                         </td>
                                                         <td>
-                                                            <label class="switch">
-                                                                <input type="checkbox" data-toggle="toggle" id="togBtn"
-                                                                    name="status" value="1" onclick="getValue()">
-                                                                <span class="slider round"></span>
-                                                            </label>
+                                                            <form action="/switch" method="post">
+                                                                <label class="switch">
+                                                                    <input type="checkbox" name="<%= doc.sensorPin %>"
+                                                                        value="" onclick="clickFn(event)"> <span
+                                                                        class="slider round"></span>
+                                                                </label>
+                                                            </form>
                                                         </td>
-                                                        <td>
-                                                            <select class="form-select mb-3"
-                                                                aria-label="Default select example" name="frequency">
-                                                                <% if (doc1) { %>
-                                                                    <%= doc1 %>
-                                                                        <% var options1=["1", "2", "3", "4", "5", "10", "30", "60" ]; %>
-                                                                        <!-- <% const output2=options1.filter(function (obj) { return JSON.stringify(doc1).indexOf(obj)!==-1; }); %>
-                                                                                <% for(var i=0; i < output2.length; i++) { %>
-                                                                                    <option value="<%= output2[i] %>">
-                                                                                        <%= output2[i] %> min
-                                                                                    </option>
-                                                                                <% } %> -->
-                                                                            <% const output=options1.filter(function (obj) { return JSON.stringify(doc1).indexOf(obj)===-1; }); %>
-                                                                                <% for(var i=0; i < output.length; i++) { %>
-                                                                                    <option value="<%= output[i] %>">
-                                                                                        <%= output[i] %> min
-                                                                                    </option>
-                                                                                <% } %>
-                                                                <% } %>
-                                                            </select>
-                                                        </td>
+                                                        <!-- <td>
+                                                                <select class="form-select mb-3"
+                                                                    aria-label="Default select example"
+                                                                    name="frequency">
+                                                                    <% if (doc1) { %>
+                                                                        <%= doc1 %>
+                                                                            <% var options1=["1", "2", "3", "4", "5", "10", "30", "60" ]; %>
+                                                                                <% const output=options1.filter(function (obj) { return JSON.stringify(doc1).indexOf(obj)===-1; }); %>
+                                                                                    <% for(var i=0; i < output.length; i++) { %>
+                                                                                        <option value="<%= output[i] %>">
+                                                                                            <%= output[i] %> min
+                                                                                        </option>
+                                                                                    <% } %>
+                                                                    <% } %>
+                                                                </select>
+                                                            </td> -->
                                                         <td>
                                                             <a href="/deleteSensor/<%= doc._id %>"
                                                                 onclick="return confirm('Are you sure')">
@@ -120,15 +117,15 @@
             <script src="js/scrollpos.js"></script>
             <script src="js/refreshTime.js"></script>
             <script>
-                function getValue() {
-                    if (document.getElementById('togBtn').checked) {
-                        console.log("On");
-                        document.getElementById('togBtn').setAttribute("value", true);
+                function clickFn(event) {
+                    const checkbox = event.currentTarget;
+                    checkbox.value = checkbox.checked;
+                    if ($(this).is(':checked')) {
+                        $(this).attr('value', 'true');
                     } else {
-                        console.log("Off");
-                        document.getElementById('togBtn').setAttribute("value", false);
+                        $(this).attr('value', 'false');
                     }
-                    console.log(document.getElementById('togBtn').getAttribute("value"));
+                    event.currentTarget.closest('form').submit()
                 }
             </script>
     </body>
