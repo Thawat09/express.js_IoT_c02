@@ -185,7 +185,7 @@ app.get("/add-Sensor", isLoggedIn, (req, res) => {
 });
 
 app.get("/add-admin", isLoggedIn, (req, res) => {
-    User.find({ 'user_id': users_id }).exec((err, doc) => {
+    User.find({ $and: [{ 'user_id': users_id }, { 'serialnumber': microId }]}).exec((err, doc) => {
         id = doc
         res.render("addAdmin", { title: "addAdmin", currentUser: req.user, doc: doc });
     });
@@ -234,7 +234,8 @@ app.get("/deleteSensor/:id", (req, res) => {
 });
 
 app.get("/deleteAdmin/:id", (req, res) => {
-    User.updateMany({}, { $unset: { 'useridadmin': '' } }).exec(
+    let data = ({}, { $unset: { 'useridadmin': '' } })
+    User.findByIdAndUpdate(id, data).exec(
         (err) => {
             if (err) console.log(err);
             res.redirect("/index");
