@@ -31,7 +31,9 @@ app.use(passport.session());
 let microId = "";
 let sensorPin = "";
 let username = "";
+let users_id = "";
 let mysort = { '_id': -1 };
+let id = "";
 
 app.get("/chartpie", (req, res) => {
     User.findOne({ 'idSerial': microId, 'sensorPin': sensorPin }, { '_id': 0, 'temperature': 1, 'humidity': 1, 'aqi': 1 }).sort(mysort).exec((err, doc) => {
@@ -145,7 +147,7 @@ app.get("/security", isLoggedIn, (req, res) => {
 });
 
 app.get("/tables", isLoggedIn, (req, res) => {
-    const users_id = req.user._id;
+    users_id = req.user._id;
     username = req.user.username
     User.find({ $or: [{ 'user_id': users_id }, { 'useridadmin': username }] }).exec((err, doc) => {
         res.render("tables", {
@@ -182,11 +184,12 @@ app.get("/add-Sensor", isLoggedIn, (req, res) => {
     });
 });
 
-// app.get("/add-admin", isLoggedIn, (req, res) => {
-//     User.find({ 'idMicro': microId }).exec((err, doc) => {
-//         res.render("addAdmin", { title: "addAdmin", currentUser: req.user, doc: doc });
-//     });
-// });
+app.get("/add-admin", isLoggedIn, (req, res) => {
+    User.find({ 'user_id': users_id }).exec((err, doc) => {
+        id = doc
+        res.render("addAdmin", { title: "addAdmin", currentUser: req.user, doc: doc });
+    });
+});
 
 app.get("/:id", isLoggedIn, (req, res) => {
     microId = req.params.id;
@@ -300,15 +303,15 @@ app.post("/insertSensor", (req, res) => {
     });
 });
 
-// app.post("/insertadmin", (req, res) => {
-//     let data = ({ $set: { 'useridadmin': req.body.useridadmin } })
-//     User.findByIdAndUpdate(microId, data).exec(
-//         (err) => {
-//             if (err) console.log(err);
-//             res.redirect("tablessensor");
-//         }
-//     );
-// });
+app.post("/insertadmin", (req, res) => {
+    let data = ({ $set: { 'useridadmin': req.body.useridadmin } })
+    User.findByIdAndUpdate(id, data).exec(
+        (err) => {
+            if (err) console.log(err);
+            res.redirect("tablessensor");
+        }
+    );
+});
 
 app.post("/update", (req, res) => {
     const update_id = req.user._id;
