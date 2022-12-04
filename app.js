@@ -243,10 +243,16 @@ app.get("/deleteAdmin/:id", (req, res) => {
     );
 });
 
-// app.post("/switch", (req, res) => {
-//     let data = ({ $set: { 'onoff': req.body.onoff, 'sensorPin': req.body.sensorPin, 'idMicro': req.body.idMicro } })
-//     // res.redirect("/tablessensor");
-// });
+app.post("/switch", (req, res) => {
+    console.log(req.body.onoff);
+    let _id = req.body._id;
+    let data = ({ $and:[{ 'sensorPin': req.body.sensorPin, 'idMicro': req.body.idMicro }]}, { $set: { 'onoff': req.body.onoff }})
+    User.findByIdAndUpdate(_id, data).exec(
+        (err) => {
+            if (err) console.log(err);
+        }
+    );
+});
 
 app.post(
     "/",

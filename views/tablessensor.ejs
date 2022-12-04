@@ -62,13 +62,15 @@
                                                         <td>
                                                             <form action="/switch" method="post">
                                                                 <label class="switch">
-                                                                    <input type="checkbox" name="onoff" value="false"
+                                                                    <input type="checkbox" name="onoff"
                                                                         onclick="clickFn(event)"> <span
                                                                         class="slider round"></span>
                                                                     <input type="hidden" value="<%= doc.sensorPin %>"
                                                                         name="sensorPin">
                                                                     <input type="hidden" value="<%= doc.idMicro %>"
                                                                         name="idMicro">
+                                                                    <input type="" value="<%= doc._id %>"
+                                                                        name="_id">
                                                                 </label>
                                                             </form>
                                                         </td>
@@ -124,6 +126,7 @@
                 function clickFn(event) {
                     const checkbox = event.currentTarget;
                     checkbox.value = checkbox.checked ? 'true' : 'false';
+                    console.log(checkbox.checked)
                     event.currentTarget.closest('form').submit()
                 }
             </script>
