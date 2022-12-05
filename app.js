@@ -1,3 +1,5 @@
+const { ifError } = require("assert");
+
 const express = require("express"),
     path = require("path"),
     app = express(),
@@ -185,7 +187,7 @@ app.get("/add-Sensor", isLoggedIn, (req, res) => {
 });
 
 app.get("/add-admin", isLoggedIn, (req, res) => {
-    User.find({ $and: [{ 'user_id': users_id }, { 'serialnumber': microId }]}).exec((err, doc) => {
+    User.find({ $and: [{ 'user_id': users_id }, { 'serialnumber': microId }] }).exec((err, doc) => {
         id = doc
         res.render("addAdmin", { title: "addAdmin", currentUser: req.user, doc: doc });
     });
@@ -244,9 +246,11 @@ app.get("/deleteAdmin/:id", (req, res) => {
 });
 
 app.post("/switch", (req, res) => {
-    console.log(req.body.onoff);
+    if (req.body.onoff == undefined) {
+        req.body.onoff = false;
+    }
     let _id = req.body._id;
-    let data = ({ $and:[{ 'sensorPin': req.body.sensorPin, 'idMicro': req.body.idMicro }]}, { $set: { 'onoff': req.body.onoff }})
+    let data = ({ $and: [{ 'sensorPin': req.body.sensorPin, 'idMicro': req.body.idMicro }] }, { $set: { 'onoff': req.body.onoff } })
     User.findByIdAndUpdate(_id, data).exec(
         (err) => {
             if (err) console.log(err);
