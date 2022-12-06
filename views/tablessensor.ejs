@@ -55,7 +55,7 @@
                                                 <% Object.values(users, frequency).forEach((doc, doc1)=> { %>
                                                     <tr>
                                                         <td>
-                                                            <a href="<%= doc.sensorPin %>/dashboard1">
+                                                            <a href="<%= doc.sensorPin %>/dashboard1 %>">
                                                                 <%= doc.namesensor %>
                                                             </a>
                                                         </td>
@@ -63,14 +63,14 @@
                                                             <form action="/switch" method="post">
                                                                 <label class="switch">
                                                                     <input type="checkbox" name="onoff"
-                                                                        onclick="clickFn(event)" <%=doc.onoff
-                                                                        ? "checked" : "" %> >
+                                                                        onclick="clickFn(event)" <%= doc.onoff
+                                                                        ? " checked " : "" %> >
                                                                     <span class="slider round"></span>
                                                                     <input type="hidden" value="<%= doc.sensorPin %>"
                                                                         name="sensorPin">
                                                                     <input type="hidden" value="<%= doc.idMicro %>"
                                                                         name="idMicro">
-                                                                    <input type="" value="<%= doc._id %>" name="_id">
+                                                                    <input type="hidden" value="<%= doc._id %>" name="_id">
                                                                 </label>
                                                             </form>
                                                         </td>

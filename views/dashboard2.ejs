@@ -210,6 +210,57 @@
                                                 <div class="col-xl-6 col-xxl-12">
                                                     <!-- Team members / people dashboard card example-->
                                                     <div class="card mb-4">
+                                                        <div class="card-header">Selected Device</div>
+                                                        <div>
+                                                            <table>
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Name</th>
+                                                                        <th>on/off</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <% Object.values(users2).forEach((doc2)=> { %>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <label>
+                                                                                    <%= doc2.namesensor %>
+                                                                                </label>
+                                                                            </td>
+                                                                            <td>
+                                                                                <form action="/switch" method="post">
+                                                                                    <label class="switch">
+                                                                                        <input type="checkbox"
+                                                                                            name="onoff"
+                                                                                            onclick="clickFn(event)"
+                                                                                            <%= doc2.onoff ? " checked "
+                                                                                            : "" %> >
+                                                                                        <span
+                                                                                            class="slider round"></span>
+                                                                                        <input type=""
+                                                                                            value="<%= doc2.sensorPin %>"
+                                                                                            name="sensorPin">
+                                                                                        <input type=""
+                                                                                            value="<%= doc2.idMicro %>"
+                                                                                            name="idMicro">
+                                                                                        <input type=""
+                                                                                            value="<%= doc2._id %>"
+                                                                                            name="_id">
+                                                                                    </label>
+                                                                                </form>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <% }) %>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-6 col-xxl-12">
+                                                    <!-- Team members / people dashboard card example-->
+                                                    <div class="card mb-4">
                                                         <div class="card-header">Devices</div>
                                                         <div class="card-body">
                                                             <!-- Item 1-->
@@ -255,6 +306,7 @@
             <script src="js/scrollpos.js"></script>
             <script src="js/refreshTime.js"></script>
             <script src="js/data.js"></script>
+            <script src="js/clickFn.js"></script>
     </body>
 
 </html>
