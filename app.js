@@ -254,6 +254,7 @@ app.post("/switch", (req, res) => {
     User.findByIdAndUpdate(_id, data).exec(
         (err) => {
             if (err) console.log(err);
+            res.status(204).send();
         }
     );
 });
@@ -306,7 +307,7 @@ app.post("/insertSensor", (req, res) => {
         namesensor: req.body.namesensor,
         sensorPin: req.body.sensorPin,
         frequency: 1,
-        onoff: 0,
+        onoff: false,
     });
     User.saveUser(data, (err) => {
         if (err) console.log(err);

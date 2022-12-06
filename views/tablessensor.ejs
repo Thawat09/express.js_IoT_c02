@@ -62,7 +62,8 @@
                                                         <td>
                                                             <form action="/switch" method="post">
                                                                 <label class="switch">
-                                                                    <input type="checkbox" name="onoff" value="false"
+                                                                    <input type="checkbox" name="onoff"
+                                                                        aria-checked="true" id="checked"
                                                                         onclick="clickFn(event)">
                                                                     <span class="slider round"></span>
                                                                     <input type="hidden" value="<%= doc.sensorPin %>"
@@ -121,13 +122,7 @@
             <script src="js/datatables/datatables-simple-demo.js"></script>
             <script src="js/scrollpos.js"></script>
             <script src="js/refreshTime.js"></script>
-            <script>
-                function clickFn(event) {
-                    const checkbox = event.currentTarget;
-                    checkbox.value = checkbox.checked ? 'true' : 'false';
-                    event.currentTarget.closest('form').submit()
-                }
-            </script>
+            <script src="js/clickFn.js"></script>
     </body>
 
 </html>
