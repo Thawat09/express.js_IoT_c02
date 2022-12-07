@@ -32,25 +32,26 @@ app.use(passport.session());
 
 let microId = "";
 let sensorPin = "";
+let namesensor = "";
 let username = "";
 let users_id = "";
 let mysort = { '_id': -1 };
 let id = "";
 
 app.get("/chartpie", (req, res) => {
-    User.findOne({ 'idSerial': microId, 'sensorPin': sensorPin }, { '_id': 0, 'temperature': 1, 'humidity': 1, 'aqi': 1 }).sort(mysort).exec((err, doc) => {
+    User.findOne({ 'idSerial': microId, 'namesensor': namesensor }, { '_id': 0, 'temperature': 1, 'humidity': 1, 'aqi': 1 }).sort(mysort).exec((err, doc) => {
         res.json(doc);
     });
 });
 
 app.get("/chartpie1", (req, res) => {
-    User.findOne({ 'idSerial': microId, 'sensorPin': sensorPin }, { '_id': 0, 'temperature': 1, 'humidity': 1, 'aqi': 1 }).sort(mysort).exec((err, doc) => {
+    User.findOne({ 'idSerial': microId, 'namesensor': namesensor }, { '_id': 0, 'temperature': 1, 'humidity': 1, 'aqi': 1 }).sort(mysort).exec((err, doc) => {
         res.json(doc);
     });
 });
 
 app.get("/chartarea", (req, res) => {
-    User.aggregate([{ $match: { 'idSerial': microId, 'sensorPin': sensorPin } }, { $sort: { 'date': -1 } }, { $limit: 7 },
+    User.aggregate([{ $match: { 'idSerial': microId, 'namesensor': namesensor } }, { $sort: { 'date': -1 } }, { $limit: 7 },
     { $project: { _id: 0, aqi: 1, humidity: 1, temperature: 1, date: { $dateToString: { format: '%H:%M', date: '$date' } }, current: 1 } },
     { $group: { _id: null, aqi: { $push: '$aqi' }, hum: { $push: '$humidity' }, temp: { $push: '$temperature' }, date: { $push: '$date' }, cur: { $push: '$current' } } }
     ]).exec((err, doc) => {
@@ -59,7 +60,7 @@ app.get("/chartarea", (req, res) => {
 });
 
 app.get("/chartbar", (req, res) => {
-    User.aggregate([{ $match: { 'idSerial': microId, 'sensorPin': sensorPin } }, { $sort: { 'date': -1 } }, { $limit: 7 },
+    User.aggregate([{ $match: { 'idSerial': microId, 'namesensor': namesensor } }, { $sort: { 'date': -1 } }, { $limit: 7 },
     { $project: { _id: 0, aqi: 1, humidity: 1, temperature: 1, date: { $dateToString: { format: '%H:%M', date: '$date' } }, current: 1 } },
     { $group: { _id: null, aqi: { $push: '$aqi' }, hum: { $push: '$humidity' }, temp: { $push: '$temperature' }, date: { $push: '$date' }, cur: { $push: '$current' } } }
     ]).exec((err, doc) => {
@@ -68,17 +69,20 @@ app.get("/chartbar", (req, res) => {
 });
 
 app.get("/data", (req, res) => {
-    User.find({ 'idSerial': microId, 'sensorPin': sensorPin }).sort(mysort).exec((err, doc) => {
+    User.find({ 'idSerial': microId, 'namesensor': namesensor }).sort(mysort).exec((err, doc) => {
         res.json(doc);
     });
 });
 
 app.get("/datatable", (req, res) => {
-    User.aggregate([{ $match: { 'idSerial': microId, 'sensorPin': sensorPin } }, { $sort: { 'date': -1 } },
+    User.aggregate([{ $match: { 'idSerial': microId, 'namesensor': namesensor } }, { $sort: { 'date': -1 } },
     {
         $project: {
             _id: 0, date: { $dateToString: { format: '%Y/%m/%d', date: '$date' } }, time: { $dateToString: { format: '%H:%M', date: '$date' } },
-            aqi: 1, humidity: 1, temperature: 1, current: 1
+            aqi: 1, humidity: 1, temperature: 1, power: {
+                $divide: [{ $trunc: { $multiply: [{ $toDouble: "$current" }, { $toInt: "$power" }] } }, 1
+                ]
+            }
         }
     }]).exec((err, doc) => {
         res.json(doc);
@@ -97,28 +101,28 @@ app.get("/", (req, res) => {
 });
 
 app.get("/charts", isLoggedIn, (req, res) => {
-    User.find({ 'idSerial': microId, 'sensorPin': sensorPin }).sort(mysort).exec((err, doc) => {
+    User.find({ 'idSerial': microId, 'namesensor': namesensor }).sort(mysort).exec((err, doc) => {
         res.render("charts", { title: "charts", currentUser: req.user, users: doc, temp: doc[0] });
     });
 });
 
 app.get("/:id/dashboard1", isLoggedIn, (req, res) => {
-    sensorPin = req.params.id;
-    User.find({ 'idSerial': microId, 'sensorPin': sensorPin }).sort(mysort).exec((err, doc) => {
+    namesensor = req.params.id;
+    User.find({ 'idSerial': microId, 'namesensor': namesensor }).sort(mysort).exec((err, doc) => {
         res.render("dashboard1", { title: "dashboard1", currentUser: req.user, users: doc, temp: doc[0] });
     });
 });
 
 app.get("/dashboard1", isLoggedIn, (req, res) => {
-    User.find({ 'idSerial': microId, 'sensorPin': sensorPin }).sort(mysort).exec((err, doc) => {
+    User.find({ 'idSerial': microId, 'namesensor': namesensor }).sort(mysort).exec((err, doc) => {
         res.render("dashboard1", { title: "dashboard1", currentUser: req.user, users: doc, temp: doc[0] });
     });
 });
 
 app.get("/dashboard2", isLoggedIn, (req, res) => {
-    User.find({ 'idSerial': microId, 'sensorPin': sensorPin }).sort(mysort).exec((err, doc) => {
+    User.find({ 'idSerial': microId, 'namesensor': namesensor }).sort(mysort).exec((err, doc) => {
         User.find({ 'idMicro': microId }).exec((err, doc1) => {
-            User.find({ 'idMicro': microId, 'sensorPin': sensorPin }).sort(mysort).exec((err, doc2) => {
+            User.find({ 'idMicro': microId, 'namesensor': namesensor }).sort(mysort).exec((err, doc2) => {
                 res.render("dashboard2", { title: "dashboard2", currentUser: req.user, users: doc, users1: doc1, users2: doc2, temp: doc[0] });
             });
         });
@@ -126,7 +130,7 @@ app.get("/dashboard2", isLoggedIn, (req, res) => {
 });
 
 app.get("/dashboard3", isLoggedIn, (req, res) => {
-    User.find({ 'idSerial': microId, 'sensorPin': sensorPin }).sort(mysort).exec((err, doc) => {
+    User.find({ 'idSerial': microId, 'namesensor': namesensor }).sort(mysort).exec((err, doc) => {
         res.render("dashboard3", { title: "dashboard3", currentUser: req.user, users: doc, temp: doc[0] });
     });
 });
