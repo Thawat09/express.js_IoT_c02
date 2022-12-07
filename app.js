@@ -38,6 +38,12 @@ let users_id = "";
 let mysort = { '_id': -1 };
 let id = "";
 
+app.get("/frequency", (req, res) => {
+    User.find({ 'idMicro': microId, 'namesensor': namesensor }, { '_id': 0, 'frequency': 1 }).exec((err, doc) => {
+        res.json(doc);
+    });
+});
+
 app.get("/chartpie", (req, res) => {
     User.findOne({ 'idSerial': microId, 'namesensor': namesensor }, { '_id': 0, 'temperature': 1, 'humidity': 1, 'aqi': 1 }).sort(mysort).exec((err, doc) => {
         res.json(doc);
@@ -256,7 +262,7 @@ app.post("/switch", (req, res) => {
         req.body.onoff = false;
     }
     let _id = req.body._id;
-    let data = ({ $and: [{ 'sensorPin': req.body.sensorPin, 'idMicro': req.body.idMicro }] }, { $set: { 'onoff': req.body.onoff } })
+    let data = ({ $and: [{ 'namesensor': req.body.namesensor, 'idMicro': req.body.idMicro }] }, { $set: { 'onoff': req.body.onoff } })
     User.findByIdAndUpdate(_id, data).exec(
         (err) => {
             if (err) console.log(err);
@@ -312,7 +318,7 @@ app.post("/insertSensor", (req, res) => {
         idMicro: microId,
         namesensor: req.body.namesensor,
         sensorPin: req.body.sensorPin,
-        frequency: 1,
+        frequency: 10000,
         onoff: false,
     });
     User.saveUser(data, (err) => {
