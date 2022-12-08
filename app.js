@@ -1,5 +1,3 @@
-const { ifError } = require("assert");
-
 const express = require("express"),
     path = require("path"),
     app = express(),
@@ -257,20 +255,6 @@ app.get("/deleteAdmin/:id", (req, res) => {
     );
 });
 
-app.post("/switch", (req, res) => {
-    if (req.body.onoff == undefined) {
-        req.body.onoff = false;
-    }
-    let _id = req.body._id;
-    let data = ({ $and: [{ 'namesensor': req.body.namesensor, 'idMicro': req.body.idMicro }] }, { $set: { 'onoff': req.body.onoff } })
-    User.findByIdAndUpdate(_id, data).exec(
-        (err) => {
-            if (err) console.log(err);
-            res.status(204).send();
-        }
-    );
-});
-
 app.post(
     "/",
     passport.authenticate("local", {
@@ -296,6 +280,20 @@ app.post("/register", (req, res) => {
             passport.authenticate("local")(req, res, function () {
                 res.redirect("/");
             });
+        }
+    );
+});
+
+app.post("/switch", (req, res) => {
+    if (req.body.onoff == undefined) {
+        req.body.onoff = false;
+    }
+    let _id = req.body._id;
+    let data = ({ $and: [{ 'namesensor': req.body.namesensor, 'idMicro': req.body.idMicro }] }, { $set: { 'onoff': req.body.onoff } })
+    User.findByIdAndUpdate(_id, data).exec(
+        (err) => {
+            if (err) console.log(err);
+            res.status(204).send();
         }
     );
 });
@@ -349,6 +347,17 @@ app.post("/update", (req, res) => {
         (err) => {
             if (err) console.log(err);
             res.redirect("/index");
+        }
+    );
+});
+
+app.post("/updatefrequency", (req, res) => {
+    let _id = req.body._id;
+    let data = ({ $and: [{ 'namesensor': req.body.namesensor, 'idMicro': req.body.idMicro }] }, { $set: { 'frequency': req.body.frequency } })
+    User.findByIdAndUpdate(_id, data).exec(
+        (err) => {
+            if (err) console.log(err);
+            res.status(204).send();
         }
     );
 });

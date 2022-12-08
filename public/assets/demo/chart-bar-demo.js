@@ -365,9 +365,20 @@ const multiplyByTwo2 = function (number) {
     return number * 220
 }
 
+let barfrequency = "";
+
+async function frequency1() {
+    const response = await fetch('http://localhost:1111/frequency');
+    const data = await response.json();
+    Object.values(data[0]).forEach((doc) => {
+        barfrequency = doc
+    })
+}
+
 function foo1() {
     getRandomUser1();
-    setTimeout(foo1, 30000);
+    frequency1();
+    setTimeout(foo1, barfrequency);
 }
 
 foo1();

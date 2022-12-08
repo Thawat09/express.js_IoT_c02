@@ -29,9 +29,20 @@ function Data(temp, hum, pm, cr) {
     document.getElementById("currentdata").innerHTML = currentdata * 220 + ' Watt';
 }
 
+let datafrequency = "";
+
+async function frequency3() {
+    const response = await fetch('http://localhost:1111/frequency');
+    const data = await response.json();
+    Object.values(data[0]).forEach((doc) => {
+        datafrequency = doc
+    })
+}
+
 function foo3() {
     getData();
-    setTimeout(foo3, 10000);
+    frequency3();
+    setTimeout(foo3, datafrequency);
 }
 
 foo3();

@@ -62,9 +62,20 @@ function getValues22(aqi) {
     });
 }
 
+let pieaqifrequency = "";
+
+async function frequency22() {
+    const response = await fetch('http://localhost:1111/frequency');
+    const data = await response.json();
+    Object.values(data[0]).forEach((doc) => {
+        pieaqifrequency = doc
+    })
+}
+
 function foo22() {
     getRandomUser22();
-    setTimeout(foo22, 30000);
+    frequency22();
+    setTimeout(foo22, pieaqifrequency);
 }
 
 foo22();

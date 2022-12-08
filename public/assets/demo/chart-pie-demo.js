@@ -109,9 +109,20 @@ function getValues2(temp, humi) {
     });
 }
 
+let piedemofrequency = "";
+
+async function frequency2() {
+    const response = await fetch('http://localhost:1111/frequency');
+    const data = await response.json();
+    Object.values(data[0]).forEach((doc) => {
+        piedemofrequency = doc
+    })
+}
+
 function foo2() {
     getRandomUser2();
-    setTimeout(foo2, 30000);
+    frequency2();
+    setTimeout(foo2, piedemofrequency);
 }
 
 foo2();

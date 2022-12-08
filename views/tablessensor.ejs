@@ -40,7 +40,6 @@
                                                     <th>Name</th>
                                                     <th>On / Off</th>
                                                     <th>Frequency</th>
-                                                    <!-- <th>Time</th> -->
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -49,7 +48,6 @@
                                                     <th>Name</th>
                                                     <th>On / Off</th>
                                                     <th>Frequency</th>
-                                                    <!-- <th>Time</th> -->
                                                     <th>Actions</th>
                                                 </tr>
                                             </tfoot>
@@ -65,7 +63,7 @@
                                                             <form action="/switch" method="post">
                                                                 <label class="switch">
                                                                     <input type="checkbox" name="onoff"
-                                                                        onclick="clickFn(event)" <%=doc.onoff
+                                                                        onclick="clickFn(event)" <%= doc.onoff
                                                                         ? " checked " : "" %> >
                                                                     <span class="slider round"></span>
                                                                     <input type="hidden" value="<%= doc.namesensor %>"
@@ -78,28 +76,30 @@
                                                             </form>
                                                         </td>
                                                         <td>
-                                                            <select class="form-select mb-3"
-                                                                aria-label="Default select example" name="frequency">
-                                                                <% Object.values(frequency).forEach((doc1)=> { %>
-                                                                    <%= doc1 %>
-                                                                        <% var options1=["10000", "20000" , "30000" , "40000" , "50000" , "60000" ]; %>
-                                                                            <% const output=options1.filter(function(obj) { return JSON.stringify(doc1).indexOf(obj)===-1; }); %>
+                                                            <form action="updatefrequency" method="post">
+                                                                <select class="form-select mb-2"
+                                                                    aria-label="Default select example" name="frequency">
+                                                                    <% var options2=[doc.frequency] %>
+                                                                        <option value="<%= options2 %>">
+                                                                            <%= doc.frequency %> millisecond
+                                                                        </option>
+                                                                        <% var options1=["10000", "20000" , "30000", "40000" , "50000" , "60000" ]; %>
+                                                                            <% const output=options1.filter(function(obj) { return JSON.stringify(options2).indexOf(obj)===-1; }); %>
                                                                                 <% for(var i=0; i < output.length; i++) { %>
                                                                                     <option value="<%= output[i] %>">
                                                                                         <%= output[i] %> millisecond
                                                                                     </option>
                                                                             <% } %>
-                                                                <% }) %>
-                                                            </select>
+                                                                </select>
+                                                                <input type="hidden" value="<%= doc.namesensor %>"
+                                                                        name="namesensor">
+                                                                <input type="hidden" value="<%= doc.idMicro %>"
+                                                                    name="idMicro">
+                                                                <input type="hidden" value="<%= doc._id %>"
+                                                                    name="_id">
+                                                                <button class="btn btn-primary" type="submit">Save changes</button>
+                                                            </form>
                                                         </td>
-                                                        <!-- <td>
-                                                            <input type='text' value='20' id='timestamp'>&nbsp;
-                                                            <input type='button' id='convert' value='Convert'
-                                                                onclick='setTimer()'>
-                                                            <br><br>
-                                                            <span id='datetime'></span>
-                                                            <p id="demo"></p>
-                                                        </td> -->
                                                         <td>
                                                             <a href="/deleteSensor/<%= doc._id %>"
                                                                 onclick="return confirm('Are you sure')">
@@ -133,47 +133,6 @@
             <script src="js/scrollpos.js"></script>
             <script src="js/refreshTime.js"></script>
             <script src="js/clickFn.js"></script>
-            <!-- <script>
-                var interval;
-                function setTimer() {
-                    clearInterval(interval)
-                    var timeSpan = convert();
-                    var countDownDate = new Date(timeSpan).getTime();
-                    interval = setInterval(function () {
-                        var now = new Date().getTime();
-                        var distance = countDownDate - now;
-                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-                            + minutes + "m " + seconds + "s ";
-                        if (distance < 0) {
-                            clearInterval(interval);
-                            document.getElementById("demo").innerHTML = "EXPIRED";
-                        }
-                    }, 1000);
-                }
-                function convert() {
-                    var now = new Date()
-                    var secondsSinceEpoch = Math.round(now.getTime() / 1000)
-                    var unixtimestamp = document.getElementById('timestamp').value;
-                    unixtimestamp = parseInt(unixtimestamp);
-                    secondsSinceEpoch = parseInt(secondsSinceEpoch);
-                    unixtimestamp = unixtimestamp + secondsSinceEpoch;
-                    var months_arr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                    var date = new Date(unixtimestamp * 1000);
-                    var year = date.getFullYear();
-                    var month = months_arr[date.getMonth()];
-                    var day = date.getDate();
-                    var hours = date.getHours();
-                    var minutes = "0" + date.getMinutes();
-                    var seconds = "0" + date.getSeconds();
-                    var convdataTime = month + ' ' + day + ', ' + year + ' ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-                    document.getElementById('datetime').innerHTML = convdataTime;
-                    return convdataTime;
-                }
-            </script> -->
     </body>
 
 </html>

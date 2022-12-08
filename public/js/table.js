@@ -52,9 +52,20 @@ async function main() {
     container.innerHTML = table;
 }
 
+let tablefrequency = "";
+
+async function frequency4() {
+    const response = await fetch('http://localhost:1111/frequency');
+    const data = await response.json();
+    Object.values(data[0]).forEach((doc) => {
+        tablefrequency = doc
+    })
+}
+
 function foo4() {
     main();
-    setTimeout(foo4, 30000);
+    frequency4();
+    setTimeout(foo4, tablefrequency);
 }
 
 foo4();
