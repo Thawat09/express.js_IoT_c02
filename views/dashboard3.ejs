@@ -335,7 +335,7 @@
                             <div class="card mb-4">
                                 <div class="card-header">Record</div>
                                 <div class="card-body">
-                                    <table id="datatablesSimple">
+                                    <table id="example"class="table table-striped" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>Date</th>
@@ -346,16 +346,6 @@
                                                 <th>Power</th>
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Date</th>
-                                                <th>Time</th>
-                                                <th>Temperature</th>
-                                                <th>Humidity</th>
-                                                <th>AQI</th>
-                                                <th>Power</th>
-                                            </tr>
-                                        </tfoot>
                                         <tbody>
                                             <% Object.values(users).forEach((doc)=> { %>
                                                 <tr>

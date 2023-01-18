@@ -22,19 +22,13 @@
                                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                                 <div class="card-header text-dark">List Of Caregivers</div>
                                                 <div class="card-header text-dark justify-content-center">
-                                                    <table id="datatablesSimple">
+                                                    <table id="example"class="table table-striped" style="width:100%">
                                                         <thead>
                                                             <tr>
                                                                 <th>UserId</th>
                                                                 <th>Delete</th>
                                                             </tr>
                                                         </thead>
-                                                        <tfoot>
-                                                            <tr>
-                                                                <th>Name</th>
-                                                                <th>Delete</th>
-                                                            </tr>
-                                                        </tfoot>
                                                         <tbody>
                                                             <% if (doc) { %>
                                                                 <% Object.values(doc).forEach((doc)=> { %>
