@@ -4,7 +4,16 @@ const express = require("express"),
     passport = require("passport"),
     bodyParser = require("body-parser"),
     LocalStrategy = require("passport-local"),
+    mqtt = require('mqtt'),
     User = require("./models/user");
+
+const client = mqtt.connect('mqtt://broker.hivemq.com');
+
+// client.on('connect', () => {
+//     console.log('Client connected');
+//     client.subscribe('MQTT/Examples/Topic');
+//     client.publish('MQTT/Examples/Topic', 'Hello World');
+// });
 
 app.use(
     require("express-session")({
@@ -140,6 +149,8 @@ app.get("/dashboard3", isLoggedIn, (req, res) => {
 });
 
 app.get("/index", isLoggedIn, (req, res) => {
+    client.subscribe('MQTT/Examples/Topic');
+    client.publish('MQTT/Examples/Topic', 'Hi Thawat');
     res.render("index", { title: "index", currentUser: req.user });
 });
 
@@ -386,6 +397,10 @@ function isLoggedIn(req, res, next) {
     }
     res.redirect("/");
 }
+
+client.on('message', (topic, message) => {
+    console.log(`Received message on ${topic}: ${message.toString()}`);
+});
 
 app.listen(process.env.PORT || 1111, function (err) {
     if (err) {
