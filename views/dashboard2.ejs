@@ -228,25 +228,57 @@
                                                                                 </label>
                                                                             </td>
                                                                             <td>
-                                                                                <form action="/switch" method="post">
-                                                                                    <label class="switch">
+                                                                                <form action="/switch1" method="post">
+                                                                                    <div class="mb-2 text-center">
                                                                                         <input type="checkbox"
-                                                                                            name="onoff"
-                                                                                            onclick="clickFn(event)"
-                                                                                            <%= doc2.onoff ? " checked "
-                                                                                            : "" %> >
-                                                                                        <span
-                                                                                            class="slider round"></span>
-                                                                                        <input type=""
-                                                                                            value="<%= doc2.namesensor %>"
-                                                                                            name="namesensor">
-                                                                                        <input type=""
-                                                                                            value="<%= doc2.idMicro %>"
-                                                                                            name="idMicro">
-                                                                                        <input type=""
-                                                                                            value="<%= doc2._id %>"
-                                                                                            name="_id">
-                                                                                    </label>
+                                                                                            value="pin1" name="pinMQTT"
+                                                                                            onclick="return ValidatePetSelection();">
+                                                                                        <label for="pin1">Pin 1</label>
+                                                                                        <label class="switch">
+                                                                                            <input type="checkbox"
+                                                                                                name="onoff1"
+                                                                                                onclick="clickFn(event)"
+                                                                                                <%= doc2.onoff1
+                                                                                                ? " checked " : "" %> >
+                                                                                            <span
+                                                                                                class="slider round"></span>
+                                                                                            <input type=""
+                                                                                                value="<%= doc2.namesensor %>"
+                                                                                                name="namesensor">
+                                                                                            <input type=""
+                                                                                                value="<%= doc2.idMicro %>"
+                                                                                                name="idMicro">
+                                                                                            <input type=""
+                                                                                                value="<%= doc2._id %>"
+                                                                                                name="_id">
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </form>
+                                                                                <form action="/switch2" method="post">
+                                                                                    <div class="text-center">
+                                                                                        <input type="checkbox"
+                                                                                            value="pin2" name="pinMQTT"
+                                                                                            onclick="return ValidatePetSelection();">
+                                                                                        <label for="pin2">Pin 2</label>
+                                                                                        <label class="switch">
+                                                                                            <input type="checkbox"
+                                                                                                name="onoff2"
+                                                                                                onclick="clickFn(event)"
+                                                                                                <%= doc2.onoff2
+                                                                                                ? " checked " : "" %> >
+                                                                                            <span
+                                                                                                class="slider round"></span>
+                                                                                            <input type=""
+                                                                                                value="<%= doc2.namesensor %>"
+                                                                                                name="namesensor">
+                                                                                            <input type=""
+                                                                                                value="<%= doc2.idMicro %>"
+                                                                                                name="idMicro">
+                                                                                            <input type=""
+                                                                                                value="<%= doc2._id %>"
+                                                                                                name="_id">
+                                                                                        </label>
+                                                                                    </div>
                                                                                 </form>
                                                                             </td>
                                                                         </tr>
@@ -307,6 +339,7 @@
             <script src="js/refreshTime.js"></script>
             <script src="js/data.js"></script>
             <script src="js/clickFn.js"></script>
+            <script src="js/ValidatePetSelection.js"></script>
     </body>
 
 </html>

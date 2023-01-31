@@ -34,7 +34,7 @@
                                 <div class="card mb-4">
                                     <div class="card-header">Extended DataTables</div>
                                     <div class="card-body">
-                                        <table id="example"class="table table-striped" style="width:100%">
+                                        <table id="example" class="table table-striped" style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <th>Name</th>
@@ -45,15 +45,19 @@
                                                 <% Object.values(users).forEach((doc)=> { %>
                                                     <tr>
                                                         <td>
-                                                            <a href="/<%= doc.serialnumber %>">
-                                                                <%= doc.namemicrocontroller %>
-                                                            </a>
+                                                            <div class="text-center">
+                                                                <a href="/<%= doc.serialnumber %>">
+                                                                    <%= doc.namemicrocontroller %>
+                                                                </a>
+                                                            </div>
                                                         </td>
                                                         <td>
-                                                            <a href="/deleteMicro/<%= doc._id %>"
-                                                                onclick="return confirm('Are you sure')">
-                                                                <i href data-feather="trash-2"></i>
-                                                            </a>
+                                                            <div class="text-center">
+                                                                <a href="/deleteMicro/<%= doc._id %>"
+                                                                    onclick="return confirm('Are you sure')">
+                                                                    <i href data-feather="trash-2"></i>
+                                                                </a>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                     <% }) %>

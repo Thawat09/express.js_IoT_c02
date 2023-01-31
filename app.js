@@ -9,11 +9,9 @@ const express = require("express"),
 
 const client = mqtt.connect('mqtt://broker.hivemq.com');
 
-// client.on('connect', () => {
-//     console.log('Client connected');
-//     client.subscribe('MQTT/Examples/Topic');
-//     client.publish('MQTT/Examples/Topic', 'Hello World');
-// });
+client.on('connect', () => {
+    console.log('Client connected');
+});
 
 app.use(
     require("express-session")({
@@ -149,8 +147,6 @@ app.get("/dashboard3", isLoggedIn, (req, res) => {
 });
 
 app.get("/index", isLoggedIn, (req, res) => {
-    client.subscribe('MQTT/Examples/Topic');
-    client.publish('MQTT/Examples/Topic', 'Hi Thawat');
     res.render("index", { title: "index", currentUser: req.user });
 });
 
@@ -295,12 +291,28 @@ app.post("/register", (req, res) => {
     );
 });
 
-app.post("/switch", (req, res) => {
-    if (req.body.onoff == undefined) {
-        req.body.onoff = false;
+app.post("/switch1", (req, res) => {
+    if (req.body.onoff1 == undefined) {
+        req.body.onoff1 = "false";
     }
+    client.publish(req.body.pinMQTT, req.body.onoff1);
     let _id = req.body._id;
-    let data = ({ $and: [{ 'namesensor': req.body.namesensor, 'idMicro': req.body.idMicro }] }, { $set: { 'onoff': req.body.onoff } })
+    let data = ({ $and: [{ 'namesensor': req.body.namesensor, 'idMicro': req.body.idMicro }] }, { $set: { 'onoff1': req.body.onoff1 } })
+    User.findByIdAndUpdate(_id, data).exec(
+        (err) => {
+            if (err) console.log(err);
+            res.status(204).send();
+        }
+    );
+});
+
+app.post("/switch2", (req, res) => {
+    if (req.body.onoff2 == undefined) {
+        req.body.onoff2 = "false";
+    }
+    client.publish(req.body.pinMQTT, req.body.onoff2);
+    let _id = req.body._id;
+    let data = ({ $and: [{ 'namesensor': req.body.namesensor, 'idMicro': req.body.idMicro }] }, { $set: { 'onoff2': req.body.onoff2 } })
     User.findByIdAndUpdate(_id, data).exec(
         (err) => {
             if (err) console.log(err);
@@ -328,7 +340,8 @@ app.post("/insertSensor", (req, res) => {
         namesensor: req.body.namesensor,
         sensorPin: req.body.sensorPin,
         frequency: 10000,
-        onoff: false,
+        onoff1: false,
+        onoff2: false,
     });
     User.saveUser(data, (err) => {
         if (err) console.log(err);
