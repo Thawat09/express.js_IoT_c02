@@ -7,7 +7,8 @@ const express = require("express"),
     mqtt = require('mqtt'),
     User = require("./models/user");
 
-const client = mqtt.connect('mqtt://broker.hivemq.com');
+const client = mqtt.connect('mqtt://192.168.165.213'); //mqtt://broker.hivemq.com
+
 
 client.on('connect', () => {
     console.log('Client connected');
@@ -293,7 +294,7 @@ app.post("/register", (req, res) => {
 
 app.post("/switch1", (req, res) => {
     if (req.body.onoff1 == undefined) {
-        req.body.onoff1 = "false";
+        req.body.onoff1 = "off";
     }
     client.publish(req.body.pinMQTT, req.body.onoff1);
     let _id = req.body._id;
@@ -308,7 +309,7 @@ app.post("/switch1", (req, res) => {
 
 app.post("/switch2", (req, res) => {
     if (req.body.onoff2 == undefined) {
-        req.body.onoff2 = "false";
+        req.body.onoff2 = "off";
     }
     client.publish(req.body.pinMQTT, req.body.onoff2);
     let _id = req.body._id;
@@ -340,8 +341,8 @@ app.post("/insertSensor", (req, res) => {
         namesensor: req.body.namesensor,
         sensorPin: req.body.sensorPin,
         frequency: 10000,
-        onoff1: false,
-        onoff2: false,
+        onoff1: "off",
+        onoff2: "off",
     });
     User.saveUser(data, (err) => {
         if (err) console.log(err);
