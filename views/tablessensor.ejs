@@ -40,6 +40,7 @@
                                                     <th>Name</th>
                                                     <th>On / Off</th>
                                                     <th>Frequency</th>
+                                                    <!-- <th>Auto On / Off</th> -->
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -56,7 +57,7 @@
                                                         <td>
                                                             <form action="/switch1" method="post">
                                                                 <div class="mb-2 text-center">
-                                                                    <input type="checkbox" value="relay1" name="pinMQTT"
+                                                                    <input type="hidden" type="checkbox" value="relay1" name="pinMQTT" checked="checked"
                                                                         onclick="return ValidatePetSelection();">
                                                                     <label for="pin1">Pin 1</label>
                                                                     <label class="switch">
@@ -76,7 +77,7 @@
                                                             </form>
                                                             <form action="/switch2" method="post">
                                                                 <div class="text-center">
-                                                                    <input type="checkbox" value="relay2" name="pinMQTT"
+                                                                    <input type="hidden" type="checkbox" value="relay2" name="pinMQTT" checked="checked"
                                                                         onclick="return ValidatePetSelection();">
                                                                     <label for="pin2">Pin 2</label>
                                                                     <label class="switch">
@@ -120,6 +121,20 @@
                                                                     changes</button>
                                                             </form>
                                                         </td>
+                                                        <!-- <td>
+                                                            <div class="row g-3 align-items-center">
+                                                                <div class="mb-3">
+                                                                    <label for="TextInput" class="form-label">The temperature is higher than the set value.</label>
+                                                                    <input type="text" id="TextInput" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row g-3 align-items-center">
+                                                                <div class="mb-3">
+                                                                    <label for="TextInput" class="form-label">The temperature is lower than the set value.</label>
+                                                                    <input type="text" id="TextInput" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </td> -->
                                                         <td>
                                                             <div class="text-center">
                                                                 <a href="/deleteSensor/<%= doc._id %>"
@@ -155,7 +170,6 @@
             <script src="js/scrollpos.js"></script>
             <script src="js/refreshTime.js"></script>
             <script src="js/clickFn.js"></script>
-            <script src="js/ValidatePetSelection.js"></script>
     </body>
 
 </html>

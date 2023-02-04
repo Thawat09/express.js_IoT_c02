@@ -29,8 +29,8 @@ let userSchema = new mongoose.Schema({
     aqi: String,
     current: String,
     frequency: String,
-    onoff1: String,
-    onoff2: String
+    onoff1: Boolean,
+    onoff2: Boolean
 })
 
 userSchema.plugin(passportLocalMongoose);

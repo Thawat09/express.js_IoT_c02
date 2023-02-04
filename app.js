@@ -294,7 +294,7 @@ app.post("/register", (req, res) => {
 
 app.post("/switch1", (req, res) => {
     if (req.body.onoff1 == undefined) {
-        req.body.onoff1 = "off";
+        req.body.onoff1 = "false";
     }
     client.publish(req.body.pinMQTT, req.body.onoff1);
     let _id = req.body._id;
@@ -309,7 +309,7 @@ app.post("/switch1", (req, res) => {
 
 app.post("/switch2", (req, res) => {
     if (req.body.onoff2 == undefined) {
-        req.body.onoff2 = "off";
+        req.body.onoff2 = "false";
     }
     client.publish(req.body.pinMQTT, req.body.onoff2);
     let _id = req.body._id;
@@ -341,8 +341,8 @@ app.post("/insertSensor", (req, res) => {
         namesensor: req.body.namesensor,
         sensorPin: req.body.sensorPin,
         frequency: 10000,
-        onoff1: "off",
-        onoff2: "off",
+        onoff1: "false",
+        onoff2: "false",
     });
     User.saveUser(data, (err) => {
         if (err) console.log(err);
