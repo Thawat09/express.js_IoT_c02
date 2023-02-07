@@ -1,6 +1,6 @@
 # IoT Platform With Line Application-based Communication For Personal Uses
 
-Tools : Express.js, Node.Js, MongoDB, MQTT, HTML, CSS, Bootstrap, Restful, API
+Tools : Express.js, Node.Js, MongoDB, MQTT, HTML, CSS, JavaScript, Bootstrap, Restful, API
 
 Login Page
 
