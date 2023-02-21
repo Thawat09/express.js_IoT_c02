@@ -40,13 +40,15 @@
                                             </select>
                                             <!-- Form Group (create Microcontroller)-->
                                             <button class="btn btn-primary btn-block" type="submit">Create
-                                                Microcontroller</button>
+                                                Sensor</button>
                                         </form>
                                     </div>
+                                    <% Object.values(doc1).forEach((doc1)=> { %>
                                     <div class="card-footer text-center">
-                                        <div class="small"><a href="/tables">Back Table</a>
+                                        <div class="small"><a href="/<%= doc1.serialnumber %>">Back Table</a>
                                         </div>
                                     </div>
+                                    <% }) %>
                                 </div>
                             </div>
                         </div>

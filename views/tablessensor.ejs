@@ -59,7 +59,7 @@
                                                                 <div class="mb-2 text-center">
                                                                     <input type="hidden" type="checkbox" value="relay1" name="pinMQTT" checked="checked"
                                                                         onclick="return ValidatePetSelection();">
-                                                                    <label for="pin1">Pin 1</label>
+                                                                    <label for="pin1">Channel 1</label>
                                                                     <label class="switch">
                                                                         <input type="checkbox" name="onoff1"
                                                                             onclick="clickFn(event)" <%= doc.onoff1
@@ -79,7 +79,7 @@
                                                                 <div class="text-center">
                                                                     <input type="hidden" type="checkbox" value="relay2" name="pinMQTT" checked="checked"
                                                                         onclick="return ValidatePetSelection();">
-                                                                    <label for="pin2">Pin 2</label>
+                                                                    <label for="pin2">Channel 2</label>
                                                                     <label class="switch">
                                                                         <input type="checkbox" name="onoff2"
                                                                             onclick="clickFn(event)" <%= doc.onoff2
@@ -102,13 +102,13 @@
                                                                     aria-label="Default select example" name="frequency">
                                                                     <% var options2=[doc.frequency] %>
                                                                         <option value="<%= options2 %>">
-                                                                            <%= doc.frequency %> millisecond
+                                                                            <%= doc.frequency %> Second
                                                                         </option>
-                                                                        <% var options1=["10000", "20000" , "30000", "40000" , "50000" , "60000" ]; %>
+                                                                        <% var options1=["10", "20" , "30", "40" , "50" , "60" ]; %>
                                                                             <% const output=options1.filter(function(obj) { return JSON.stringify(options2).indexOf(obj)===-1; }); %>
                                                                                 <% for(var i=0; i < output.length; i++) { %>
                                                                                     <option value="<%= output[i] %>">
-                                                                                        <%= output[i] %> millisecond
+                                                                                        <%= output[i] %> Second
                                                                                     </option>
                                                                             <% } %>
                                                                 </select>
@@ -129,14 +129,14 @@
                                                                         <select class="form-inline" name="autoOn" id="autoOn">
                                                                             <% var options4=[doc.autoOn] %>
                                                                                 <option value="<%= options4 %>">
-                                                                                    <%= doc.autoOn %> Temperature
+                                                                                    <%= doc.autoOn %>  ํC
                                                                                 </option>
                                                                                 <option value="Not Set">Not Set</option>
                                                                                 <% var options3=["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50" ]; %>
                                                                                     <% const output1=options3.filter(function(obj) { return JSON.stringify(options4).indexOf(obj)===-1; }); %>
                                                                                         <% for(var i=0; i < output1.length; i++) { %>
                                                                                             <option value="<%= output1[i] %>">
-                                                                                                <%= output1[i] %> Temperature
+                                                                                                <%= output1[i] %> ํC
                                                                                             </option>
                                                                                     <% } %>
                                                                         </select>
@@ -152,14 +152,14 @@
                                                                         <select class="form-inline" name="autoOff" id="autoOff">
                                                                             <% var options6=[doc.autoOff] %>
                                                                                 <option value="<%= options4 %>">
-                                                                                    <%= doc.autoOff %> Temperature
+                                                                                    <%= doc.autoOff %>  ํC
                                                                                 </option>
                                                                                 <option value="Not Set">Not Set</option>
                                                                                 <% var options5=["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50" ]; %>
                                                                                     <% const output2=options5.filter(function(obj) { return JSON.stringify(options6).indexOf(obj)===-1; }); %>
                                                                                         <% for(var i=0; i < output2.length; i++) { %>
                                                                                             <option value="<%= output2[i] %>">
-                                                                                                <%= output2[i] %> Temperature
+                                                                                                <%= output2[i] %>  ํC
                                                                                             </option>
                                                                                     <% } %>
                                                                         </select>
@@ -184,7 +184,7 @@
                                         <a href="/add-Sensor" class="btn btn-primary btn-lg active" role="button">Add
                                             Sensor</a>
                                         <a href="/add-admin" class="btn btn-success btn-lg active" role="button">Add
-                                            admin</a>
+                                            Member</a>
                                     </div>
                                     <div class="card-footer text-center">
                                         <div class="small"><a href="/tables">Back Tables</a>
@@ -201,7 +201,7 @@
             <script src="js/scripts.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
             <script src="js/datatables/datatables-simple-demo.js"></script>
-            <script src="/assets/demo/on.js"></script>
+            <!-- <script src="/assets/demo/on.js"></script> -->
             <script src="js/scrollpos.js"></script>
             <script src="js/refreshTime.js"></script>
             <script src="js/clickFn.js"></script>

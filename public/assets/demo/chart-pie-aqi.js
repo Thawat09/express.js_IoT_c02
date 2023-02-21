@@ -67,9 +67,7 @@ let pieaqifrequency = "";
 async function frequency22() {
     const response = await fetch('http://localhost:1111/frequency');
     const data = await response.json();
-    Object.values(data[0]).forEach((doc) => {
-        pieaqifrequency = doc
-    })
+    pieaqifrequency  = data
 }
 
 function foo22() {

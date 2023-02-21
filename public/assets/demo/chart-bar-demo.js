@@ -370,9 +370,7 @@ let barfrequency = "";
 async function frequency1() {
     const response = await fetch('http://localhost:1111/frequency');
     const data = await response.json();
-    Object.values(data[0]).forEach((doc) => {
-        barfrequency = doc
-    })
+    barfrequency  = data
 }
 
 function foo1() {

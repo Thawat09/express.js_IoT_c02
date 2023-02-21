@@ -114,9 +114,7 @@ let piedemofrequency = "";
 async function frequency2() {
     const response = await fetch('http://localhost:1111/frequency');
     const data = await response.json();
-    Object.values(data[0]).forEach((doc) => {
-        piedemofrequency = doc
-    })
+    piedemofrequency  = data
 }
 
 function foo2() {

@@ -7,8 +7,7 @@ const express = require("express"),
     mqtt = require('mqtt'),
     User = require("./models/user");
 
-const client = mqtt.connect('mqtt://192.168.77.213'); //mqtt://broker.hivemq.com
-
+const client = mqtt.connect('mqtt://192.168.34.213'); //mqtt://broker.hivemq.com
 
 client.on('connect', () => {
     console.log('Client connected');
@@ -44,17 +43,30 @@ let users_id = "";
 let mysort = { '_id': -1 };
 let id = "";
 
-// let temperatureReal = "";
-// app.get("/on", (req, res) => {
-//     User.findOne({}, { '_id': 0, 'temperature': 1 }).sort(mysort).exec((err, doc) => {
-//         temperatureReal = doc.temperature
-//         res.json(doc);
-//     });
-// });
-
 app.get("/frequency", (req, res) => {
     User.find({ 'idMicro': microId, 'namesensor': namesensor }, { '_id': 0, 'frequency': 1 }).exec((err, doc) => {
-        res.json(doc);
+        let seconds = ""
+        doc.map((doc1) => {
+            if (doc1['frequency'] == '10') {
+                seconds = '10000'
+            }
+            else if (doc1['frequency'] == '20') {
+                seconds = '20000'
+            }
+            else if (doc1['frequency'] == '30') {
+                seconds = '30000'
+            }
+            else if (doc1['frequency'] == '40') {
+                seconds = '40000'
+            }
+            else if (doc1['frequency'] == '50') {
+                seconds = '50000'
+            }
+            else if (doc1['frequency'] == '60') {
+                seconds = '60000'
+            }
+        })
+        res.json(seconds);
     });
 });
 
@@ -141,8 +153,8 @@ app.get("/dashboard1", isLoggedIn, (req, res) => {
 
 app.get("/dashboard2", isLoggedIn, (req, res) => {
     User.find({ 'idSerial': microId, 'namesensor': namesensor }).sort(mysort).exec((err, doc) => {
-        User.find({ 'idMicro': microId }).exec((err, doc1) => {
-            User.find({ 'idMicro': microId, 'namesensor': namesensor }).sort(mysort).exec((err, doc2) => {
+        User.find({ 'idMicro': microId, 'namesensor': namesensor }).sort(mysort).exec((err, doc2) => {
+            User.find({ $or: [{ 'user_id': users_id }, { 'useridadmin': username }] }).exec((err, doc1) => {
                 res.render("dashboard2", { title: "dashboard2", currentUser: req.user, users: doc, users1: doc1, users2: doc2, temp: doc[0] });
             });
         });
@@ -205,14 +217,18 @@ app.get("/add-Micro", isLoggedIn, (req, res) => {
 
 app.get("/add-Sensor", isLoggedIn, (req, res) => {
     User.aggregate([{ $match: { 'idMicro': microId } }, { $project: { _id: 0, sensorPin: 1 } }, { $group: { _id: null, sensorPin: { $push: '$sensorPin' } } }]).exec((err, doc) => {
-        res.render("addSensor", { title: "addSensor", currentUser: req.user, doc: doc });
+        User.find({ $or: [{ 'user_id': users_id }, { 'useridadmin': username }] }).exec((err, doc1) => {
+            res.render("addSensor", { title: "addSensor", currentUser: req.user, doc: doc, doc1: doc1 });
+        });
     });
 });
 
 app.get("/add-admin", isLoggedIn, (req, res) => {
     User.find({ $and: [{ 'user_id': users_id }, { 'serialnumber': microId }] }).exec((err, doc) => {
-        id = doc
-        res.render("addAdmin", { title: "addAdmin", currentUser: req.user, doc: doc });
+        User.find({ $or: [{ 'user_id': users_id }, { 'useridadmin': username }] }).exec((err, doc1) => {
+            id = doc
+            res.render("addAdmin", { title: "addAdmin", currentUser: req.user, doc: doc, doc1: doc1 });
+        });
     });
 });
 
@@ -260,7 +276,7 @@ app.get("/deleteAdmin/:id", (req, res) => {
     User.findByIdAndUpdate(id, data).exec(
         (err) => {
             if (err) console.log(err);
-            res.redirect("/index");
+            res.redirect("/add-admin");
         }
     );
 });
@@ -381,7 +397,7 @@ app.post("/insertadmin", (req, res) => {
     User.findByIdAndUpdate(id, data).exec(
         (err) => {
             if (err) console.log(err);
-            res.redirect("tablessensor");
+            res.redirect("add-admin");
         }
     );
 });

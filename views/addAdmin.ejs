@@ -58,13 +58,15 @@
                                             </div>
                                             <!-- Form Group (create Microcontroller)-->
                                             <button class="btn btn-primary btn-block mt-4" type="submit">Create
-                                                Microcontroller</button>
+                                                Member</button>
                                         </form>
                                     </div>
-                                    <div class="card-footer text-center">
-                                        <div class="small"><a href="/tables">Back Tables</a>
+                                    <% Object.values(doc1).forEach((doc1)=> { %>
+                                        <div class="card-footer text-center">
+                                            <div class="small"><a href="/<%= doc1.serialnumber %>">Back Table</a>
                                         </div>
                                     </div>
+                                    <% }) %>
                                 </div>
                             </div>
                         </div>

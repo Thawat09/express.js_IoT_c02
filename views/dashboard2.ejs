@@ -233,7 +233,7 @@
                                                                                         <input type="hidden" type="checkbox"
                                                                                             value="relay1" name="pinMQTT" checked="checked"
                                                                                             onclick="return ValidatePetSelection();">
-                                                                                        <label for="pin1">Pin 1</label>
+                                                                                        <label for="pin1">Channel 1</label>
                                                                                         <label class="switch">
                                                                                             <input type="checkbox"
                                                                                                 name="onoff1"
@@ -259,7 +259,7 @@
                                                                                         <input type="hidden" type="checkbox"
                                                                                             value="relay2" name="pinMQTT" checked="checked"
                                                                                             onclick="return ValidatePetSelection();">
-                                                                                        <label for="pin2">Pin 2</label>
+                                                                                        <label for="pin2">Channel 2</label>
                                                                                         <label class="switch">
                                                                                             <input type="checkbox"
                                                                                                 name="onoff2"
@@ -307,8 +307,8 @@
                                                                         </div>
                                                                         <div class="d-flex flex-column fw-bold">
                                                                             <a class="text-dark line-height-normal mb-1"
-                                                                                href="<%= doc1.namesensor %>/dashboard1">
-                                                                                <%= doc1.namesensor %>
+                                                                                href="/<%= doc1.serialnumber %>">
+                                                                                <%= doc1.namemicrocontroller %>
                                                                             </a>
                                                                         </div>
                                                                     </div>
