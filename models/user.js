@@ -29,6 +29,8 @@ let userSchema = new mongoose.Schema({
     aqi: String,
     current: String,
     frequency: String,
+    autoOn: String,
+    autoOff: String,
     onoff1: Boolean,
     onoff2: Boolean
 })

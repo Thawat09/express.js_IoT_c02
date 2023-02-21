@@ -40,7 +40,7 @@
                                                     <th>Name</th>
                                                     <th>On / Off</th>
                                                     <th>Frequency</th>
-                                                    <!-- <th>Auto On / Off</th> -->
+                                                    <th>Auto On / Off</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -121,20 +121,54 @@
                                                                     changes</button>
                                                             </form>
                                                         </td>
-                                                        <!-- <td>
-                                                            <div class="row g-3 align-items-center">
-                                                                <div class="mb-3">
-                                                                    <label for="TextInput" class="form-label">The temperature is higher than the set value.</label>
-                                                                    <input type="text" id="TextInput" class="form-control">
+                                                        <td>
+                                                            <form action="/autoOn" method="post">
+                                                                <div class="row g-3 align-items-center" style="width: 270px">
+                                                                    <label for="TextInput" class="form-label">The Desired Temperature is On.</label>
+                                                                    <div class="mb-3">
+                                                                        <select class="form-inline" name="autoOn" id="autoOn">
+                                                                            <% var options4=[doc.autoOn] %>
+                                                                                <option value="<%= options4 %>">
+                                                                                    <%= doc.autoOn %> Temperature
+                                                                                </option>
+                                                                                <option value="Not Set">Not Set</option>
+                                                                                <% var options3=["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50" ]; %>
+                                                                                    <% const output1=options3.filter(function(obj) { return JSON.stringify(options4).indexOf(obj)===-1; }); %>
+                                                                                        <% for(var i=0; i < output1.length; i++) { %>
+                                                                                            <option value="<%= output1[i] %>">
+                                                                                                <%= output1[i] %> Temperature
+                                                                                            </option>
+                                                                                    <% } %>
+                                                                        </select>
+                                                                        <input type="hidden" value="<%= doc._id %>" name="_id">
+                                                                        <button class="btn btn-success" type="submit">On</button>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="row g-3 align-items-center">
-                                                                <div class="mb-3">
-                                                                    <label for="TextInput" class="form-label">The temperature is lower than the set value.</label>
-                                                                    <input type="text" id="TextInput" class="form-control">
+                                                            </form>
+                                                            <form action="/autoOff" method="post">
+                                                                <div class="row g-3 align-items-center" style="width: 270px">
+                                                                    <label for="TextInput" class="form-label">The Desired Temperature is Off.</label>
+                                                                    <div class="mb-3">
+                                                                        <select class="form-inline" name="autoOff" id="autoOff">
+                                                                            <% var options6=[doc.autoOff] %>
+                                                                                <option value="<%= options4 %>">
+                                                                                    <%= doc.autoOff %> Temperature
+                                                                                </option>
+                                                                                <option value="Not Set">Not Set</option>
+                                                                                <% var options5=["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50" ]; %>
+                                                                                    <% const output2=options5.filter(function(obj) { return JSON.stringify(options6).indexOf(obj)===-1; }); %>
+                                                                                        <% for(var i=0; i < output2.length; i++) { %>
+                                                                                            <option value="<%= output2[i] %>">
+                                                                                                <%= output2[i] %> Temperature
+                                                                                            </option>
+                                                                                    <% } %>
+                                                                        </select>
+                                                                        <input type="hidden" value="<%= doc._id %>" name="_id">
+                                                                        <button class="btn btn-danger" type="submit">Off</button>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </td> -->
+                                                            </form>
+                                                        </td>
                                                         <td>
                                                             <div class="text-center">
                                                                 <a href="/deleteSensor/<%= doc._id %>"
@@ -167,6 +201,7 @@
             <script src="js/scripts.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
             <script src="js/datatables/datatables-simple-demo.js"></script>
+            <script src="/assets/demo/on.js"></script>
             <script src="js/scrollpos.js"></script>
             <script src="js/refreshTime.js"></script>
             <script src="js/clickFn.js"></script>

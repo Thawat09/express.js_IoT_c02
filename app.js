@@ -7,7 +7,7 @@ const express = require("express"),
     mqtt = require('mqtt'),
     User = require("./models/user");
 
-const client = mqtt.connect('mqtt://192.168.165.213'); //mqtt://broker.hivemq.com
+const client = mqtt.connect('mqtt://192.168.77.213'); //mqtt://broker.hivemq.com
 
 
 client.on('connect', () => {
@@ -43,6 +43,14 @@ let username = "";
 let users_id = "";
 let mysort = { '_id': -1 };
 let id = "";
+
+// let temperatureReal = "";
+// app.get("/on", (req, res) => {
+//     User.findOne({}, { '_id': 0, 'temperature': 1 }).sort(mysort).exec((err, doc) => {
+//         temperatureReal = doc.temperature
+//         res.json(doc);
+//     });
+// });
 
 app.get("/frequency", (req, res) => {
     User.find({ 'idMicro': microId, 'namesensor': namesensor }, { '_id': 0, 'frequency': 1 }).exec((err, doc) => {
@@ -180,13 +188,10 @@ app.get("/tables", isLoggedIn, (req, res) => {
 
 app.get("/tablessensor", isLoggedIn, (req, res) => {
     User.find({ 'idMicro': microId }).exec((err, doc) => {
-        User.aggregate([{ $match: { 'idMicro': microId } }, { $project: { _id: 1, frequency: 1 } }]).exec((err, doc1) => {
-            res.render("tablessensor", {
-                title: "tablessensor",
-                currentUser: req.user,
-                users: doc,
-                frequency: doc1
-            });
+        res.render("tablessensor", {
+            title: "tablessensor",
+            currentUser: req.user,
+            users: doc,
         });
     });
 });
@@ -214,13 +219,10 @@ app.get("/add-admin", isLoggedIn, (req, res) => {
 app.get("/:id", isLoggedIn, (req, res) => {
     microId = req.params.id;
     User.find({ 'idMicro': microId }).exec((err, doc) => {
-        User.aggregate([{ $match: { 'idMicro': microId } }, { $project: { _id: 0, frequency: 1 } }, { $group: { _id: null, frequency: { $push: '$frequency' } } }]).exec((err, doc1) => {
-            res.render("tablessensor", {
-                title: "tablessensor",
-                currentUser: req.user,
-                users: doc,
-                frequency: doc1
-            });
+        res.render("tablessensor", {
+            title: "tablessensor",
+            currentUser: req.user,
+            users: doc,
         });
     });
 });
@@ -322,6 +324,28 @@ app.post("/switch2", (req, res) => {
     );
 });
 
+app.post("/autoOn", (req, res) => {
+    let _id = req.body._id;
+    let data = ({ $and: [{ 'namesensor': req.body.namesensor, 'idMicro': req.body.idMicro }] }, { $set: { 'autoOn': req.body.autoOn } })
+    User.findByIdAndUpdate(_id, data).exec(
+        (err) => {
+            if (err) console.log(err);
+            res.status(204).send();
+        }
+    );
+});
+
+app.post("/autoOff", (req, res) => {
+    let _id = req.body._id;
+    let data = ({ $and: [{ 'namesensor': req.body.namesensor, 'idMicro': req.body.idMicro }] }, { $set: { 'autoOff': req.body.autoOff } })
+    User.findByIdAndUpdate(_id, data).exec(
+        (err) => {
+            if (err) console.log(err);
+            res.status(204).send();
+        }
+    );
+});
+
 app.post("/insertMicro", (req, res) => {
     const user_id = req.user._id;
     let data = new User({
@@ -343,6 +367,8 @@ app.post("/insertSensor", (req, res) => {
         frequency: 10000,
         onoff1: "false",
         onoff2: "false",
+        autoOn: "Not Set",
+        autoOff: "Not Set",
     });
     User.saveUser(data, (err) => {
         if (err) console.log(err);
