@@ -47,24 +47,7 @@ app.get("/frequency", (req, res) => {
     User.find({ 'idMicro': microId, 'namesensor': namesensor }, { '_id': 0, 'frequency': 1 }).exec((err, doc) => {
         let seconds = ""
         doc.map((doc1) => {
-            if (doc1['frequency'] == '10') {
-                seconds = '10000'
-            }
-            else if (doc1['frequency'] == '20') {
-                seconds = '20000'
-            }
-            else if (doc1['frequency'] == '30') {
-                seconds = '30000'
-            }
-            else if (doc1['frequency'] == '40') {
-                seconds = '40000'
-            }
-            else if (doc1['frequency'] == '50') {
-                seconds = '50000'
-            }
-            else if (doc1['frequency'] == '60') {
-                seconds = '60000'
-            }
+            seconds = doc1['frequency']
         })
         res.json(seconds);
     });

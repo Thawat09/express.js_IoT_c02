@@ -66,14 +66,16 @@ let pieaqifrequency = "";
 
 async function frequency22() {
     const response = await fetch('http://localhost:1111/frequency');
-    const data = await response.json();
-    pieaqifrequency  = data
+    const data22 = await response.json();
+    let value22 = parseInt(data22)
+    pieaqifrequency = value22 * 1000
 }
 
 function foo22() {
     getRandomUser22();
     frequency22();
     setTimeout(foo22, pieaqifrequency);
+    clearTimeout(foo22);
 }
 
 foo22();

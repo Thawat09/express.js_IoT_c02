@@ -403,13 +403,15 @@ let areafrequency = "";
 async function frequency() {
     const response = await fetch('http://localhost:1111/frequency');
     const data = await response.json();
-    areafrequency = data
+    let value = parseInt(data)
+    areafrequency = value * 1000
 }
 
 function foo() {
     getRandomUser();
     frequency();
     setTimeout(foo, areafrequency);
+    clearTimeout(foo);
 }
 
 foo();
