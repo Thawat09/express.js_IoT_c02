@@ -1,4 +1,4 @@
-# IoT Platform With Line Application-based Communication For Personal Uses
+# IoT Platform With Line Application-based Communication For Personal
 
 Tools : Express.js, Node.Js, MongoDB, MQTT, HTML, CSS, JavaScript, Bootstrap, Restful, API
 
