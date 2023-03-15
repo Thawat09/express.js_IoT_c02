@@ -18,9 +18,6 @@ client.on('connect', () => {
 });
 
 app.use(express.json())
-app.use(express.urlencoded({
-    extended: true
-}))
 app.use(
     require("express-session")({
         secret: "Project C02",
@@ -1426,6 +1423,6 @@ app.listen(PORT, function (err) {
     if (err) {
         console.log(err);
     } else {
-        console.log("Server Started At Port 1111");
+        console.log("Server Started At Port 3000");
     }
 });
