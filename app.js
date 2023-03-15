@@ -8,6 +8,8 @@ const express = require("express"),
     mqtt = require('mqtt'),
     User = require("./models/user");
 
+
+const PORT = process.env.PORT || 3000
 const TOKEN = '9UuuOoemAOcBwMH+8qg7ltt78oDQ13EXMbO6BvDkTST812/gvBvT3iaUQhrG1Jjc3DNjuQ360O2Ivp2k7n74xVrL+wjPGR3YiTa1l7mUWBScKqhZqyMY5SKX9s+Q5KPcgDxnEovactioJHpTRsHiBAdB04t89/1O/w1cDnyilFU='
 const client = mqtt.connect('mqtt://20.213.75.176'); //mqtt://broker.hivemq.com
 
@@ -1420,7 +1422,7 @@ client.on('message', (topic, message) => {
     console.log(`Received message on ${topic}: ${message.toString()}`);
 });
 
-app.listen(process.env.PORT || 1111, function (err) {
+app.listen(PORT, function (err) {
     if (err) {
         console.log(err);
     } else {
