@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const passportLocalMongoose = require("passport-local-mongoose")
 
-const dbUrl = 'mongodb://localhost:27017/UserDB'
+const dbUrl = 'mongodb://127.0.0.1:27017/node-red-mqtt'
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -37,7 +37,7 @@ let userSchema = new mongoose.Schema({
 
 userSchema.plugin(passportLocalMongoose);
 
-let User = mongoose.model('users', userSchema)
+let User = mongoose.model('test2', userSchema)
 
 module.exports = User
 

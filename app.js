@@ -7,7 +7,7 @@ const express = require("express"),
     mqtt = require('mqtt'),
     User = require("./models/user");
 
-const client = mqtt.connect('mqtt://192.168.34.213'); //mqtt://broker.hivemq.com
+const client = mqtt.connect('mqtt://20.213.75.176'); //mqtt://broker.hivemq.com
 
 client.on('connect', () => {
     console.log('Client connected');
