@@ -323,28 +323,6 @@ app.post("/switch2", (req, res) => {
     );
 });
 
-app.post("/autoOn", (req, res) => {
-    let _id = req.body._id;
-    let data = ({ $and: [{ 'namesensor': req.body.namesensor, 'idMicro': req.body.idMicro }] }, { $set: { 'autoOn': req.body.autoOn } })
-    User.findByIdAndUpdate(_id, data).exec(
-        (err) => {
-            if (err) console.log(err);
-            res.status(204).send();
-        }
-    );
-});
-
-app.post("/autoOff", (req, res) => {
-    let _id = req.body._id;
-    let data = ({ $and: [{ 'namesensor': req.body.namesensor, 'idMicro': req.body.idMicro }] }, { $set: { 'autoOff': req.body.autoOff } })
-    User.findByIdAndUpdate(_id, data).exec(
-        (err) => {
-            if (err) console.log(err);
-            res.status(204).send();
-        }
-    );
-});
-
 app.post("/insertMicro", (req, res) => {
     const user_id = req.user._id;
     let data = new User({
