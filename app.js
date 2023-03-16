@@ -11,7 +11,7 @@ const express = require("express"),
 
 const PORT = 1111
 const TOKEN = '9UuuOoemAOcBwMH+8qg7ltt78oDQ13EXMbO6BvDkTST812/gvBvT3iaUQhrG1Jjc3DNjuQ360O2Ivp2k7n74xVrL+wjPGR3YiTa1l7mUWBScKqhZqyMY5SKX9s+Q5KPcgDxnEovactioJHpTRsHiBAdB04t89/1O/w1cDnyilFU='
-const client = mqtt.connect('mqtt://20.213.75.176'); //mqtt://broker.hivemq.com //mqtt://192.168.191.213
+const client = mqtt.connect('mqtt://20.213.75.176'); //mqtt://broker.hivemq.com //mqtt://192.168.191.213 
 
 client.on('connect', () => {
     console.log('Client connected');
