@@ -37,7 +37,7 @@ let userSchema = new mongoose.Schema({
 
 userSchema.plugin(passportLocalMongoose);
 
-let User = mongoose.model('iot', userSchema)
+let User = mongoose.model('projectC02', userSchema)
 
 module.exports = User
 
