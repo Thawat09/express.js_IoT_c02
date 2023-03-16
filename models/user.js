@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const passportLocalMongoose = require("passport-local-mongoose")
 
-const dbUrl = 'mongodb://localhost:27017/node-red-mqtt'
+const dbUrl = 'mongodb://localhost:27017/node-red-mqtt' //192.168.191.27/node-red-mqtt
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true

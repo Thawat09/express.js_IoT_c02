@@ -101,9 +101,9 @@
                                                                     aria-label="Default select example" name="frequency">
                                                                     <% var options2=[doc.frequency] %>
                                                                         <option value="<%= options2 %>">
-                                                                            <%= doc.frequency %> Second
+                                                                            <%= doc.frequency %> Millisecond
                                                                         </option>
-                                                                        <% var options1=["10", "20" , "30", "40" , "50" , "60" ]; %>
+                                                                        <% var options1=["10000", "20000" , "30000", "40000" , "50000" , "60000" ]; %>
                                                                             <% const output=options1.filter(function(obj) { return JSON.stringify(options2).indexOf(obj)===-1; }); %>
                                                                                 <% for(var i=0; i < output.length; i++) { %>
                                                                                     <option value="<%= output[i] %>">
@@ -152,7 +152,6 @@
             <script src="js/scripts.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
             <script src="js/datatables/datatables-simple-demo.js"></script>
-            <!-- <script src="/assets/demo/on.js"></script> -->
             <script src="js/scrollpos.js"></script>
             <script src="js/refreshTime.js"></script>
             <script src="js/clickFn.js"></script>

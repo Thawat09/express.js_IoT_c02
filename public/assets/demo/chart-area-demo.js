@@ -401,17 +401,17 @@ const multiplyByTwo = function (number) {
 let areafrequency = "";
 
 async function frequency() {
-    const response = await fetch('http://localhost:1111/frequency');
+    const response = await fetch('http://localhost:1111/frequency1');
     const data = await response.json();
-    let value = parseInt(data)
-    areafrequency = value * 1000
+    Object.values(data[0]).forEach((doc) => {
+        areafrequency = doc
+    })
 }
 
 function foo() {
     getRandomUser();
     frequency();
     setTimeout(foo, areafrequency);
-    clearTimeout(foo);
 }
 
 foo();

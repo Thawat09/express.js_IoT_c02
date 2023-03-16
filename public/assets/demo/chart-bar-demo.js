@@ -368,17 +368,17 @@ const multiplyByTwo2 = function (number) {
 let barfrequency = "";
 
 async function frequency1() {
-    const response = await fetch('http://localhost:1111/frequency');
-    const data1 = await response.json();
-    let value1 = parseInt(data1)
-    barfrequency  = value1 * 1000
+    const response = await fetch('http://localhost:1111/frequency1');
+    const data = await response.json();
+    Object.values(data[0]).forEach((doc) => {
+        barfrequency = doc
+    })
 }
 
 function foo1() {
     getRandomUser1();
     frequency1();
     setTimeout(foo1, barfrequency);
-    clearTimeout(foo1);
 }
 
 foo1();

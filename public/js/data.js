@@ -32,7 +32,7 @@ function Data(temp, hum, pm, cr) {
 let datafrequency = "";
 
 async function frequency3() {
-    const response = await fetch('http://localhost:1111/frequency');
+    const response = await fetch('http://localhost:1111/frequency1');
     const data = await response.json();
     Object.values(data[0]).forEach((doc) => {
         datafrequency = doc
