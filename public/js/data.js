@@ -32,17 +32,21 @@ function Data(temp, hum, pm, cr) {
 let datafrequency = "";
 
 async function frequency3() {
-    const response = await fetch('http://localhost:1111/frequency1');
-    const data = await response.json();
-    Object.values(data[0]).forEach((doc) => {
-        datafrequency = doc
-    })
+    try {
+        const response = await fetch('http://localhost:1111/frequency1');
+        const data = await response.json();
+        datafrequency = data[0]?.[Object.keys(data[0])[0]] || 0;
+    } catch (error) {
+        console.error('Error fetching frequency:', error);
+        datafrequency = 0;
+    }
 }
 
 function foo3() {
     getData();
-    frequency3();
-    setTimeout(foo3, datafrequency);
+    setTimeout(() => {
+        frequency3().then(foo3);
+    }, datafrequency);
 }
 
 foo3();

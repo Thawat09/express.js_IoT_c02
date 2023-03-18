@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('head.ejs') %>
+    <body class="nav-fixed">
+        <%- include('navbar.ejs') %>
+            <div id="layoutSidenav">
+                <%- include('sidebar.ejs') %>
+                    <div id="layoutSidenav_content">
+                        <main>
+                            <header class="py-10 mb-1">
+                                <div class="container-xl px-4">
+                                    <div class="text-center">
+                                        <h1 class="text-black">Line Application</h1>
+                                        <p class="lead mb-0 text-black-50">
+                                            How to use the application line
+                                        </p>
+                                        <div class="small">
+                                            <i class="far fa-clock fa-spin fa-lg text-black-50"></i>
+                                            <span class="fw-500 text-black-50" id="time"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </header>
+                            <!-- Main page content-->
+                            <div style="display: flex; flex-direction: row;">
+                                <div class="cardline" style="margin-left: 10px;">
+                                    <h1 style="text-align: center;"><b>The use of line applications of the IoT Platform With Line Application-based Communication For personal Uses are as follows :</b></h1>
+                                    <h3><b>Step 1 :</b></h3>
+                                    <p class="indent">Click the Profile menu at Sidebar.</p>
+                                    <h3><b>Step 2 :</b></h3>
+                                    <p class="indent">Enter your ID Line in the ID Line field and press Save.</p>
+                                    <h3><b>Step 3 :</b></h3>
+                                    <p class="indent">Start using LINE application By filling in the Line ID that you registered with the IoT Platform With Line Application-based Communication For personal Uses web application into the Line chat box called PlatformIOT.</p>
+                                    <h3><b>Step 4 :</b></h3>
+                                    <p class="indent">Just this, you will be able to use the line application of the IoT Platform With Line Application-based Communication For personal Uses!!! Let's go talk.</p>
+                                </div>
+                                <div class="cardline" style="margin-left: 10px;">
+                                    <h1 style="text-align: center;"><b>Adding friends of the IoT Platform With Line Application-based Communication For personal Uses added to use the Line Application are as follows :</b></h1>
+                                    <h3><b>Step 1 :</b></h3>
+                                    <p class="indent">Adding friends via ID Line adds by filling ID <span style="color:rgb(42, 21, 235)"><strong>@950crntu</strong></span></p>
+                                    <h3><b>Step 2 :</b></h3>
+                                    <p class="indent">Adding friends via QR Code Add by scanning QR Code.</p>
+                                    <div style="display:flex; justify-content:center; align-items:center;">
+                                        <img src="https://qr-official.line.me/gs/M_950crntu_BW.png" width="200" height="200">
+                                    </div>
+                                    <div style="text-align:center; margin-top:20px;">
+                                        <p style="font-size:18px;">Our line name is PlatformIOT.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                        <%- include('footer.ejs') %>
+                    </div>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+                crossorigin="anonymous"></script>
+            <script src="js/scripts.js"></script>
+            <script src="js/scrollpos.js"></script>
+            <script src="js/refreshTime.js"></script>
+    </body>
+
+</html>

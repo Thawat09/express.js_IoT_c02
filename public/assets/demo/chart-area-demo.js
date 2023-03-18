@@ -398,20 +398,24 @@ const multiplyByTwo = function (number) {
     return number * 220
 }
 
-let areafrequency = "";
+let areafrequency = 0;
 
 async function frequency() {
-    const response = await fetch('http://localhost:1111/frequency1');
-    const data = await response.json();
-    Object.values(data[0]).forEach((doc) => {
-        areafrequency = doc
-    })
+    try {
+        const response = await fetch('http://localhost:1111/frequency1');
+        const data = await response.json();
+        areafrequency = data[0]?.[Object.keys(data[0])[0]] || 0;
+    } catch (error) {
+        console.error('Error fetching frequency:', error);
+        areafrequency = 0;
+    }
 }
 
 function foo() {
     getRandomUser();
-    frequency();
-    setTimeout(foo, areafrequency);
+    setTimeout(() => {
+        frequency().then(foo);
+    }, areafrequency);
 }
 
 foo();

@@ -82,11 +82,7 @@ body {
   place-items: left;
   margin: 0;
   padding: 0 24px;
-  background-image: url(thawat2.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  animation:
-    pan 60s infinite alternate linear;
+  background-color: #f1f1f1
 }
 
 @media (width >=500px) {
@@ -22348,15 +22344,15 @@ body {
 }
 
 .page-header.page-header-dark .page-header-title {
-  color: #fff;
+  color: #000000;
 }
 
 .page-header.page-header-dark .page-header-title .page-header-icon {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 1);
 }
 
 .page-header.page-header-dark .page-header-subtitle {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 1);
 }
 
 .page-header.page-header-dark .breadcrumb {
@@ -22383,11 +22379,11 @@ body {
 }
 
 .page-header.page-header-light .page-header-title {
-  color: #212832;
+  color: #000000;
 }
 
 .page-header.page-header-light .page-header-title .page-header-icon {
-  color: rgba(33, 40, 50, 0.5);
+  color: rgba(0, 0, 0, 1);
 }
 
 .page-header.page-header-light .page-header-subtitle {
@@ -23324,22 +23320,36 @@ table {
   border-collapse: collapse;
   box-sizing: border-box;
   table-layout: auto !important;
-}
-
-thead {
-  text-align: auto;
+  width: 100%;
 }
 
 thead {
   background-color: #00ba94;
+  text-align: auto;
 }
 
 th,
 td {
   padding: 0.75em 4.15em;
   border: 1px solid #dfdfdf;
+  text-align: auto;
 }
 
 #myInputSearch {
   margin-left: 261mm;
+}
+
+.cardline {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  margin: 30px auto;
+  max-height: 1000px auto;
+  max-width: 600px auto;
+  text-align: left;
+}
+
+p.indent {
+  text-indent: 30px;
 }

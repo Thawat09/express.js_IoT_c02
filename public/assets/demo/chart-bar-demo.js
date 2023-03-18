@@ -368,17 +368,21 @@ const multiplyByTwo2 = function (number) {
 let barfrequency = "";
 
 async function frequency1() {
-    const response = await fetch('http://localhost:1111/frequency1');
-    const data = await response.json();
-    Object.values(data[0]).forEach((doc) => {
-        barfrequency = doc
-    })
+    try {
+        const response = await fetch('http://localhost:1111/frequency1');
+        const data = await response.json();
+        barfrequency = data[0]?.[Object.keys(data[0])[0]] || 0;
+    } catch (error) {
+        console.error('Error fetching frequency:', error);
+        barfrequency = 0;
+    }
 }
 
 function foo1() {
     getRandomUser1();
-    frequency1();
-    setTimeout(foo1, barfrequency);
+    setTimeout(() => {
+        frequency1().then(foo1);
+    }, barfrequency);
 }
 
 foo1();
